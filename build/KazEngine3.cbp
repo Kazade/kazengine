@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="KazEngine3" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/KazEngine3" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/KazEngine3" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add directory="../src" />
+		</Compiler>
+		<Linker>
+			<Add library="/usr/lib/libSDL.so" />
+			<Add library="/usr/lib/libGL.so" />
+			<Add library="/usr/lib/libGLU.so" />
+			<Add library="/usr/local/lib/libKazmath.so" />
+			<Add library="/usr/local/lib/libKazmathxx.so" />
+			<Add library="/usr/lib/libphysfs.so" />
+		</Linker>
+		<Unit filename="../src/core/engineinterface.cpp" />
+		<Unit filename="../src/core/engineinterface.h" />
+		<Unit filename="../src/core/guienvironment.cpp" />
+		<Unit filename="../src/core/guienvironment.h" />
+		<Unit filename="../src/core/ieventhandler.h" />
+		<Unit filename="../src/core/igraphicsdriver.h" />
+		<Unit filename="../src/core/ilogholder.h" />
+		<Unit filename="../src/core/inputsystem.h" />
+		<Unit filename="../src/core/iwindow.h" />
+		<Unit filename="../src/core/opengl2driver.cpp" />
+		<Unit filename="../src/core/opengl2driver.h" />
+		<Unit filename="../src/core/sdlwindow.cpp" />
+		<Unit filename="../src/core/sdlwindow.h" />
+		<Unit filename="../src/map/base_map.cpp" />
+		<Unit filename="../src/map/base_map.h" />
+		<Unit filename="../src/map/basic_face.cpp" />
+		<Unit filename="../src/map/basic_face.h" />
+		<Unit filename="../src/map/bsp_data.h" />
+		<Unit filename="../src/map/bsp_leaf.h" />
+		<Unit filename="../src/map/bsp_map.h" />
+		<Unit filename="../src/map/bsp_node.h" />
+		<Unit filename="../src/map/colour4.h" />
+		<Unit filename="../src/map/imap_renderer.h" />
+		<Unit filename="../src/map/loaders/quake3_bsp_map.cpp" />
+		<Unit filename="../src/map/loaders/quake3_bsp_map.h" />
+		<Unit filename="../src/map/map_face.cpp" />
+		<Unit filename="../src/map/map_face.h" />
+		<Unit filename="../src/map/map_limits.h" />
+		<Unit filename="../src/map/map_texture.cpp" />
+		<Unit filename="../src/map/map_texture.h" />
+		<Unit filename="../src/map/map_vertex.cpp" />
+		<Unit filename="../src/map/map_vertex.h" />
+		<Unit filename="../src/map/renderers/basic_map_renderer.cpp" />
+		<Unit filename="../src/map/renderers/basic_map_renderer.h" />
+		<Unit filename="../src/map/renderers/bsp_map_renderer.cpp" />
+		<Unit filename="../src/map/renderers/bsp_map_renderer.h" />
+		<Unit filename="../src/map/surface_list.h" />
+		<Unit filename="../src/resources/iresource.h" />
+		<Unit filename="../src/resources/resourcemanager-tpl.h" />
+		<Unit filename="../src/resources/resourcemanager.cpp" />
+		<Unit filename="../src/resources/resourcemanager.h" />
+		<Unit filename="../src/scene/camera.cpp" />
+		<Unit filename="../src/scene/camera.h" />
+		<Unit filename="../src/scene/entity.cpp" />
+		<Unit filename="../src/scene/entity.h" />
+		<Unit filename="../src/scene/frustum.cpp" />
+		<Unit filename="../src/scene/frustum.h" />
+		<Unit filename="../src/scene/scenemanager.cpp" />
+		<Unit filename="../src/scene/scenemanager.h" />
+		<Unit filename="../src/scene/scenenode.cpp" />
+		<Unit filename="../src/scene/scenenode.h" />
+		<Unit filename="../src/scene/skybox.cpp" />
+		<Unit filename="../src/scene/skybox.h" />
+		<Unit filename="../src/utilities/logger.cpp" />
+		<Unit filename="../src/utilities/logger.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

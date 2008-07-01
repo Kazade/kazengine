@@ -1,0 +1,8 @@
+The source code is laid out in the following structure:
+
+core - Anything that involves window creation or subsystems such as sound, video, networking etc.
+map - Classes for loading and rendering maps of different types and in different ways
+scene - Classes involving scene management such as entities, cameras and lights and the main scene_manager class
+resources - Any resource loading aside from the map, textures, sounds, shaders etc are processed in here
+shaders - Any GLSL shaders that are to be used by the engine
+
