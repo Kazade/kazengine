@@ -53,6 +53,7 @@
 		<Unit filename="../src/core/opengl2driver.h" />
 		<Unit filename="../src/core/sdlwindow.cpp" />
 		<Unit filename="../src/core/sdlwindow.h" />
+		<Unit filename="../src/main.cpp" />
 		<Unit filename="../src/map/base_map.cpp" />
 		<Unit filename="../src/map/base_map.h" />
 		<Unit filename="../src/map/basic_face.cpp" />
@@ -89,6 +90,8 @@
 		<Unit filename="../src/scene/frustum.h" />
 		<Unit filename="../src/scene/scenemanager.cpp" />
 		<Unit filename="../src/scene/scenemanager.h" />
+		<Unit filename="../src/scene/scenemanager2/scene_manager.h" />
+		<Unit filename="../src/scene/scenemanager2/scene_node.h" />
 		<Unit filename="../src/scene/scenenode.cpp" />
 		<Unit filename="../src/scene/scenenode.h" />
 		<Unit filename="../src/scene/skybox.cpp" />

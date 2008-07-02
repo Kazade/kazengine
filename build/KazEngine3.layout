@@ -1,73 +1,79 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="../src/core/engineinterface.cpp" open="1" top="0" tabpos="22">
+	<File name="../src/core/engineinterface.cpp" open="0" top="0" tabpos="22">
 		<Cursor position="1371" topLine="0" />
 	</File>
-	<File name="../src/core/engineinterface.h" open="1" top="0" tabpos="17">
+	<File name="../src/core/engineinterface.h" open="0" top="0" tabpos="17">
 		<Cursor position="209" topLine="0" />
 	</File>
-	<File name="../src/core/igraphicsdriver.h" open="1" top="0" tabpos="16">
+	<File name="../src/core/igraphicsdriver.h" open="0" top="0" tabpos="16">
 		<Cursor position="138" topLine="0" />
 	</File>
-	<File name="../src/core/ilogholder.h" open="1" top="0" tabpos="19">
+	<File name="../src/core/ilogholder.h" open="0" top="0" tabpos="19">
 		<Cursor position="144" topLine="0" />
 	</File>
-	<File name="../src/core/opengl2driver.h" open="1" top="0" tabpos="20">
+	<File name="../src/core/opengl2driver.h" open="0" top="0" tabpos="20">
 		<Cursor position="87" topLine="0" />
 	</File>
-	<File name="../src/map/loaders/quake3_bsp_map.cpp" open="1" top="0" tabpos="8">
+	<File name="../src/main.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="2706" topLine="95" />
+	</File>
+	<File name="../src/map/loaders/quake3_bsp_map.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="154" topLine="0" />
 	</File>
-	<File name="../src/map/loaders/quake3_bsp_map.h" open="1" top="0" tabpos="7">
+	<File name="../src/map/loaders/quake3_bsp_map.h" open="0" top="0" tabpos="7">
 		<Cursor position="101" topLine="0" />
 	</File>
-	<File name="../src/map/renderers/basic_map_renderer.cpp" open="1" top="0" tabpos="9">
-		<Cursor position="26" topLine="0" />
+	<File name="../src/map/renderers/basic_map_renderer.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="2194" topLine="60" />
 	</File>
-	<File name="../src/map/renderers/basic_map_renderer.h" open="1" top="0" tabpos="10">
+	<File name="../src/map/renderers/basic_map_renderer.h" open="0" top="0" tabpos="10">
 		<Cursor position="152" topLine="0" />
 	</File>
-	<File name="../src/map/renderers/bsp_map_renderer.h" open="1" top="0" tabpos="11">
+	<File name="../src/map/renderers/bsp_map_renderer.h" open="0" top="0" tabpos="11">
 		<Cursor position="89" topLine="0" />
 	</File>
-	<File name="../src/resources/iresource.h" open="1" top="0" tabpos="1">
+	<File name="../src/resources/iresource.h" open="0" top="0" tabpos="1">
 		<Cursor position="541" topLine="0" />
 	</File>
-	<File name="../src/resources/resourcemanager-tpl.h" open="1" top="0" tabpos="2">
+	<File name="../src/resources/resourcemanager-tpl.h" open="0" top="0" tabpos="2">
 		<Cursor position="1252" topLine="0" />
 	</File>
-	<File name="../src/resources/resourcemanager.cpp" open="1" top="0" tabpos="4">
+	<File name="../src/resources/resourcemanager.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="1785" topLine="0" />
 	</File>
-	<File name="../src/resources/resourcemanager.h" open="1" top="0" tabpos="3">
+	<File name="../src/resources/resourcemanager.h" open="0" top="0" tabpos="3">
 		<Cursor position="1593" topLine="0" />
 	</File>
-	<File name="../src/scene/camera.cpp" open="1" top="0" tabpos="12">
+	<File name="../src/scene/camera.cpp" open="0" top="0" tabpos="12">
 		<Cursor position="4948" topLine="0" />
 	</File>
-	<File name="../src/scene/camera.h" open="1" top="0" tabpos="6">
+	<File name="../src/scene/camera.h" open="0" top="0" tabpos="6">
 		<Cursor position="1218" topLine="0" />
 	</File>
-	<File name="../src/scene/entity.h" open="1" top="0" tabpos="13">
+	<File name="../src/scene/entity.h" open="0" top="0" tabpos="13">
 		<Cursor position="897" topLine="0" />
 	</File>
-	<File name="../src/scene/scenemanager.cpp" open="1" top="0" tabpos="14">
-		<Cursor position="5344" topLine="51" />
+	<File name="../src/scene/scenemanager.cpp" open="0" top="0" tabpos="14">
+		<Cursor position="5344" topLine="0" />
 	</File>
-	<File name="../src/scene/scenemanager.h" open="1" top="0" tabpos="18">
-		<Cursor position="1424" topLine="48" />
+	<File name="../src/scene/scenemanager.h" open="0" top="0" tabpos="18">
+		<Cursor position="1424" topLine="0" />
 	</File>
-	<File name="../src/scene/scenenode.cpp" open="1" top="0" tabpos="15">
-		<Cursor position="2125" topLine="44" />
+	<File name="../src/scene/scenemanager2/scene_manager.h" open="1" top="0" tabpos="3">
+		<Cursor position="84" topLine="0" />
 	</File>
-	<File name="../src/scene/scenenode.h" open="1" top="0" tabpos="5">
-		<Cursor position="1190" topLine="38" />
+	<File name="../src/scene/scenenode.cpp" open="0" top="0" tabpos="15">
+		<Cursor position="2125" topLine="0" />
 	</File>
-	<File name="../src/utilities/logger.cpp" open="1" top="1" tabpos="23">
+	<File name="../src/scene/scenenode.h" open="0" top="0" tabpos="5">
+		<Cursor position="1190" topLine="0" />
+	</File>
+	<File name="../src/utilities/logger.cpp" open="0" top="0" tabpos="23">
 		<Cursor position="169" topLine="0" />
 	</File>
-	<File name="../src/utilities/logger.h" open="1" top="0" tabpos="21">
+	<File name="../src/utilities/logger.h" open="0" top="0" tabpos="21">
 		<Cursor position="378" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>
