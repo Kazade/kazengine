@@ -34,7 +34,11 @@ class scene_node_interface {
 		virtual scene_node_type get_type() const = 0;
 
 		virtual void destroy() = 0;
-		virtual void destroy_children() = 0;		
+		virtual void destroy_children() = 0;
+
+    private:
+		virtual void add_child(scene_node_interface* child) = 0;
+		virtual void set_parent(scene_node_interface* parent) = 0;
 };
 
 #endif // SCENENODE_H_INCLUDED

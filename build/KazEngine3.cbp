@@ -88,10 +88,9 @@
 		<Unit filename="../src/scene/entity.h" />
 		<Unit filename="../src/scene/frustum.cpp" />
 		<Unit filename="../src/scene/frustum.h" />
+		<Unit filename="../src/scene/iscenenode.h" />
 		<Unit filename="../src/scene/scenemanager.cpp" />
 		<Unit filename="../src/scene/scenemanager.h" />
-		<Unit filename="../src/scene/scenemanager2/scene_manager.h" />
-		<Unit filename="../src/scene/scenemanager2/scene_node.h" />
 		<Unit filename="../src/scene/scenenode.cpp" />
 		<Unit filename="../src/scene/scenenode.h" />
 		<Unit filename="../src/scene/skybox.cpp" />
