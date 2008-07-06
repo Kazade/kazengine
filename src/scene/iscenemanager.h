@@ -1,7 +1,13 @@
 #ifndef ISCENEMANAGER_H_INCLUDED
 #define ISCENEMANAGER_H_INCLUDED
 
+#include <tr1/memory>
+#include <string>
+
 #include "iscenenode.h"
+
+using std::tr1::shared_ptr;
+using std::string;
 
 class scene_node_factory_interface;
 class camera_scene_node_interface;
@@ -30,7 +36,7 @@ class scene_manager_interface {
 
 		virtual void kill_scene_node(scene_node_interface* node) = 0;
 
-		virtual void register_node_for_rendering(scene_node_interface* node) = 0;
+		virtual void register_node_for_rendering(const scene_node_interface* node) = 0;
 };
 
 #endif // ISCENEMANAGER_H_INCLUDED

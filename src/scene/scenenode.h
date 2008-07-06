@@ -3,6 +3,8 @@
 
 #include "iscenenode.h"
 
+class scene_manager;
+
 class scene_node : public scene_node_interface {
     public:
         scene_node(scene_node* parent, scene_manager* mgr);
@@ -26,7 +28,7 @@ class scene_node : public scene_node_interface {
 					if (m_is_visible) {
 						scene_node_list::iterator child = m_child_nodes.begin();
 						for (; child != m_child_nodes.end(); ++child) {
-							child->on_register_scene_node();
+							(*child)->on_register_scene_node();
 						}
 					}
 				}
@@ -42,7 +44,9 @@ class scene_node : public scene_node_interface {
         Mat4 m_relative_transformation;
 
         void destroy_children();
+        bool m_is_visible;
 
+		protected:
         scene_node_type m_node_type;
 };
 

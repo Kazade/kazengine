@@ -73,7 +73,7 @@ void scene_manager::render_all() {
 
 }
 
-void scene_manager::register_node_for_rendering(scene_node_interface* node) {
+void scene_manager::register_node_for_rendering(const scene_node_interface* node) {
 	m_nodes_for_rendering.push_back(node);
 }
 

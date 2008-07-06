@@ -1,6 +1,7 @@
 #ifndef SCENEMANAGER_H_INCLUDED
 #define SCENEMANAGER_H_INCLUDED
 
+#include <stdexcept>
 #include <map>
 #include <string>
 #include <list>
@@ -32,7 +33,7 @@ class scene_manager : public scene_manager_interface {
 		scene_node_interface* add_built_in_scene_node(scene_node_type type, scene_node_interface* parent = 0);
 		scene_node_interface* add_custom_scene_node(const string& type_name, scene_node_interface* parent = 0);
 
-		void register_node_for_rendering(scene_node_interface* node);
+		void register_node_for_rendering(const scene_node_interface* node);
 
 		camera_scene_node_interface* get_active_camera();
 		void set_active_camera(camera_scene_node_interface* camera);

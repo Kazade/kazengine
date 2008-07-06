@@ -1,6 +1,8 @@
 #ifndef ROOTSCENENODE_H_INCLUDED
 #define ROOTSCENENODE_H_INCLUDED
 
+#include "scenenode.h"
+
 /**
 	A class to represent the root scene node
 	which always exists but is never rendered

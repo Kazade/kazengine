@@ -1,6 +1,9 @@
 #ifndef IMAPSCENENODE_H_INCLUDED
 #define IMAPSCENENODE_H_INCLUDED
 
+#include "map/base_map.h"
+#include "map/imap_renderer.h"
+
 class map_scene_node_interface {
 	public:
 		virtual ~map_scene_node_interface() {}

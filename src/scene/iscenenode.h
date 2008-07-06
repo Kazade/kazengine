@@ -60,7 +60,7 @@ class scene_node_interface {
 	protected:
 		virtual void update_absolute_position() = 0;
 
-		virtual const scene_manager_interface* get_scene_manager() const = 0;
+		virtual scene_manager_interface* get_scene_manager() const = 0;
 };
 
 typedef list<scene_node_interface*> scene_node_list;
