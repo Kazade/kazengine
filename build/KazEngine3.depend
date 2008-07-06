@@ -12,7 +12,7 @@
 	<string>
 	"scene/scenemanager.h"
 
-1215350629 /home/luke/Projects/KazEngine3/src/scene/scenemanager.h
+1215370155 /home/luke/Projects/KazEngine3/src/scene/scenemanager.h
 	<stdexcept>
 	<map>
 	<string>
@@ -94,10 +94,10 @@
 1214289849 /home/luke/Projects/KazEngine3/src/core/message.h
 	<tr1/memory>
 
-1215364062 /home/luke/Projects/KazEngine3/src/scene/scenenode.h
+1215369247 /home/luke/Projects/KazEngine3/src/scene/scenenode.h
 	"iscenenode.h"
 
-1214899101 /home/luke/Projects/KazEngine3/src/scene/camera.h
+1215365710 /home/luke/Projects/KazEngine3/src/scene/camera.h
 	<kazmathxx/vec3.h>
 	<kazmath/quaternion.h>
 	<string>
@@ -228,7 +228,7 @@
 	<sstream>
 	"resourcemanager.h"
 
-1214899303 source:/home/luke/Projects/KazEngine3/src/scene/camera.cpp
+1215365946 source:/home/luke/Projects/KazEngine3/src/scene/camera.cpp
 	<kazmath/utility.h>
 	<kazmathxx/mat4.h>
 	<kazmathxx/vec3.h>
@@ -248,10 +248,11 @@
 	<kazmathxx/vec3.h>
 	"frustum.h"
 
-1215362372 source:/home/luke/Projects/KazEngine3/src/scene/scenemanager.cpp
+1215370245 source:/home/luke/Projects/KazEngine3/src/scene/scenemanager.cpp
 	"scenemanager.h"
 	"rootscenenode.h"
 	"quake3scenenode.h"
+	"fpscamerascenenode.h"
 	"utilities/customexcept.h"
 
 1214289849 /home/luke/Projects/KazEngine3/src/scene/skybox.h
@@ -261,7 +262,7 @@
 	<map>
 	<tr1/memory>
 
-1215364573 source:/home/luke/Projects/KazEngine3/src/scene/scenenode.cpp
+1215369660 source:/home/luke/Projects/KazEngine3/src/scene/scenenode.cpp
 	"scenenode.h"
 	"iscenemanager.h"
 	"utilities/customexcept.h"
@@ -335,12 +336,12 @@
 1214289881 source:/home/luke/Projects/KazEngine3/src/core/sdlwindow.cpp
 	"sdlwindow.h"
 
-1215344292 /home/luke/Projects/KazEngine3/src/scene/iscenemanager.h
+1215369894 /home/luke/Projects/KazEngine3/src/scene/iscenemanager.h
 	<tr1/memory>
 	<string>
 	"iscenenode.h"
 
-1215351975 /home/luke/Projects/KazEngine3/src/scene/iscenenode.h
+1215369229 /home/luke/Projects/KazEngine3/src/scene/iscenenode.h
 	<vector>
 	<map>
 	<string>
@@ -350,9 +351,9 @@
 	<kazmathxx/vec3.h>
 	<kazmathxx/aabb.h>
 
-1215350801 /home/luke/Projects/KazEngine3/src/scene/icamerascenenode.h
+1215365820 /home/luke/Projects/KazEngine3/src/scene/icamerascenenode.h
 
-1215352339 source:/home/luke/Projects/KazEngine3/src/main.cpp
+1215370202 source:/home/luke/Projects/KazEngine3/src/main.cpp
 	<iostream>
 	<boost/filesystem.hpp>
 	<GL/gl.h>
@@ -378,4 +379,8 @@
 1215351568 source:/home/luke/Projects/KazEngine3/src/scene/quake3scenenode.cpp
 	"iscenemanager.h"
 	"quake3scenenode.h"
+
+1215365995 /home/luke/Projects/KazEngine3/src/scene/fpscamerascenenode.h
+	"icamerascenenode.h"
+	"camera.h"
 

@@ -9,55 +9,49 @@
 
 using std::string;
 
-namespace engine {
+class Camera {
+	private:
+		Vec3 			m_Position;
+		kmQuaternion 	m_Orientation;
 
-	namespace scene {
+		string 			m_Name;
 
-		class Camera {
-			private:
-				Vec3 			m_Position;
-				kmQuaternion 	m_Orientation;
+		Vec3			yawFixedAxis;
+		bool 			yawFixed;
+		bool 			m_FrustumNeedsUpdating;
 
-				string 			m_Name;
+		frustum m_Frustum;
 
-				Vec3			yawFixedAxis;
-				bool 			yawFixed;
-				bool 			m_FrustumNeedsUpdating;
+	public:
+		Camera(const string& name);
+		Camera(const string& name, const Vec3& vec);
+		Camera(const string& name, float x, float y, float z);
 
-				frustum m_Frustum;
+		string getName();
 
-			public:
-				Camera(const string& name);
-				Camera(const string& name, const Vec3& vec);
-				Camera(const string& name, float x, float y, float z);
+		void setPosition(const Vec3& vec);
+		const Vec3& getPosition() { return m_Position; }
+		void lookAt(const Vec3& vec);
+		void setNearClipDistance(float dist);
+		void setFarClipDistance(float dist);
 
-				string getName();
+		void yaw(float val);
+		void pitch(float val);
+		void roll(float val);
 
-				void setPosition(const Vec3& vec);
-				const Vec3& getPosition() { return m_Position; }
-				void lookAt(const Vec3& vec);
-				void setNearClipDistance(float dist);
-				void setFarClipDistance(float dist);
+		void rotate(const Vec3& axis, float angle);
+		void rotate(const kmQuaternion& q);
 
-				void yaw(float val);
-				void pitch(float val);
-				void roll(float val);
+		Vec3 getUp() const;
+		Vec3 getForward() const;
 
-				void rotate(const Vec3& axis, float angle);
-				void rotate(const kmQuaternion& q);
+		void setOrientation(const kmQuaternion& q);
+		void setDirection(const Vec3& vec);
+		void setFixedYawAxis(bool fixYaw, const Vec3& axis);
+		void use();
 
-				Vec3 getUp() const;
-				Vec3 getForward() const;
-
-				void setOrientation(const kmQuaternion& q);
-				void setDirection(const Vec3& vec);
-				void setFixedYawAxis(bool fixYaw, const Vec3& axis);
-				void use();
-
-				const frustum& getFrustum() { return m_Frustum; }
-				void moveRelative(const Vec3& vec);
-		};
-	}
-}
+		const frustum& getFrustum() { return m_Frustum; }
+		void moveRelative(const Vec3& vec);
+};
 
 #endif // CAMERA_H_INCLUDED

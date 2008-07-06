@@ -48,8 +48,8 @@ class App : public IEventHandler {
 		}
 
 		void update() {
-			scene->get_active_camera()->set_fixed_axis(Vec3(0, 1, 0));
-			scene->get_active_camera()->enable_fixed_axis(true);
+//			scene->get_active_camera()->set_fixed_axis(Vec3(0, 1, 0));
+//			scene->get_active_camera()->enable_fixed_axis(true);
 
 			if (m_Keys[SDLK_LEFT]) {
 				scene->get_active_camera()->yaw(5.0f);
@@ -109,9 +109,12 @@ int main(int argc, char** argv) {
 	shared_ptr<IGraphicsDriver> video = engine->getGraphicsDriver();
 	shared_ptr<scene_manager_interface> scene = engine->getSceneManager();
 
-//	scene->getResourceManager()->add_to_search_path("q3_elkdm2.pk3");
-//	scene->getResourceManager()->add_to_search_path("neotech.pk3");
+	scene->get_resource_manager()->add_to_search_path("q3_elkdm2.pk3");
+	scene->get_resource_manager()->add_to_search_path("neotech.pk3");
 
+	scene_node_interface* mapnode = scene->add_built_in_scene_node(SNT_QUAKE3_BSP);
+
+	//TODO: Load the map
 //	scene->setWorldGeometry("maps/q3_elkdm2.bsp");
 
 	engine->getWindow()->setWindowCaption("KazEngine Test");

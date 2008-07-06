@@ -37,6 +37,9 @@ class scene_manager : public scene_manager_interface {
 
 		camera_scene_node_interface* get_active_camera();
 		void set_active_camera(camera_scene_node_interface* camera);
+
+		shared_ptr<resource_manager> get_resource_manager();
+
 	private:
 		shared_ptr<scene_node_interface> m_root_node;
 		smart_scene_node_list m_node_list; ///< A list of all nodes
@@ -47,6 +50,8 @@ class scene_manager : public scene_manager_interface {
 		smart_scene_node_list m_nodes_for_rendering; ///< A list of nodes that have been registered for rendering
 
 		shared_ptr<camera_scene_node_interface> m_active_camera; ///< The currently active camera
+
+		shared_ptr<resource_manager> m_resource_manager;
 };
 
 #include "icamerascenenode.h"

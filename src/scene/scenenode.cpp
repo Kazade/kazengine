@@ -24,11 +24,49 @@ m_is_dead(false) {
 
 }
 
+/**
+	Removes a child scene node, used by detach to remove
+	a child from its parent
+*/
+void scene_node::remove_child(const scene_node_interface* child) {
+	//Find the child node if it exists
+	scene_node_iterator i = m_child_nodes.begin();
+	for (; i != m_child_nodes.end(); ++i) {
+		if ((*i) == child) {
+			break;
+		}
+	}
+
+	//If it doesnt exist throw an exception
+	if (i == m_child_nodes.end()) {
+		throw std::logic_error("Attempted to remove an invalid child node");
+	}
+
+	//Remove the child node
+	m_child_nodes.erase(i);
+}
+
+/**
+	Detaches this node from its parent node.
+*/
+void scene_node::detach() {
+	scene_node_interface* parent = get_parent();
+	if (parent) {
+		parent->remove_child(this);
+	}
+}
+
 scene_node::~scene_node() {
+
+	detach(); //Remove from the parent node (if any, root node if this isn't the root itself)
+
 	/* when we destroy the scenenode we remove the children */
 	destroy_children();
 }
 
+/**
+	Add a child node to this node
+*/
 void scene_node::add_child(scene_node_interface* child) {
     assert(child);
 

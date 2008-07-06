@@ -81,6 +81,9 @@ class scene_node : public scene_node_interface {
 				Vec3 m_relative_scaling;
 
         void destroy_children();
+        void detach(); //Remove this node from the parent
+        void remove_child(const scene_node_interface* child); ///< Remove a child node
+
 		protected:
         scene_node_type m_node_type;
 

@@ -87,6 +87,7 @@
 		<Unit filename="../src/scene/camera.h" />
 		<Unit filename="../src/scene/entity.cpp" />
 		<Unit filename="../src/scene/entity.h" />
+		<Unit filename="../src/scene/fpscamerascenenode.h" />
 		<Unit filename="../src/scene/frustum.cpp" />
 		<Unit filename="../src/scene/frustum.h" />
 		<Unit filename="../src/scene/icamerascenenode.h" />

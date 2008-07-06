@@ -43,6 +43,8 @@ class scene_node_interface {
 		virtual scene_node_type get_type() const = 0;
 
 		virtual void destroy_children() = 0;
+		virtual void detach() = 0;
+		virtual void remove_child(const scene_node_interface* child) = 0;
 
 		virtual const Mat4 get_absolute_transformation() const = 0;
 		virtual const Mat4 get_relative_transformation() const = 0;

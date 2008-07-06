@@ -1,12 +1,15 @@
 #include "scenemanager.h"
 #include "rootscenenode.h"
 #include "quake3scenenode.h"
+#include "fpscamerascenenode.h"
 #include "utilities/customexcept.h"
 
 using std::tr1::dynamic_pointer_cast;
 
 scene_manager::scene_manager() {
 	m_root_node = shared_ptr<scene_node_interface> (new root_scene_node(this));
+
+	m_resource_manager = shared_ptr<resource_manager> (new resource_manager);
 }
 
 scene_manager::~scene_manager() {
@@ -34,6 +37,7 @@ void scene_manager::flush() {
 	for (; i != m_dead_nodes.end(); ++i) {
 		//Get an iterator in the total node list
 		smart_scene_node_list::iterator j = get_node_iterator((*i).get());
+		(*j)->detach();
 		(*j)->on_destroy_scene_node(); //Call the on_destroy event
 		m_node_list.erase(j); //Remove from the global list
 	}
@@ -44,22 +48,28 @@ void scene_manager::flush() {
 scene_node_interface* scene_manager::add_built_in_scene_node(scene_node_type type, scene_node_interface* parent) {
 	shared_ptr<scene_node_interface> new_node;
 
+	//If no parent was specified we add to the root node
+	if (!parent) {
+		parent = m_root_node.get();
+	}
+
 	switch(type) {
 		case SNT_QUAKE3_BSP:
 			{
-				//If no parent was specified we add to the root node
-				if (!parent) {
-					parent = m_root_node.get();
-				}
-
 				new_node = shared_ptr<scene_node_interface> (new quake3_scene_node(parent, this));
-				m_node_list.push_back(new_node);
-				new_node->on_create_scene_node();
 			}
 			break;
+		case SNT_CAMERA:
+			{
+				new_node = shared_ptr<scene_node_interface> (new fps_camera_scene_node(parent, this));
+			}
+		break;
 		default:
 			throw not_implemented_error("Attempted to spawn an invalid scenenode type");
 	};
+
+	m_node_list.push_back(new_node);
+	new_node->on_create_scene_node();
 
 	return new_node.get();
 };
@@ -117,4 +127,8 @@ smart_scene_node_list::iterator scene_manager::get_node_iterator(const scene_nod
 	}
 
 	throw std::logic_error("Tried to get pointer to non-existant node");
+}
+
+shared_ptr<resource_manager> scene_manager::get_resource_manager() {
+	return m_resource_manager;
 }
