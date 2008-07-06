@@ -41,8 +41,8 @@ shared_ptr<EngineInterface> createEngineInterface(const Vec2& dimensions,
 	newEngine->setSceneManager(sceneManager);
 
 	//Create a default camera
-	sceneManager->createCamera("default");
-	sceneManager->setActiveCamera("default");
+	scene_node_interface* cam = sceneManager->add_built_in_scene_node(SNT_CAMERA);
+	sceneManager->set_active_camera(node_down_cast<camera_scene_node_interface> (cam));
 
 	return newEngine;
 }
@@ -58,7 +58,7 @@ EngineInterface::~EngineInterface() {
 	SDL_Quit();
 }
 
-bool EngineInterface::setSceneManager(shared_ptr<SceneManager> sceneManager) {
+bool EngineInterface::setSceneManager(shared_ptr<scene_manager_interface> sceneManager) {
 	if (!sceneManager) {
 		return false;
 	}

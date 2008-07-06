@@ -43,35 +43,36 @@ class App : public IEventHandler {
 			return false;
 		}
 
-		void setScene(shared_ptr<SceneManager> s) {
+		void setScene(shared_ptr<scene_manager_interface> s) {
 			scene = s;
 		}
 
 		void update() {
-			scene->getActiveCamera()->setFixedYawAxis(true, Vec3(0, 1, 0));
+			scene->get_active_camera()->set_fixed_axis(Vec3(0, 1, 0));
+			scene->get_active_camera()->enable_fixed_axis(true);
 
 			if (m_Keys[SDLK_LEFT]) {
-				scene->getActiveCamera()->yaw(5.0f);
+				scene->get_active_camera()->yaw(5.0f);
 			}
 
 			if (m_Keys[SDLK_RIGHT]) {
-				scene->getActiveCamera()->yaw(-5.0f);
+				scene->get_active_camera()->yaw(-5.0f);
 			}
 
 			if (m_Keys[SDLK_UP]) {
-				scene->getActiveCamera()->pitch(5.0f);
+				scene->get_active_camera()->pitch(5.0f);
 			}
 
 			if (m_Keys[SDLK_DOWN]) {
-				scene->getActiveCamera()->pitch(-5.0f);
+				scene->get_active_camera()->pitch(-5.0f);
 			}
 
 			if (m_Keys[SDLK_w]) {
-				scene->getActiveCamera()->moveRelative(Vec3(0, 0, 0.4f));
+				scene->get_active_camera()->move_relative(Vec3(0, 0, 0.4f));
 			}
 
 			if (m_Keys[SDLK_s]) {
-				scene->getActiveCamera()->moveRelative(Vec3(0, 0, -0.4f));
+				scene->get_active_camera()->move_relative(Vec3(0, 0, -0.4f));
 			}
 		}
 
@@ -90,7 +91,7 @@ class App : public IEventHandler {
 			glLoadIdentity();
 		}
 
-		shared_ptr<SceneManager> scene;
+		shared_ptr<scene_manager_interface> scene;
 
 	//	shared_ptr<gluie::ProgressBar> m_Progress;
 
@@ -106,7 +107,7 @@ int main(int argc, char** argv) {
 
 	shared_ptr<EngineInterface> engine = createEngineInterface(Vec2(640, 480), BitDepth(0), false);
 	shared_ptr<IGraphicsDriver> video = engine->getGraphicsDriver();
-	shared_ptr<SceneManager> scene = engine->getSceneManager();
+	shared_ptr<scene_manager_interface> scene = engine->getSceneManager();
 
 	scene->getResourceManager()->add_to_search_path("q3_elkdm2.pk3");
 	scene->getResourceManager()->add_to_search_path("neotech.pk3");

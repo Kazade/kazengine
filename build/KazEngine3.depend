@@ -12,7 +12,7 @@
 	<string>
 	"scene/scenemanager.h"
 
-1215334029 /home/luke/Projects/KazEngine3/src/scene/scenemanager.h
+1215336306 /home/luke/Projects/KazEngine3/src/scene/scenemanager.h
 	<map>
 	<string>
 	<list>
@@ -20,6 +20,7 @@
 	<kazmathxx/vec4.h>
 	"iscenemanager.h"
 	"resources/resourcemanager.h"
+	"icamerascenenode.h"
 
 1215332991 /home/luke/Projects/KazEngine3/src/map
 
@@ -285,7 +286,7 @@
 1214915681 source:/home/luke/Projects/KazEngine3/src/utilities/logger.cpp
 	"utilities/logger.h"
 
-1214289881 source:/home/luke/Projects/KazEngine3/src/core/engineinterface.cpp
+1215336194 source:/home/luke/Projects/KazEngine3/src/core/engineinterface.cpp
 	<SDL/SDL.h>
 	"engineinterface.h"
 	"opengl2driver.h"
@@ -346,10 +347,10 @@
 1214289881 source:/home/luke/Projects/KazEngine3/src/core/sdlwindow.cpp
 	"sdlwindow.h"
 
-1215334019 /home/luke/Projects/KazEngine3/src/scene/iscenemanager.h
+1215334490 /home/luke/Projects/KazEngine3/src/scene/iscenemanager.h
 	"iscenenode.h"
 
-1215333946 /home/luke/Projects/KazEngine3/src/scene/iscenenode.h
+1215334722 /home/luke/Projects/KazEngine3/src/scene/iscenenode.h
 	<vector>
 	<map>
 	<string>
@@ -358,4 +359,6 @@
 	<kazmathxx/mat4.h>
 	<kazmathxx/vec3.h>
 	<kazmathxx/aabb.h>
+
+1215337454 /home/luke/Projects/KazEngine3/src/scene/icamerascenenode.h
 

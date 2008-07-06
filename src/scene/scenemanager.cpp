@@ -76,3 +76,16 @@ void scene_manager::render_all() {
 void scene_manager::register_node_for_rendering(scene_node_interface* node) {
 	m_nodes_for_rendering.push_back(node);
 }
+
+camera_scene_node_interface* scene_manager::get_active_camera() {
+	return m_active_camera.get();
+}
+
+void scene_manager::set_active_camera(camera_scene_node_interface* camera) {
+	smart_scene_node_list::iterator cam = get_node_iterator(camera);
+	if (cam == m_scene_nodes.end()) {
+		throw std::logic_error("Attempted to set non existant camera as active");
+	}
+
+	m_active_camera = (*cam);
+}

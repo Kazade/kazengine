@@ -33,14 +33,31 @@ class scene_manager : public scene_manager_interface {
 		scene_node_interface* add_custom_scene_node(const string& type_name, scene_node_interface* parent = 0);
 
 		void register_node_for_rendering(scene_node_interface* node);
+
+		camera_scene_node_interface* get_active_camera();
+		void set_active_camera(camera_scene_node_interface* camera);
 	private:
 		shared_ptr<scene_node_interface> m_root_node;
 		smart_scene_node_list m_node_list; ///< A list of all nodes
 		smart_scene_node_list m_dead_nodes; ///< A list of nodes waiting to be removed
 
-		scene_node_list::iterator get_node_iterator(scene_node_interface* node);
+		smart_scene_node_list::iterator get_node_iterator(scene_node_interface* node);
 
 		smart_scene_node_list m_nodes_for_rendering; ///< A list of nodes that have been registered for rendering
+
+		shared_ptr<camera_scene_node_interface> m_active_camera; ///< The currently active camera
 };
+
+#include "icamerascenenode.h"
+
+template <typename T>
+T* node_down_cast(scene_node_interface* node) {
+	T* res = dynamic_cast<T*>(node);
+	if (!res) {
+		throw std::runtime_error("Attempted to cast a node to an invalid type");
+	}
+
+	return res;
+}
 
 #endif // SCENEMANAGER_H_INCLUDED
