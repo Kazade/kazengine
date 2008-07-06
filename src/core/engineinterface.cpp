@@ -31,7 +31,7 @@ shared_ptr<EngineInterface> createEngineInterface(const Vec2& dimensions,
 
 	//FIXME: Must create this dynamically so we can switch to 3 at some point
 	shared_ptr<IGraphicsDriver> videoDriver(new OpenGL2Driver);
-	shared_ptr<SceneManager> sceneManager(new SceneManager);
+	shared_ptr<scene_manager_interface> sceneManager(new scene_manager);
 
 	if (!videoDriver->initialize()) {
 		throw std::runtime_error("Could not initialize the video driver");

@@ -4,20 +4,29 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <list>
 #include <tr1/memory>
 #include <kazmathxx/mat4.h>
 #include <kazmathxx/vec3.h>
 #include <kazmathxx/aabb.h>
 
+using std::list;
+
 enum scene_node_type {
-	SNT_MAP_SCENE_NODE = 0,
-	SNT_CUBE_SCENE_NODE,
+	SNT_QUAKE3_BSP = 0,
+	SNT_CUBE,
+	SNT_CAMERA,
 	SNT_UNKNOWN
 };
+
+class scene_manager_interface;
 
 class scene_node_interface {
 	public:
 		virtual ~scene_node_interface(){}
+
+		virtual void on_create_scene_node() = 0;
+		virtual void on_destroy_scene_node() = 0;
 
 		virtual void on_register_scene_node() = 0;
 		virtual void on_pre_render() = 0;
@@ -36,9 +45,25 @@ class scene_node_interface {
 		virtual void destroy() = 0;
 		virtual void destroy_children() = 0;
 
-    private:
+		virtual const Mat4 get_absolute_transformation() const = 0;
+		virtual const Mat4 get_relative_transformation() const = 0;
+
+		virtual bool is_dead() const = 0; //Return true if the scene node is waiting to be destroyed
+		virtual void kill() = 0;
+
+		virtual void set_visible(bool is_visible) = 0;
+		virtual bool is_visible() const = 0;
+	private:
 		virtual void add_child(scene_node_interface* child) = 0;
 		virtual void set_parent(scene_node_interface* parent) = 0;
+
+	protected:
+		virtual void update_absolute_position() = 0;
+
+		virtual const scene_manager_interface* get_scene_manager() const = 0;
 };
+
+typedef list<scene_node_interface*> scene_node_list;
+typedef scene_node_list::iterator scene_node_iterator;
 
 #endif // SCENENODE_H_INCLUDED

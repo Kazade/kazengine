@@ -12,14 +12,16 @@
 	<string>
 	"scene/scenemanager.h"
 
-1214915405 /home/luke/Projects/KazEngine3/src/scene/scenemanager.h
+1215334029 /home/luke/Projects/KazEngine3/src/scene/scenemanager.h
 	<map>
 	<string>
+	<list>
 	<tr1/memory>
 	<kazmathxx/vec4.h>
+	"iscenemanager.h"
 	"resources/resourcemanager.h"
 
-1214899209 /home/luke/Projects/KazEngine3/src/map
+1215332991 /home/luke/Projects/KazEngine3/src/map
 
 1214289849 /home/luke/Projects/KazEngine3/src/core/renderwindow.h
 	<boost/noncopyable.hpp>
@@ -289,7 +291,7 @@
 	"opengl2driver.h"
 	"sdlwindow.h"
 
-1214915311 /home/luke/Projects/KazEngine3/src/core/engineinterface.h
+1215334074 /home/luke/Projects/KazEngine3/src/core/engineinterface.h
 	<tr1/memory>
 	<kazmathxx/vec2.h>
 	<list>
@@ -343,4 +345,17 @@
 
 1214289881 source:/home/luke/Projects/KazEngine3/src/core/sdlwindow.cpp
 	"sdlwindow.h"
+
+1215334019 /home/luke/Projects/KazEngine3/src/scene/iscenemanager.h
+	"iscenenode.h"
+
+1215333946 /home/luke/Projects/KazEngine3/src/scene/iscenenode.h
+	<vector>
+	<map>
+	<string>
+	<list>
+	<tr1/memory>
+	<kazmathxx/mat4.h>
+	<kazmathxx/vec3.h>
+	<kazmathxx/aabb.h>
 

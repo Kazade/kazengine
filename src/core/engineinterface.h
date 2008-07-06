@@ -11,7 +11,6 @@
 #include "iwindow.h"
 #include "guienvironment.h"
 
-using namespace engine::scene;
 using std::tr1::shared_ptr;
 using std::list;
 
@@ -22,7 +21,7 @@ class EngineInterface {
 		virtual ~EngineInterface();
 
 		const shared_ptr<IGraphicsDriver> getGraphicsDriver() { return m_GraphicsDriver; }
-		const shared_ptr<SceneManager> getSceneManager() { return m_SceneManager; }
+		const shared_ptr<scene_manager_interface> getSceneManager() { return m_SceneManager; }
 		const shared_ptr<IWindow> getWindow() { return m_Window; }
 		const shared_ptr<Logger> getLogger() { return m_Logger; }
 
@@ -36,13 +35,13 @@ class EngineInterface {
 		EngineInterface(); //Only createEngineInterface can create a new Engine
 
 		shared_ptr<IGraphicsDriver> m_GraphicsDriver;
-		shared_ptr<SceneManager> m_SceneManager;
+		shared_ptr<scene_manager_interface> m_SceneManager;
 		shared_ptr<IWindow> m_Window;
 		shared_ptr<Logger> m_Logger;
 //		shared_ptr<GuiEnvironment> m_GUIEnvironment;
 
 		//Only createEngineInterface can call these methods
-		bool setSceneManager(shared_ptr<SceneManager> sceneManager);
+		bool setSceneManager(shared_ptr<scene_manager_interface> sceneManager);
 		bool setGraphicsDriver(shared_ptr<IGraphicsDriver> videoDriver);
 		bool setWindow(shared_ptr<IWindow> window);
 	//	bool setGuiEnvironment(shared_ptr<GuiEnvironment> gui);
