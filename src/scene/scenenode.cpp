@@ -1,8 +1,12 @@
+#include "scenenode.h"
+#include "iscenemanager.h"
 
-scene_node::scene_node(scene_node* parent, scene_manager* mgr):
+scene_node::scene_node(scene_node_interface* parent, scene_manager_interface* mgr):
 m_parent_node(0),
 m_scene_manager(0),
-m_node_type(SNT_UNKNOWN) {
+m_node_type(SNT_UNKNOWN),
+m_is_visible(false),
+m_is_dead(false) {
 
 	assert(mgr); //A scene manager must be specified
 
@@ -15,7 +19,7 @@ m_node_type(SNT_UNKNOWN) {
 	}
 
 	//Update the transformation
-	update_absolute_transformation();
+	update_absolute_position();
 
 }
 
@@ -31,20 +35,15 @@ void scene_node::add_child(scene_node_interface* child) {
     m_child_nodes.push_back(child);
 }
 
-//Set the parent of this node
-void scene_node::set_parent(scene_node_interface* parent) {
-    m_parent_node = parent;
-}
-
 void scene_node::update_absolute_position() {
 	//If this node has a parent
 	if (m_parent_node) {
 		//Then the absolute transformation will be the parent absolute multiplied by the relative
-		Mat4 parent_absolute = m_parent_node->get_absolute_transformation()
-		m_absolute_transformation = parent_absolute * get_relative_transformation()
+		Mat4 parent_absolute = m_parent_node->get_absolute_transformation();
+		m_absolute_transformation = parent_absolute * get_relative_transformation();
 	} else {
 		//If no parent, relative == absolute
-		m_absolute_transformation = get_relative_transformation()
+		m_absolute_transformation = get_relative_transformation();
 	}
 }
 

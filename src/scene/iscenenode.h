@@ -42,7 +42,6 @@ class scene_node_interface {
 
 		virtual scene_node_type get_type() const = 0;
 
-		virtual void destroy() = 0;
 		virtual void destroy_children() = 0;
 
 		virtual const Mat4 get_absolute_transformation() const = 0;
@@ -53,13 +52,10 @@ class scene_node_interface {
 
 		virtual void set_visible(bool is_visible) = 0;
 		virtual bool is_visible() const = 0;
-	private:
+
 		virtual void add_child(scene_node_interface* child) = 0;
 		virtual void set_parent(scene_node_interface* parent) = 0;
-
-	protected:
 		virtual void update_absolute_position() = 0;
-
 		virtual scene_manager_interface* get_scene_manager() const = 0;
 };
 

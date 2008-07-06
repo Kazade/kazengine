@@ -42,7 +42,7 @@ class scene_manager : public scene_manager_interface {
 		smart_scene_node_list m_node_list; ///< A list of all nodes
 		smart_scene_node_list m_dead_nodes; ///< A list of nodes waiting to be removed
 
-		smart_scene_node_list::iterator get_node_iterator(scene_node_interface* node);
+		smart_scene_node_list::iterator get_node_iterator(const scene_node_interface* node);
 
 		smart_scene_node_list m_nodes_for_rendering; ///< A list of nodes that have been registered for rendering
 
