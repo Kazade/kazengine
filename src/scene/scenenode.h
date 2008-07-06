@@ -66,7 +66,7 @@ class scene_node : public scene_node_interface {
 				}
 
 				const Mat4 get_absolute_transformation() const { return m_absolute_transformation; }
-				const Mat4 get_relative_transformation() const { return m_relative_transformation; }
+				const Mat4 get_relative_transformation() const;
 
     private:
         scene_node_interface* m_parent_node;
@@ -75,16 +75,20 @@ class scene_node : public scene_node_interface {
         list<scene_node_interface*> m_child_nodes;
 
         Mat4 m_absolute_transformation;
-        Mat4 m_relative_transformation;
+
+				Vec3 m_relative_translation;
+				Vec3 m_relative_rotation;
+				Vec3 m_relative_scaling;
 
         void destroy_children();
-        bool m_is_visible;
-				bool m_is_dead;
-
-
 		protected:
         scene_node_type m_node_type;
 
+		private:
+        bool m_is_visible;
+				bool m_is_dead;
+
+		protected:
         void update_absolute_position();
         scene_manager_interface* get_scene_manager() const { return m_scene_manager; }
 

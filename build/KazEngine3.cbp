@@ -64,6 +64,7 @@
 		<Unit filename="../src/map/bsp_node.h" />
 		<Unit filename="../src/map/colour4.h" />
 		<Unit filename="../src/map/imap_renderer.h" />
+		<Unit filename="../src/map/iresource.h" />
 		<Unit filename="../src/map/loaders/quake3_bsp_map.cpp" />
 		<Unit filename="../src/map/loaders/quake3_bsp_map.h" />
 		<Unit filename="../src/map/map_face.cpp" />
@@ -88,15 +89,25 @@
 		<Unit filename="../src/scene/entity.h" />
 		<Unit filename="../src/scene/frustum.cpp" />
 		<Unit filename="../src/scene/frustum.h" />
+		<Unit filename="../src/scene/icamerascenenode.h" />
+		<Unit filename="../src/scene/imapscenenode.h" />
+		<Unit filename="../src/scene/iscenemanager.h" />
 		<Unit filename="../src/scene/iscenenode.h" />
+		<Unit filename="../src/scene/iscenenodefactory.h" />
+		<Unit filename="../src/scene/quake3scenenode.cpp" />
+		<Unit filename="../src/scene/quake3scenenode.h" />
+		<Unit filename="../src/scene/rootscenenode.h" />
 		<Unit filename="../src/scene/scenemanager.cpp" />
 		<Unit filename="../src/scene/scenemanager.h" />
 		<Unit filename="../src/scene/scenenode.cpp" />
 		<Unit filename="../src/scene/scenenode.h" />
 		<Unit filename="../src/scene/skybox.cpp" />
 		<Unit filename="../src/scene/skybox.h" />
+		<Unit filename="../src/utilities/colour.h" />
+		<Unit filename="../src/utilities/customexcept.h" />
 		<Unit filename="../src/utilities/logger.cpp" />
 		<Unit filename="../src/utilities/logger.h" />
+		<Unit filename="../src/utilities/patterns/abstractfactory.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

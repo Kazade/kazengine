@@ -1,5 +1,6 @@
 #include "scenenode.h"
 #include "iscenemanager.h"
+#include "utilities/customexcept.h"
 
 scene_node::scene_node(scene_node_interface* parent, scene_manager_interface* mgr):
 m_parent_node(0),
@@ -63,4 +64,33 @@ void scene_node::destroy_children() {
 
 scene_node_type scene_node::get_type() const {
 	return m_node_type;
+}
+
+const Vec3 scene_node::get_position() const {
+	return m_relative_translation;
+}
+
+const Vec3 scene_node::get_rotation() const {
+	return m_relative_rotation;
+}
+
+const Vec3 scene_node::get_scale() const {
+	return m_relative_scaling;
+}
+
+const Mat4 scene_node::get_relative_transformation() const {
+
+	Mat4 relative_transform;
+
+	//Set the translation of the matrix
+	kmMat4Translation(&relative_transform, m_relative_translation.x,
+						m_relative_translation.y, m_relative_translation.z);
+
+	//Set the rotation
+	kmMat4RotationPitchYawRoll(&relative_transform, m_relative_rotation.x,
+						m_relative_rotation.y, m_relative_rotation.z);
+
+	//TODO: Need to add relative_scaling to the relative transform!
+
+	return relative_transform;
 }

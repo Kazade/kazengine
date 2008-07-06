@@ -106,3 +106,15 @@ void scene_manager::set_active_camera(camera_scene_node_interface* camera) {
 
 	m_active_camera = dynamic_pointer_cast<camera_scene_node_interface>(*cam);
 }
+
+smart_scene_node_list::iterator scene_manager::get_node_iterator(const scene_node_interface* node) {
+	smart_scene_node_list::iterator i = m_node_list.begin();
+
+	for (; i != m_node_list.end(); ++i) {
+		if ((*i).get() == node) {
+			return i;
+		}
+	}
+
+	throw std::logic_error("Tried to get pointer to non-existant node");
+}

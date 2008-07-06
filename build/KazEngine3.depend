@@ -94,14 +94,8 @@
 1214289849 /home/luke/Projects/KazEngine3/src/core/message.h
 	<tr1/memory>
 
-1214915596 /home/luke/Projects/KazEngine3/src/scene/scenenode.h
-	<vector>
-	<map>
-	<string>
-	<tr1/memory>
-	<kazmathxx/mat4.h>
-	<kazmathxx/vec3.h>
-	<kazmathxx/aabb.h>
+1215364062 /home/luke/Projects/KazEngine3/src/scene/scenenode.h
+	"iscenenode.h"
 
 1214899101 /home/luke/Projects/KazEngine3/src/scene/camera.h
 	<kazmathxx/vec3.h>
@@ -254,18 +248,11 @@
 	<kazmathxx/vec3.h>
 	"frustum.h"
 
-1214915643 source:/home/luke/Projects/KazEngine3/src/scene/scenemanager.cpp
-	<boost/lexical_cast.hpp>
-	<SDL/SDL.h>
-	<SDL/SDL_opengl.h>
-	"scene/scenemanager.h"
-	"scene/entity.h"
-	"scene/scenenode.h"
-	"utilities/logger.h"
-	"scene/skybox.h"
-	"scene/camera.h"
-	"utilities/patterns/abstractfactory.h"
-	<tr1/memory>
+1215362372 source:/home/luke/Projects/KazEngine3/src/scene/scenemanager.cpp
+	"scenemanager.h"
+	"rootscenenode.h"
+	"quake3scenenode.h"
+	"utilities/customexcept.h"
 
 1214289849 /home/luke/Projects/KazEngine3/src/scene/skybox.h
 	"scene/entity.h"
@@ -274,10 +261,10 @@
 	<map>
 	<tr1/memory>
 
-1214915666 source:/home/luke/Projects/KazEngine3/src/scene/scenenode.cpp
-	<GL/gl.h>
-	"scene/entity.h"
-	"scene/scenenode.h"
+1215364573 source:/home/luke/Projects/KazEngine3/src/scene/scenenode.cpp
+	"scenenode.h"
+	"iscenemanager.h"
+	"utilities/customexcept.h"
 
 1214914773 source:/home/luke/Projects/KazEngine3/src/scene/skybox.cpp
 	<GL/gl.h>
@@ -364,4 +351,31 @@
 	<kazmathxx/aabb.h>
 
 1215350801 /home/luke/Projects/KazEngine3/src/scene/icamerascenenode.h
+
+1215352339 source:/home/luke/Projects/KazEngine3/src/main.cpp
+	<iostream>
+	<boost/filesystem.hpp>
+	<GL/gl.h>
+	<GL/glu.h>
+	"scene/camera.h"
+	"core/engineinterface.h"
+	"resources/resourcemanager.h"
+
+1215349923 /home/luke/Projects/KazEngine3/src/scene/rootscenenode.h
+	"scenenode.h"
+
+1215351560 /home/luke/Projects/KazEngine3/src/scene/quake3scenenode.h
+	"scenenode.h"
+	"imapscenenode.h"
+
+1215351049 /home/luke/Projects/KazEngine3/src/scene/imapscenenode.h
+	"map/base_map.h"
+	"map/imap_renderer.h"
+
+1215364008 /home/luke/Projects/KazEngine3/src/utilities/customexcept.h
+	<stdexcept>
+
+1215351568 source:/home/luke/Projects/KazEngine3/src/scene/quake3scenenode.cpp
+	"iscenemanager.h"
+	"quake3scenenode.h"
 
