@@ -109,10 +109,10 @@ int main(int argc, char** argv) {
 	shared_ptr<IGraphicsDriver> video = engine->getGraphicsDriver();
 	shared_ptr<scene_manager_interface> scene = engine->getSceneManager();
 
-	scene->getResourceManager()->add_to_search_path("q3_elkdm2.pk3");
-	scene->getResourceManager()->add_to_search_path("neotech.pk3");
+//	scene->getResourceManager()->add_to_search_path("q3_elkdm2.pk3");
+//	scene->getResourceManager()->add_to_search_path("neotech.pk3");
 
-	scene->setWorldGeometry("maps/q3_elkdm2.bsp");
+//	scene->setWorldGeometry("maps/q3_elkdm2.bsp");
 
 	engine->getWindow()->setWindowCaption("KazEngine Test");
 	engine->addEventHandler(app);
@@ -123,7 +123,7 @@ int main(int argc, char** argv) {
 		app->update();
 
 		video->beginScene();
-			scene->update();
+			scene->render_all();
 		video->endScene();
 	}
 

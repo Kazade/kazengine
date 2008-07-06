@@ -12,7 +12,8 @@
 	<string>
 	"scene/scenemanager.h"
 
-1215336306 /home/luke/Projects/KazEngine3/src/scene/scenemanager.h
+1215350629 /home/luke/Projects/KazEngine3/src/scene/scenemanager.h
+	<stdexcept>
 	<map>
 	<string>
 	<list>
@@ -347,10 +348,12 @@
 1214289881 source:/home/luke/Projects/KazEngine3/src/core/sdlwindow.cpp
 	"sdlwindow.h"
 
-1215334490 /home/luke/Projects/KazEngine3/src/scene/iscenemanager.h
+1215344292 /home/luke/Projects/KazEngine3/src/scene/iscenemanager.h
+	<tr1/memory>
+	<string>
 	"iscenenode.h"
 
-1215334722 /home/luke/Projects/KazEngine3/src/scene/iscenenode.h
+1215351975 /home/luke/Projects/KazEngine3/src/scene/iscenenode.h
 	<vector>
 	<map>
 	<string>
@@ -360,5 +363,5 @@
 	<kazmathxx/vec3.h>
 	<kazmathxx/aabb.h>
 
-1215337454 /home/luke/Projects/KazEngine3/src/scene/icamerascenenode.h
+1215350801 /home/luke/Projects/KazEngine3/src/scene/icamerascenenode.h
 
