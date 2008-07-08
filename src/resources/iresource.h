@@ -10,12 +10,16 @@ using std::string;
 enum file_load_status {
 	FILE_NOT_FOUND,
 	FILE_LOAD_FAILED,
-	FILE_LOAD_SUCCESS
+	FILE_LOAD_SUCCESS,
+	FILE_LOAD_IN_PROGRESS
 };
 
 /**
 Describes an interface that all resources should implement
 */
+
+typedef int resource_id;
+
 class resource_interface {
 	public:
 		virtual ~resource_interface() {} ///< virtual destructor
@@ -24,6 +28,7 @@ class resource_interface {
 		virtual void unload() = 0;
 		virtual string get_last_error() = 0;
 
+		virtual resource_id get_resource_id() = 0;
 };
 
 

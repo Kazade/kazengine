@@ -13,7 +13,20 @@ scene_manager::scene_manager() {
 }
 
 scene_manager::~scene_manager() {
+	if (m_resource_manager) {
+		deinitialize();
+	}
+}
 
+void scene_manager::deinitialize() {
+	m_resource_manager->stop_thread();
+	m_resource_manager.reset();
+}
+
+bool scene_manager::initialize() {
+	//Start the resource manager
+	m_resource_manager->start_thread();
+	return true;
 }
 
 void scene_manager::kill_scene_node(scene_node_interface* node) {

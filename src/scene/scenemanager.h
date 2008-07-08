@@ -9,7 +9,7 @@
 #include <kazmathxx/vec4.h>
 
 #include "iscenemanager.h"
-#include "resources/resourcemanager.h"
+#include "resources/resource_manager.h"
 
 using std::tr1::shared_ptr;
 using std::string;
@@ -39,6 +39,9 @@ class scene_manager : public scene_manager_interface {
 		void set_active_camera(camera_scene_node_interface* camera);
 
 		shared_ptr<resource_manager> get_resource_manager();
+
+		bool initialize();
+		void deinitialize();
 
 	private:
 		shared_ptr<scene_node_interface> m_root_node;

@@ -40,6 +40,9 @@ class scene_manager_interface {
 		virtual void register_node_for_rendering(const scene_node_interface* node) = 0;
 
 		virtual shared_ptr<resource_manager> get_resource_manager() = 0;
+
+		virtual bool initialize() = 0;
+		virtual void deinitialize() = 0;
 };
 
 #endif // ISCENEMANAGER_H_INCLUDED

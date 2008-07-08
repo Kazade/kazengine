@@ -13,13 +13,13 @@ shared_ptr<EngineInterface> createEngineInterface(const Vec2& dimensions,
 													const BitDepth& bits, bool fullscreen,
 													bool stencilBuffer, bool enableVsync) {
 
-	shared_ptr<EngineInterface> newEngine(new EngineInterface);
+	shared_ptr<EngineInterface> newEngine(new EngineInterface());
 
 	if(SDL_Init(SDL_INIT_VIDEO) != 0) {
 		throw std::runtime_error("Could not initialize SDL");
 	}
 
-	shared_ptr<IWindow> window = shared_ptr<IWindow>(new SDLWindow);
+	shared_ptr<IWindow> window = shared_ptr<IWindow>(new SDLWindow());
 	window->setLog(Logger::getLogger("window"));
 
 	if (!window->create(dimensions, bits, fullscreen)) {
@@ -30,8 +30,9 @@ shared_ptr<EngineInterface> createEngineInterface(const Vec2& dimensions,
 	newEngine->addEventHandler(window);
 
 	//FIXME: Must create this dynamically so we can switch to 3 at some point
-	shared_ptr<IGraphicsDriver> videoDriver(new OpenGL2Driver);
-	shared_ptr<scene_manager_interface> sceneManager(new scene_manager);
+	shared_ptr<IGraphicsDriver> videoDriver(new OpenGL2Driver());
+	shared_ptr<scene_manager_interface> sceneManager(new scene_manager());
+	sceneManager->initialize();
 
 	if (!videoDriver->initialize()) {
 		throw std::runtime_error("Could not initialize the video driver");

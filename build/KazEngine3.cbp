@@ -80,9 +80,9 @@
 		<Unit filename="../src/map/renderers/bsp_map_renderer.h" />
 		<Unit filename="../src/map/surface_list.h" />
 		<Unit filename="../src/resources/iresource.h" />
-		<Unit filename="../src/resources/resourcemanager-tpl.h" />
-		<Unit filename="../src/resources/resourcemanager.cpp" />
-		<Unit filename="../src/resources/resourcemanager.h" />
+		<Unit filename="../src/resources/iresource_manager.h" />
+		<Unit filename="../src/resources/resource_manager.cpp" />
+		<Unit filename="../src/resources/resource_manager.h" />
 		<Unit filename="../src/scene/camera.cpp" />
 		<Unit filename="../src/scene/camera.h" />
 		<Unit filename="../src/scene/entity.cpp" />

@@ -271,7 +271,7 @@ void quake3_bsp_map::convert_vertices() {
 
 
 void quake3_bsp_map::add_normal_face(const quake3_face& f) {
-		m_faces.push_back(new basic_face);
+		m_faces.push_back(new basic_face());
 
 		map_face* new_face = m_faces[m_faces.size() - 1]; //Get a pointer to the new face
 		new_face->clear();

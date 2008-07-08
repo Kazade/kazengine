@@ -3,9 +3,9 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include "scene/camera.h"
-
+#include "scene/imapscenenode.h"
 #include "core/engineinterface.h"
-#include "resources/resourcemanager.h"
+#include "resources/resource_manager.h"
 
 using std::cout;
 using std::endl;
@@ -103,7 +103,7 @@ int main(int argc, char** argv) {
 	resource_manager::initialize(argc, argv);
 	Logger::setDefaultPath(path(argv[0]).remove_leaf().directory_string());
 
-	shared_ptr<App> app(new App);
+	shared_ptr<App> app(new App());
 
 	shared_ptr<EngineInterface> engine = createEngineInterface(Vec2(640, 480), BitDepth(0), false);
 	shared_ptr<IGraphicsDriver> video = engine->getGraphicsDriver();
@@ -112,7 +112,9 @@ int main(int argc, char** argv) {
 	scene->get_resource_manager()->add_to_search_path("q3_elkdm2.pk3");
 	scene->get_resource_manager()->add_to_search_path("neotech.pk3");
 
+	//Create a new map scene node, how can we tie this into the resource manager?
 	scene_node_interface* mapnode = scene->add_built_in_scene_node(SNT_QUAKE3_BSP);
+	(dynamic_cast<map_scene_node_interface*>(mapnode))->load_map(scene->get_resource_manager());
 
 	//TODO: Load the map
 //	scene->setWorldGeometry("maps/q3_elkdm2.bsp");
