@@ -8,6 +8,7 @@
 #include <physfs.h>
 #include "iresource_manager.h"
 #include "utilities/threaded_class.h"
+#include "utilities/customexcept.h"
 
 using std::vector;
 using std::queue;
@@ -19,6 +20,8 @@ using std::tr1::unordered_map;
  */
 class resource_manager : public resource_manager_interface, public threaded_class {
 	public:
+		virtual ~resource_manager() {}
+
 		static void initialize(int argc, char** argv) {
 			if (s_was_initialized) return;
 
@@ -41,17 +44,50 @@ class resource_manager : public resource_manager_interface, public threaded_clas
 		resource_id queue_file_for_loading(const string& filename, shared_ptr<resource_interface>* new_res, shared_ptr<boost::mutex> res_mutex);
 
 		file_load_status get_resource_load_status(const resource_id id) const;
+
+		resource_interface* get_resource(const resource_id& id);
+
+		resource_id generate_next_id() const {
+			static resource_id s_id = 0;
+			return s_id++;
+		}
+
+		bool is_file_loaded(const string& filename) const {
+			unordered_map<string, resource_id>::const_iterator i;
+			i = m_file_resource_lookup.find(filename);
+			if (i == m_file_resource_lookup.end()) {
+				return false;
+			}
+			const resource_id id = (*i).second;
+
+			unordered_map<resource_id, file_load_status>::const_iterator j;
+			j = m_load_status.find(id);
+			return ((*j).second == FILE_LOAD_SUCCESS);
+		}
+
+		bool add_to_search_path(const string& path) {
+			PHYSFS_addToSearchPath(path.c_str(), 1);
+			return true;
+		}
+
+		void clear_search_paths() {
+			throw not_implemented_error("How do you remove a path in physfs?");
+		}
+
+		bool is_file_available(const string& filename) const {
+			return PHYSFS_exists(filename.c_str());
+		}
 	protected:
 
 		/** Actions to do each iteration */
-		virtual void do_run();
+		void do_run();
 
 	private:
 		struct queued_resource {
 			//This is a pointer to a shared_ptr!!!!
 			shared_ptr<resource_interface>* res;
 			shared_ptr<boost::mutex> mutex;
-			const string& filename;
+			string filename;
 			resource_id id;
 		};
 
@@ -71,12 +107,11 @@ class resource_manager : public resource_manager_interface, public threaded_clas
 		boost::mutex m_resources_mutex;
 		unordered_map< resource_id, shared_ptr<resource_interface> > m_resources;
 
+		unordered_map<string, resource_id> m_file_resource_lookup;
+
 		static bool s_was_initialized;
 
-		resource_id generate_next_id() {
-			static resource_id s_id = 0;
-			return s_id++;
-		}
+
 };
 
 template <typename T>

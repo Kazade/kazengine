@@ -114,7 +114,7 @@ int main(int argc, char** argv) {
 
 	//Create a new map scene node, how can we tie this into the resource manager?
 	scene_node_interface* mapnode = scene->add_built_in_scene_node(SNT_QUAKE3_BSP);
-	(dynamic_cast<map_scene_node_interface*>(mapnode))->load_map(scene->get_resource_manager());
+	(dynamic_cast<map_scene_node_interface*>(mapnode))->load_map(scene->get_resource_manager(), "maps/q3_elkdm2.bsp");
 
 	//TODO: Load the map
 //	scene->setWorldGeometry("maps/q3_elkdm2.bsp");

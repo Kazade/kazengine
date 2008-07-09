@@ -14,7 +14,7 @@ class resource_manager_interface {
 		virtual resource_id queue_file_for_loading(const string& filename, shared_ptr<resource_interface>* new_res, shared_ptr<boost::mutex> res_mutex) = 0;
 
 		/** Block until a file is loaded */
-		virtual resource_id load_resource(const string& filename) = 0;
+//		virtual resource_id load_resource(const string& filename) = 0;
 
 		/** Get a resource by its ID */
 		virtual resource_interface* get_resource(const resource_id& res_id) = 0;

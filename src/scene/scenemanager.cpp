@@ -85,7 +85,7 @@ scene_node_interface* scene_manager::add_built_in_scene_node(scene_node_type typ
 	new_node->on_create_scene_node();
 
 	return new_node.get();
-};
+}
 
 bool scene_manager::register_scene_node_factory(shared_ptr<scene_node_factory_interface> factory) {
 	throw not_implemented_error("Factory registration is currently unimplemented");

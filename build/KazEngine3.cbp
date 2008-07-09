@@ -39,6 +39,7 @@
 			<Add library="/usr/local/lib/libKazmath.so" />
 			<Add library="/usr/local/lib/libKazmathxx.so" />
 			<Add library="/usr/lib/libphysfs.so" />
+			<Add library="/usr/lib/libboost_thread.so" />
 		</Linker>
 		<Unit filename="../src/core/engineinterface.cpp" />
 		<Unit filename="../src/core/engineinterface.h" />
@@ -109,6 +110,7 @@
 		<Unit filename="../src/utilities/logger.cpp" />
 		<Unit filename="../src/utilities/logger.h" />
 		<Unit filename="../src/utilities/patterns/abstractfactory.h" />
+		<Unit filename="../src/utilities/threaded_class.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -28,7 +28,7 @@ class resource_interface {
 		virtual void unload() = 0;
 		virtual string get_last_error() = 0;
 
-		virtual resource_id get_resource_id() = 0;
+		virtual resource_id get_resource_id() const = 0;
 };
 
 

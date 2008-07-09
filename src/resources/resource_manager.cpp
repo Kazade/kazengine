@@ -6,6 +6,23 @@ using std::ifstream;
 
 bool resource_manager::s_was_initialized = false;
 
+resource_id resource_manager::queue_file_for_loading(const string& filename,
+					shared_ptr<resource_interface>* new_res, shared_ptr<boost::mutex> res_mutex) {
+
+	shared_ptr<queued_resource> queued_res(new queued_resource());
+	queued_res->filename = filename;
+	queued_res->res = new_res;
+	queued_res->mutex = res_mutex;
+	queued_res->id = generate_next_id();
+
+	{
+		boost::mutex::scoped_lock lock(m_load_queue_mutex);
+		m_load_queue.push(queued_res);
+	}
+
+	return queued_res->id;
+}
+
 void resource_manager::do_run() {
 	/**
 		1. Check to see if there are any blocking resources to load
@@ -52,6 +69,7 @@ void resource_manager::do_run() {
 
 	//create a file stream
 
+	//TODO stop crash here!
 	ifstream stream(m_currently_loading->filename.c_str(), std::ios::binary);
 
 	resource_id current_id = m_currently_loading->id;
@@ -69,7 +87,6 @@ void resource_manager::do_run() {
 			//Lock ready for load
 			boost::mutex::scoped_lock current_lock(*m_currently_loading->mutex);
 
-
 			m_load_status[current_id] = FILE_LOAD_IN_PROGRESS;
 
 			//Attempt the load
@@ -86,6 +103,7 @@ void resource_manager::do_run() {
 				//so the resource is no longer destroyed at the end of load_resource)
 				m_resources.insert(std::make_pair(m_currently_loading->id, *m_currently_loading->res));
 				m_load_status[current_id] = FILE_LOAD_SUCCESS;
+				m_file_resource_lookup[m_currently_loading->filename] = current_id;
 			} //unlock m_resources
 
 			m_currently_loading.reset();
@@ -94,6 +112,15 @@ void resource_manager::do_run() {
 	//We now continue around the loop
 }
 
+bool resource_manager::is_resource_loaded(const resource_id& id) const {
+	unordered_map<resource_id, file_load_status>::const_iterator i;
+	i = m_load_status.find(id);
+	if (i == m_load_status.end()) {
+		return false;
+	}
+
+	return ((*i).second == FILE_LOAD_SUCCESS);
+}
 
 file_load_status resource_manager::get_resource_load_status(const resource_id id) const {
 	unordered_map<resource_id, file_load_status>::const_iterator i;
@@ -105,4 +132,24 @@ file_load_status resource_manager::get_resource_load_status(const resource_id id
 	}
 
 	return (*i).second;
+}
+
+resource_interface* resource_manager::get_resource(const resource_id& id) {
+	if (m_load_status[id] != FILE_LOAD_SUCCESS) {
+		return NULL;
+	}
+
+	unordered_map< resource_id, shared_ptr<resource_interface> >::iterator i;
+
+	//We lock here, we dont know if m_resources is being altered in
+	//another thread
+	boost::mutex::scoped_lock lock(m_resources_mutex);
+
+	i = m_resources.find(id);
+	if (i == m_resources.end()) {
+		return NULL;
+	}
+
+	//Return a raw pointer to the resource
+	return (*i).second.get();
 }

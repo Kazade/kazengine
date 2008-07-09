@@ -5,7 +5,7 @@
 #include <tr1/memory>
 #include <string>
 
-#include "resources/resourcemanager.h"
+#include "resources/resource_manager.h"
 
 using std::tr1::shared_ptr;
 using std::string;
