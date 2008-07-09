@@ -377,7 +377,7 @@
 1215364008 /home/luke/Projects/KazEngine3/src/utilities/customexcept.h
 	<stdexcept>
 
-1215537589 source:/home/luke/Projects/KazEngine3/src/scene/quake3scenenode.cpp
+1215630370 source:/home/luke/Projects/KazEngine3/src/scene/quake3scenenode.cpp
 	"resources/resource_manager.h"
 	"iscenemanager.h"
 	"quake3scenenode.h"
@@ -387,8 +387,8 @@
 	"icamerascenenode.h"
 	"camera.h"
 
-1215551346 /home/luke/Projects/KazEngine3/src/resources/resource_manager.h
-	<queue>
+1215631980 /home/luke/Projects/KazEngine3/src/resources/resource_manager.h
+	<deque>
 	<vector>
 	<map>
 	<tr1/unordered_map>
@@ -397,7 +397,7 @@
 	"utilities/threaded_class.h"
 	"utilities/customexcept.h"
 
-1215537687 /home/luke/Projects/KazEngine3/src/resources/iresource_manager.h
+1215630391 /home/luke/Projects/KazEngine3/src/resources/iresource_manager.h
 	<tr1/memory>
 	<boost/thread/thread.hpp>
 	"iresource.h"
@@ -407,7 +407,7 @@
 	<boost/thread/thread.hpp>
 	<tr1/functional>
 
-1215627663 source:/home/luke/Projects/KazEngine3/src/resources/resource_manager.cpp
+1215632219 source:/home/luke/Projects/KazEngine3/src/resources/resource_manager.cpp
 	<fstream>
 	"resource_manager.h"
 

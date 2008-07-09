@@ -11,7 +11,7 @@ class resource_manager_interface {
 		virtual ~resource_manager_interface() {}
 
 		/**	Queue a file for async loading */
-		virtual resource_id queue_file_for_loading(const string& filename, shared_ptr<resource_interface>* new_res, shared_ptr<boost::mutex> res_mutex) = 0;
+		virtual resource_id queue_file_for_loading(const string& filename, shared_ptr<resource_interface> new_res, shared_ptr<boost::mutex> res_mutex) = 0;
 
 		/** Block until a file is loaded */
 //		virtual resource_id load_resource(const string& filename) = 0;

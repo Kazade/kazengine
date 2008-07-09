@@ -6,21 +6,26 @@ using std::ifstream;
 
 bool resource_manager::s_was_initialized = false;
 
-resource_id resource_manager::queue_file_for_loading(const string& filename,
-					shared_ptr<resource_interface>* new_res, shared_ptr<boost::mutex> res_mutex) {
+resource_manager::resource_manager():
+m_currently_loading(NULL) {
 
-	shared_ptr<queued_resource> queued_res(new queued_resource());
-	queued_res->filename = filename;
-	queued_res->res = new_res;
-	queued_res->mutex = res_mutex;
-	queued_res->id = generate_next_id();
+}
+
+resource_id resource_manager::queue_file_for_loading(const string& filename,
+					shared_ptr<resource_interface> new_res, shared_ptr<boost::mutex> res_mutex) {
+
+	queued_resource queued_res;
+	queued_res.filename = filename;
+	queued_res.res = new_res;
+	queued_res.mutex = res_mutex;
+	queued_res.id = generate_next_id();
 
 	{
 		boost::mutex::scoped_lock lock(m_load_queue_mutex);
-		m_load_queue.push(queued_res);
+		m_load_queue.push_back(queued_res);
 	}
 
-	return queued_res->id;
+	return queued_res.id;
 }
 
 void resource_manager::do_run() {
@@ -40,75 +45,63 @@ void resource_manager::do_run() {
 			f. mark the resource as loaded */
 
 
-	//First we create a lock so we can check if there are any blocking
-	//resources to load (i.e. the user is waiting for load_resource to return)
-	{ //Start of lock block
-		boost::mutex::scoped_lock lock(m_blocked_resource_mutex);
-		if (m_blocked_resource) {
-			//Copy the blocked resource to the currently loaded one
-			m_currently_loading = m_blocked_resource;
-			m_blocked_resource.reset(); //Nullify this ready for another load_resource
-		}
-	} //End of lock block
-
 	//If there wasn't a blocked resource load waiting, then we attempt to load
 	//the next from the queue
 	if (!m_currently_loading) {
 		{ //We lock again (the user might be adding stuff to the queue
 			boost::mutex::scoped_lock lock(m_load_queue_mutex);
-			//Get and remove the item at the front of the queue
-			m_currently_loading = m_load_queue.front();
-			m_load_queue.pop();
+			//Get a pointer to the front of the queue
+			if (!m_load_queue.empty()) {
+				m_currently_loading = &m_load_queue.front();
+			}
 			//We can now unlock the mutex ready for more load requests
 		}
 	}
 
-	//By here we have a pointer in m_currently_loading which cannot be accessed
-	//from another thread so no more locks are needed except the one
-	//associated with the resource itself
-
-	//create a file stream
-
-	//TODO stop crash here!
-	ifstream stream(m_currently_loading->filename.c_str(), std::ios::binary);
-
-	resource_id current_id = m_currently_loading->id;
-
-	if (!stream.is_open()) {
-		//The file didnt exist or could not be opened for reading
-		//so we destroy the currently_loaded resource and mark it as
-		//invalid
-		m_load_status[current_id] = FILE_NOT_FOUND;
-		m_currently_loading.reset();
-	}
-
 	if (m_currently_loading) {
-		{
+		//By here we have a pointer in m_currently_loading which cannot be accessed
+		//from another thread so no more locks are needed except the one
+		//associated with the resource itself
+
+		//create a file stream
+
+		ifstream stream(m_currently_loading->filename.c_str(), std::ios::binary);
+		resource_id current_id = m_currently_loading->id;
+
+		if (!stream.is_open()) {
+			//The file didnt exist or could not be opened for reading
+			//so we destroy the currently_loaded resource and mark it as
+			//invalid
+			m_load_status[current_id] = FILE_NOT_FOUND;
+		} else {
 			//Lock ready for load
 			boost::mutex::scoped_lock current_lock(*m_currently_loading->mutex);
-
 			m_load_status[current_id] = FILE_LOAD_IN_PROGRESS;
 
 			//Attempt the load
-			if (!(*m_currently_loading->res)->load(stream)) {
+			if (!m_currently_loading->res->load(stream)) {
 				//If it failed then we mark as invalid
 				m_load_status[current_id] = FILE_LOAD_FAILED;
-				m_currently_loading.reset();
-				return; //Go to the next iteration
-			}
-
-			{ 		//Lock the resources list
+			} else {
+				//Lock the resources list
 				boost::mutex::scoped_lock resources_lock(m_resources_mutex);
 				//Insert a pointer to the resource (this increments the reference count
 				//so the resource is no longer destroyed at the end of load_resource)
-				m_resources.insert(std::make_pair(m_currently_loading->id, *m_currently_loading->res));
+				m_resources.insert(std::make_pair(m_currently_loading->id, m_currently_loading->res));
 				m_load_status[current_id] = FILE_LOAD_SUCCESS;
 				m_file_resource_lookup[m_currently_loading->filename] = current_id;
 			} //unlock m_resources
-
-			m_currently_loading.reset();
 		} //Unlock m_currently_loading
 	}
+
+	boost::mutex::scoped_lock lock(m_load_queue_mutex);
+
+	if (!m_load_queue.empty()) {
+		m_load_queue.pop_front();
+	}
+
+	m_currently_loading = NULL;
+
 	//We now continue around the loop
 }
 

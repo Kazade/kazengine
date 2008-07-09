@@ -1,7 +1,7 @@
 #ifndef RESOURCE_MANAGER_H
 #define RESOURCE_MANAGER_H
 
-#include <queue>
+#include <deque>
 #include <vector>
 #include <map>
 #include <tr1/unordered_map>
@@ -11,7 +11,7 @@
 #include "utilities/customexcept.h"
 
 using std::vector;
-using std::queue;
+using std::deque;
 using std::map;
 using std::tr1::unordered_map;
 
@@ -20,6 +20,7 @@ using std::tr1::unordered_map;
  */
 class resource_manager : public resource_manager_interface, public threaded_class {
 	public:
+		resource_manager();
 		virtual ~resource_manager() {}
 
 		static void initialize(int argc, char** argv) {
@@ -41,7 +42,7 @@ class resource_manager : public resource_manager_interface, public threaded_clas
 
 		bool is_resource_loaded(const resource_id& id) const;
 
-		resource_id queue_file_for_loading(const string& filename, shared_ptr<resource_interface>* new_res, shared_ptr<boost::mutex> res_mutex);
+		resource_id queue_file_for_loading(const string& filename, shared_ptr<resource_interface> new_res, shared_ptr<boost::mutex> res_mutex);
 
 		file_load_status get_resource_load_status(const resource_id id) const;
 
@@ -84,22 +85,18 @@ class resource_manager : public resource_manager_interface, public threaded_clas
 
 	private:
 		struct queued_resource {
-			//This is a pointer to a shared_ptr!!!!
-			shared_ptr<resource_interface>* res;
+			shared_ptr<resource_interface> res;
 			shared_ptr<boost::mutex> mutex;
 			string filename;
 			resource_id id;
 		};
 
 		/** Pointer to the resource we are currently loading */
-		shared_ptr<queued_resource> m_currently_loading;
+		queued_resource* m_currently_loading;
 
-		/** Queue of resources to load */
+		/** Deque of resources to load */
 		boost::mutex m_load_queue_mutex;
-		queue< shared_ptr< queued_resource > > m_load_queue;
-
-		boost::mutex m_blocked_resource_mutex;
-		shared_ptr< queued_resource > m_blocked_resource;
+		deque<queued_resource> m_load_queue;
 
 		unordered_map<resource_id, file_load_status> m_load_status;
 
@@ -129,22 +126,26 @@ resource_id resource_manager::load_resource(const string& filename) {
 	{
 		boost::mutex::scoped_lock(m_blocked_resource_lock);
 		//assert(!m_blocked_resource);
-		m_blocked_resource.reset(new queued_resource());
-		m_blocked_resource->id = id;
-		m_blocked_resource->filename = filename;
-		m_blocked_resource->mutex = shared_ptr<boost::mutex>(new boost::mutex());
-		//Associate the pointer to pointer (remember, this is a pointer to a shared_ptr)
-		//As soon as we leave this function then this pointer will be invalid but
-		//that doesnt matter
-		m_blocked_resource->res = &new_resource;
+		queued_resource blocked_resource;
+
+		blocked_resource.id = id;
+		blocked_resource.filename = filename;
+		blocked_resource.mutex = shared_ptr<boost::mutex>(new boost::mutex());
+		//Associate the  pointer
+		blocked_resource.res = new_resource;
+
+		{
+			//Lock the queue
+			boost::mutex::scoped_lock(m_load_queue_mutex);
+			m_load_queue.push_front(blocked_resource); //Push this to the front of the queue
+		}
+
 	}//unlock
 
 	//Wait until the resource manager loads the resource
-	while (!is_resource_loaded(m_blocked_resource->id)) {
+	while (!is_resource_loaded(id)) {
 		sleep(0);
 	}
-
-	m_blocked_resource.reset();
 
 	return id;
 }

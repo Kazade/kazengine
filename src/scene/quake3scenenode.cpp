@@ -30,7 +30,7 @@ bool quake3_scene_node::load_map(shared_ptr<resource_manager> rmgr, const string
 	m_map = shared_ptr<base_map> (new quake3_bsp_map());
 
 	shared_ptr<resource_interface> res = m_map;
-	rmgr->queue_file_for_loading(filename, &res, m_map_mutex);
+	rmgr->queue_file_for_loading(filename, res, m_map_mutex);
 
 	/*
 		The status of the load can be found by calling:
