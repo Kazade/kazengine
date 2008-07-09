@@ -1,6 +1,7 @@
 #ifndef RESOURCE_MANAGER_H
 #define RESOURCE_MANAGER_H
 
+#include <iostream>
 #include <deque>
 #include <vector>
 #include <map>
@@ -39,6 +40,7 @@ class resource_manager : public resource_manager_interface, public threaded_clas
 
 		template <typename T>
 		resource_id load_resource(const string& filename);
+		bool has_resource_loading_finished(const resource_id id) const;
 
 		bool is_resource_loaded(const resource_id& id) const;
 
@@ -108,7 +110,8 @@ class resource_manager : public resource_manager_interface, public threaded_clas
 
 		static bool s_was_initialized;
 
-
+		mutable boost::mutex m_finished_loading_mutex;
+		vector<resource_id> m_resources_finished_loading;
 };
 
 template <typename T>
@@ -122,28 +125,23 @@ resource_id resource_manager::load_resource(const string& filename) {
 	shared_ptr<resource_interface> new_resource(new T());
 	resource_id id = generate_next_id();
 
-	//Lock the blocked resource
+	queued_resource blocked_resource;
+
+	blocked_resource.id = id;
+	blocked_resource.filename = filename;
+	blocked_resource.mutex = shared_ptr<boost::mutex>(new boost::mutex());
+	blocked_resource.res = new_resource; 	//Associate the  pointer
+
 	{
-		boost::mutex::scoped_lock(m_blocked_resource_lock);
-		//assert(!m_blocked_resource);
-		queued_resource blocked_resource;
+		//Lock the queue
+		boost::mutex::scoped_lock queue_lock(m_load_queue_mutex);
+		m_load_queue.push_front(blocked_resource); //Push this to the front of the queue
+	}
 
-		blocked_resource.id = id;
-		blocked_resource.filename = filename;
-		blocked_resource.mutex = shared_ptr<boost::mutex>(new boost::mutex());
-		//Associate the  pointer
-		blocked_resource.res = new_resource;
-
-		{
-			//Lock the queue
-			boost::mutex::scoped_lock(m_load_queue_mutex);
-			m_load_queue.push_front(blocked_resource); //Push this to the front of the queue
-		}
-
-	}//unlock
-
+	std::cout << "Waiting for load" << std::endl;
 	//Wait until the resource manager loads the resource
-	while (!is_resource_loaded(id)) {
+	while (!has_resource_loading_finished(id)) {
+		std::cout << ".";
 		sleep(0);
 	}
 

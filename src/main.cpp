@@ -6,6 +6,7 @@
 #include "scene/imapscenenode.h"
 #include "core/engineinterface.h"
 #include "resources/resource_manager.h"
+#include "map/loaders/quake3_bsp_map.h"
 
 using std::cout;
 using std::endl;
@@ -112,9 +113,13 @@ int main(int argc, char** argv) {
 	scene->get_resource_manager()->add_to_search_path("q3_elkdm2.pk3");
 	scene->get_resource_manager()->add_to_search_path("neotech.pk3");
 
+	resource_id id = scene->get_resource_manager()->load_resource<quake3_bsp_map>("maps/q3_elkdm2.bsp");
+	if (!scene->get_resource_manager()->get_resource_load_status(id) != FILE_LOAD_SUCCESS) {
+		std::cout << "Could not load file" << std::endl;
+	}
 	//Create a new map scene node, how can we tie this into the resource manager?
-	scene_node_interface* mapnode = scene->add_built_in_scene_node(SNT_QUAKE3_BSP);
-	(dynamic_cast<map_scene_node_interface*>(mapnode))->load_map(scene->get_resource_manager(), "maps/q3_elkdm2.bsp");
+//	scene_node_interface* mapnode = scene->add_built_in_scene_node(SNT_QUAKE3_BSP);
+//	(dynamic_cast<map_scene_node_interface*>(mapnode))->load_map(scene->get_resource_manager(), "maps/q3_elkdm2.bsp");
 
 	//TODO: Load the map
 //	scene->setWorldGeometry("maps/q3_elkdm2.bsp");

@@ -353,7 +353,7 @@
 
 1215365820 /home/luke/Projects/KazEngine3/src/scene/icamerascenenode.h
 
-1215538846 source:/home/luke/Projects/KazEngine3/src/main.cpp
+1215634470 source:/home/luke/Projects/KazEngine3/src/main.cpp
 	<iostream>
 	<boost/filesystem.hpp>
 	<GL/gl.h>
@@ -362,6 +362,7 @@
 	"scene/imapscenenode.h"
 	"core/engineinterface.h"
 	"resources/resource_manager.h"
+	"map/loaders/quake3_bsp_map.h"
 
 1215349923 /home/luke/Projects/KazEngine3/src/scene/rootscenenode.h
 	"scenenode.h"
@@ -387,7 +388,8 @@
 	"icamerascenenode.h"
 	"camera.h"
 
-1215631980 /home/luke/Projects/KazEngine3/src/resources/resource_manager.h
+1215635296 /home/luke/Projects/KazEngine3/src/resources/resource_manager.h
+	<iostream>
 	<deque>
 	<vector>
 	<map>
@@ -407,7 +409,8 @@
 	<boost/thread/thread.hpp>
 	<tr1/functional>
 
-1215632219 source:/home/luke/Projects/KazEngine3/src/resources/resource_manager.cpp
+1215635155 source:/home/luke/Projects/KazEngine3/src/resources/resource_manager.cpp
 	<fstream>
+	<iostream>
 	"resource_manager.h"
 
