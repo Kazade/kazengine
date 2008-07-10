@@ -17,7 +17,7 @@ class resource_manager_interface {
 //		virtual resource_id load_resource(const string& filename) = 0;
 
 		/** Get a resource by its ID */
-		virtual resource_interface* get_resource(const resource_id& res_id) = 0;
+		virtual shared_ptr<resource_interface> get_resource(const resource_id& res_id) = 0;
 
 		/** Generates the next resource_id */
 		virtual resource_id generate_next_id() const = 0;

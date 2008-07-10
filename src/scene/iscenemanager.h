@@ -12,6 +12,7 @@ using std::string;
 class scene_node_factory_interface;
 class camera_scene_node_interface;
 class resource_manager;
+class map_scene_node_interface;
 
 class scene_manager_interface {
 	public:
@@ -26,6 +27,7 @@ class scene_manager_interface {
 		//Create one of the built in scene nodes
 		virtual scene_node_interface* add_built_in_scene_node(scene_node_type type, scene_node_interface* parent = 0) = 0;
 
+		virtual map_scene_node_interface* add_quake3_scene_node(const string& filename) = 0;
 		//Render all of the scene nodes
 		virtual void render_all() = 0;
 
@@ -35,7 +37,7 @@ class scene_manager_interface {
 		//Remove any dead nodes
 		virtual void flush() = 0;
 
-		virtual void kill_scene_node(scene_node_interface* node) = 0;
+		virtual void kill_scene_node(const scene_node_interface* node) = 0;
 
 		virtual void register_node_for_rendering(const scene_node_interface* node) = 0;
 
@@ -43,6 +45,8 @@ class scene_manager_interface {
 
 		virtual bool initialize() = 0;
 		virtual void deinitialize() = 0;
+
+		virtual bool remove_scene_node(const scene_node_interface* node) = 0;
 };
 
 #endif // ISCENEMANAGER_H_INCLUDED

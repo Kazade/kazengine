@@ -129,25 +129,25 @@ file_load_status resource_manager::get_resource_load_status(const resource_id id
 	return (*i).second;
 }
 
-resource_interface* resource_manager::get_resource(const resource_id& id) {
-	if (m_load_status[id] != FILE_LOAD_SUCCESS) {
-		return NULL;
+shared_ptr<resource_interface> resource_manager::get_resource(const resource_id& id) {
+	shared_ptr<resource_interface> result;
+
+	if (m_load_status[id] == FILE_LOAD_SUCCESS) {
+		unordered_map< resource_id, shared_ptr<resource_interface> >::iterator i;
+		//We lock here, we dont know if m_resources is being altered in
+		//another thread
+		boost::mutex::scoped_lock lock(m_resources_mutex);
+
+		i = m_resources.find(id);
+		if (i != m_resources.end()) {
+			result = (*i).second;
+		}
 	}
 
-	unordered_map< resource_id, shared_ptr<resource_interface> >::iterator i;
-
-	//We lock here, we dont know if m_resources is being altered in
-	//another thread
-	boost::mutex::scoped_lock lock(m_resources_mutex);
-
-	i = m_resources.find(id);
-	if (i == m_resources.end()) {
-		return NULL;
-	}
-
-	//Return a raw pointer to the resource
-	return (*i).second.get();
+	//Return a shared pointer to the resource
+	return result;
 }
+
 
 /**
  * Reads a file using PhysFS and returns a pointer to an inputstream

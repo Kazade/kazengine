@@ -27,7 +27,7 @@ class scene_manager : public scene_manager_interface {
 
 		//Remove any dead nodes
 		void flush();
-		void kill_scene_node(scene_node_interface* node);
+		void kill_scene_node(const scene_node_interface* node);
 		void render_all();
 
 		scene_node_interface* add_built_in_scene_node(scene_node_type type, scene_node_interface* parent = 0);
@@ -42,6 +42,9 @@ class scene_manager : public scene_manager_interface {
 
 		bool initialize();
 		void deinitialize();
+
+		virtual map_scene_node_interface* add_quake3_scene_node(const string& filename);
+		virtual bool remove_scene_node(const scene_node_interface* node);
 
 	private:
 		shared_ptr<scene_node_interface> m_root_node;

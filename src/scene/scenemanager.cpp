@@ -29,7 +29,7 @@ bool scene_manager::initialize() {
 	return true;
 }
 
-void scene_manager::kill_scene_node(scene_node_interface* node) {
+void scene_manager::kill_scene_node(const scene_node_interface* node) {
 	smart_scene_node_list::iterator i = get_node_iterator(node);
 
 	if (i != m_node_list.end()) {
@@ -85,6 +85,23 @@ scene_node_interface* scene_manager::add_built_in_scene_node(scene_node_type typ
 	new_node->on_create_scene_node();
 
 	return new_node.get();
+}
+
+map_scene_node_interface* scene_manager::add_quake3_scene_node(const string& filename) {
+	//Create a new map scene node
+	map_scene_node_interface* mapnode = NULL;
+	mapnode = dynamic_cast<map_scene_node_interface*>(add_built_in_scene_node(SNT_QUAKE3_BSP));
+	if (!mapnode->load_map(get_resource_manager(), filename)) {
+		remove_scene_node(dynamic_cast<scene_node_interface*>(mapnode));
+		mapnode = NULL;
+	}
+	return mapnode;
+}
+
+bool scene_manager::remove_scene_node(const scene_node_interface* node) {
+	kill_scene_node(node);
+	flush();
+	return true;
 }
 
 bool scene_manager::register_scene_node_factory(shared_ptr<scene_node_factory_interface> factory) {

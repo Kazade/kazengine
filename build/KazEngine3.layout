@@ -1,16 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="../src/main.cpp" open="1" top="1" tabpos="4">
-		<Cursor position="2962" topLine="107" />
-	</File>
-	<File name="../src/resources/resource_manager.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="1244" topLine="11" />
-	</File>
-	<File name="../src/resources/resource_manager.h" open="1" top="0" tabpos="3">
-		<Cursor position="1924" topLine="44" />
-	</File>
-	<File name="../src/utilities/threaded_class.h" open="1" top="0" tabpos="2">
-		<Cursor position="790" topLine="5" />
-	</File>
 </CodeBlocks_layout_file>

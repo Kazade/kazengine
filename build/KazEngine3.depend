@@ -12,7 +12,7 @@
 	<string>
 	"scene/scenemanager.h"
 
-1215502527 /home/luke/Projects/KazEngine3/src/scene/scenemanager.h
+1215717803 /home/luke/Projects/KazEngine3/src/scene/scenemanager.h
 	<stdexcept>
 	<map>
 	<string>
@@ -23,7 +23,7 @@
 	"resources/resource_manager.h"
 	"icamerascenenode.h"
 
-1215537349 /home/luke/Projects/KazEngine3/src/map
+1215691355 /home/luke/Projects/KazEngine3/src/map
 
 1214289849 /home/luke/Projects/KazEngine3/src/core/renderwindow.h
 	<boost/noncopyable.hpp>
@@ -43,7 +43,7 @@
 	<iostream>
 	"iresource.h"
 
-1215537324 /home/luke/Projects/KazEngine3/src/resources/iresource.h
+1215691355 /home/luke/Projects/KazEngine3/src/resources/iresource.h
 	<istream>
 	<string>
 
@@ -94,10 +94,10 @@
 1214289849 /home/luke/Projects/KazEngine3/src/core/message.h
 	<tr1/memory>
 
-1215415653 /home/luke/Projects/KazEngine3/src/scene/scenenode.h
+1215691355 /home/luke/Projects/KazEngine3/src/scene/scenenode.h
 	"iscenenode.h"
 
-1215365710 /home/luke/Projects/KazEngine3/src/scene/camera.h
+1215691355 /home/luke/Projects/KazEngine3/src/scene/camera.h
 	<kazmathxx/vec3.h>
 	<kazmath/quaternion.h>
 	<string>
@@ -132,7 +132,7 @@
 	<iostream>
 	"base_map.h"
 
-1215537348 /home/luke/Projects/KazEngine3/src/map/base_map.h
+1215691355 /home/luke/Projects/KazEngine3/src/map/base_map.h
 	<vector>
 	<kazmathxx/plane.h>
 	"iresource.h"
@@ -166,7 +166,7 @@
 1214726274 /home/luke/Projects/KazEngine3/src/map/basic_face.h
 	"map_face.h"
 
-1215458569 source:/home/luke/Projects/KazEngine3/src/map/loaders/quake3_bsp_map.cpp
+1215691355 source:/home/luke/Projects/KazEngine3/src/map/loaders/quake3_bsp_map.cpp
 	<iostream>
 	"map/basic_face.h"
 	"quake3_bsp_map.h"
@@ -228,7 +228,7 @@
 	<sstream>
 	"resourcemanager.h"
 
-1215365946 source:/home/luke/Projects/KazEngine3/src/scene/camera.cpp
+1215691355 source:/home/luke/Projects/KazEngine3/src/scene/camera.cpp
 	<kazmath/utility.h>
 	<kazmathxx/mat4.h>
 	<kazmathxx/vec3.h>
@@ -238,7 +238,7 @@
 1214289851 source:/home/luke/Projects/KazEngine3/src/scene/entity.cpp
 	"scene/entity.h"
 
-1215627447 /home/luke/Projects/KazEngine3/src/scene/entity.h
+1215691355 /home/luke/Projects/KazEngine3/src/scene/entity.h
 	<tr1/memory>
 	<string>
 	"resources/resource_manager.h"
@@ -248,7 +248,7 @@
 	<kazmathxx/vec3.h>
 	"frustum.h"
 
-1215627460 source:/home/luke/Projects/KazEngine3/src/scene/scenemanager.cpp
+1215691355 source:/home/luke/Projects/KazEngine3/src/scene/scenemanager.cpp
 	"scenemanager.h"
 	"rootscenenode.h"
 	"quake3scenenode.h"
@@ -262,7 +262,7 @@
 	<map>
 	<tr1/memory>
 
-1215369660 source:/home/luke/Projects/KazEngine3/src/scene/scenenode.cpp
+1215691355 source:/home/luke/Projects/KazEngine3/src/scene/scenenode.cpp
 	"scenenode.h"
 	"iscenemanager.h"
 	"utilities/customexcept.h"
@@ -275,13 +275,13 @@
 1214915681 source:/home/luke/Projects/KazEngine3/src/utilities/logger.cpp
 	"utilities/logger.h"
 
-1215502647 source:/home/luke/Projects/KazEngine3/src/core/engineinterface.cpp
+1215691355 source:/home/luke/Projects/KazEngine3/src/core/engineinterface.cpp
 	<SDL/SDL.h>
 	"engineinterface.h"
 	"opengl2driver.h"
 	"sdlwindow.h"
 
-1215334074 /home/luke/Projects/KazEngine3/src/core/engineinterface.h
+1215691355 /home/luke/Projects/KazEngine3/src/core/engineinterface.h
 	<tr1/memory>
 	<kazmathxx/vec2.h>
 	<list>
@@ -336,12 +336,12 @@
 1214289881 source:/home/luke/Projects/KazEngine3/src/core/sdlwindow.cpp
 	"sdlwindow.h"
 
-1215502517 /home/luke/Projects/KazEngine3/src/scene/iscenemanager.h
+1215717810 /home/luke/Projects/KazEngine3/src/scene/iscenemanager.h
 	<tr1/memory>
 	<string>
 	"iscenenode.h"
 
-1215415666 /home/luke/Projects/KazEngine3/src/scene/iscenenode.h
+1215691355 /home/luke/Projects/KazEngine3/src/scene/iscenenode.h
 	<vector>
 	<map>
 	<string>
@@ -351,9 +351,9 @@
 	<kazmathxx/vec3.h>
 	<kazmathxx/aabb.h>
 
-1215365820 /home/luke/Projects/KazEngine3/src/scene/icamerascenenode.h
+1215691355 /home/luke/Projects/KazEngine3/src/scene/icamerascenenode.h
 
-1215634470 source:/home/luke/Projects/KazEngine3/src/main.cpp
+1215717500 source:/home/luke/Projects/KazEngine3/src/main.cpp
 	<iostream>
 	<boost/filesystem.hpp>
 	<GL/gl.h>
@@ -364,31 +364,32 @@
 	"resources/resource_manager.h"
 	"map/loaders/quake3_bsp_map.h"
 
-1215349923 /home/luke/Projects/KazEngine3/src/scene/rootscenenode.h
+1215691355 /home/luke/Projects/KazEngine3/src/scene/rootscenenode.h
 	"scenenode.h"
 
-1215504485 /home/luke/Projects/KazEngine3/src/scene/quake3scenenode.h
+1215717953 /home/luke/Projects/KazEngine3/src/scene/quake3scenenode.h
 	"scenenode.h"
 	"imapscenenode.h"
 
-1215538811 /home/luke/Projects/KazEngine3/src/scene/imapscenenode.h
+1215717968 /home/luke/Projects/KazEngine3/src/scene/imapscenenode.h
 	"map/base_map.h"
 	"map/imap_renderer.h"
 
-1215364008 /home/luke/Projects/KazEngine3/src/utilities/customexcept.h
+1215691355 /home/luke/Projects/KazEngine3/src/utilities/customexcept.h
 	<stdexcept>
 
-1215630370 source:/home/luke/Projects/KazEngine3/src/scene/quake3scenenode.cpp
+1215716986 source:/home/luke/Projects/KazEngine3/src/scene/quake3scenenode.cpp
+	<tr1/memory>
 	"resources/resource_manager.h"
 	"iscenemanager.h"
 	"quake3scenenode.h"
 	"map/loaders/quake3_bsp_map.h"
 
-1215365995 /home/luke/Projects/KazEngine3/src/scene/fpscamerascenenode.h
+1215691355 /home/luke/Projects/KazEngine3/src/scene/fpscamerascenenode.h
 	"icamerascenenode.h"
 	"camera.h"
 
-1215675851 /home/luke/Projects/KazEngine3/src/resources/resource_manager.h
+1215715486 /home/luke/Projects/KazEngine3/src/resources/resource_manager.h
 	<iostream>
 	<deque>
 	<vector>
@@ -399,17 +400,17 @@
 	"utilities/threaded_class.h"
 	"utilities/customexcept.h"
 
-1215630391 /home/luke/Projects/KazEngine3/src/resources/iresource_manager.h
+1215715519 /home/luke/Projects/KazEngine3/src/resources/iresource_manager.h
 	<tr1/memory>
 	<boost/thread/thread.hpp>
 	"iresource.h"
 
-1215502686 /home/luke/Projects/KazEngine3/src/utilities/threaded_class.h
+1215691355 /home/luke/Projects/KazEngine3/src/utilities/threaded_class.h
 	<tr1/memory>
 	<boost/thread/thread.hpp>
 	<tr1/functional>
 
-1215675725 source:/home/luke/Projects/KazEngine3/src/resources/resource_manager.cpp
+1215715684 source:/home/luke/Projects/KazEngine3/src/resources/resource_manager.cpp
 	<fstream>
 	<iostream>
 	<sstream>

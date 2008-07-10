@@ -48,7 +48,7 @@ class resource_manager : public resource_manager_interface, public threaded_clas
 
 		file_load_status get_resource_load_status(const resource_id id) const;
 
-		resource_interface* get_resource(const resource_id& id);
+		shared_ptr<resource_interface> get_resource(const resource_id& id);
 
 		resource_id generate_next_id() const {
 			static resource_id s_id = 0;

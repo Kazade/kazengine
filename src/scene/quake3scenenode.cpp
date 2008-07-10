@@ -1,7 +1,10 @@
+#include <tr1/memory>
 #include "resources/resource_manager.h"
 #include "iscenemanager.h"
 #include "quake3scenenode.h"
 #include "map/loaders/quake3_bsp_map.h"
+
+using std::tr1::dynamic_pointer_cast;
 
 quake3_scene_node::quake3_scene_node(scene_node_interface* parent, scene_manager_interface* mgr):
 scene_node(parent, mgr) {
@@ -22,21 +25,23 @@ void quake3_scene_node::set_map_renderer(shared_ptr<map_renderer_interface> rend
 
 bool quake3_scene_node::load_map(shared_ptr<resource_manager> rmgr, const string& filename) {
 	//Queue a file for loading asyncronously
-	assert(!m_map);
+	bool result = true;
 
-	m_map_mutex.reset(new boost::mutex);
+	shared_ptr<resource_interface> q3_map(new quake3_bsp_map());
+	shared_ptr<boost::mutex> map_mutex(new boost::mutex);
 
-	//Create space for the map
-	m_map = shared_ptr<base_map> (new quake3_bsp_map());
+	//Load the quake map
+	resource_id id = rmgr->load_resource<quake3_bsp_map> (filename);
 
-	shared_ptr<resource_interface> res = m_map;
-	rmgr->queue_file_for_loading(filename, res, m_map_mutex);
+	if (rmgr->get_resource_load_status(id) != FILE_LOAD_SUCCESS) {
+		result = false;
+	}
 
-	/*
-		The status of the load can be found by calling:
-		if (rmgr->get_resource_load_status(m_map->get_resource_id()) != RS_LOAD_SUCCESS) {
+	//TODO: Load textures here
 
-		}
-	*/
-	return true;
+	if (result) {
+		m_map = dynamic_pointer_cast<base_map>(rmgr->get_resource(id));
+	}
+
+	return result;
 }
