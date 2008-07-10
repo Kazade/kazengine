@@ -1,8 +1,10 @@
 #include <fstream>
 #include <iostream>
+#include <sstream>
 
 #include "resource_manager.h"
 
+using std::istringstream;
 using std::ifstream;
 
 bool resource_manager::s_was_initialized = false;
@@ -30,69 +32,70 @@ resource_id resource_manager::queue_file_for_loading(const string& filename,
 }
 
 void resource_manager::do_run() {
-	//If there wasn't a blocked resource load waiting, then we attempt to load
-	//the next from the queue
-	queued_resource* currently_loading = NULL;
+	//Create a variable to store the resource we are currently loading
+	queued_resource currently_loading;
 
-	if (!currently_loading) {
-		{ //We lock again (the user might be adding stuff to the queue
-			boost::mutex::scoped_lock lock(m_load_queue_mutex);
-			//Get a pointer to the front of the queue
-			if (!m_load_queue.empty()) {
-				currently_loading = &m_load_queue.front();
-			}
-			//We can now unlock the mutex ready for more load requests
+	//Set the loading flag to false
+	bool loading = false;
+
+	{ //We lock (the user might be adding stuff to the queue
+		boost::mutex::scoped_lock lock(m_load_queue_mutex);
+		//Get a pointer to the front of the queue
+		if (!m_load_queue.empty()) {
+			//If there are some items in the queue, get the first one
+			//and remove it from the queue.
+			currently_loading = m_load_queue.front();
+			m_load_queue.pop_front();
+
+			//Set the loading flag to true
+			loading = true;
 		}
+		//We can now unlock the mutex ready for more load requests
 	}
 
-	if (currently_loading) {
-		//By here we have a pointer in m_currently_loading which cannot be accessed
-		//from another thread so no more locks are needed except the one
-		//associated with the resource itself
-
+	//If we found a resource to load
+	if (loading) {
 		//create a file stream
+		shared_ptr<istream> stream = get_stream_from_file(currently_loading.filename);
 
-		ifstream stream(currently_loading->filename.c_str(), std::ios::binary);
-		resource_id current_id = currently_loading->id;
+		resource_id current_id = currently_loading.id;
 
-		if (!stream.is_open()) {
+		if (!stream) {
 			//The file didnt exist or could not be opened for reading
 			//so we destroy the currently_loaded resource and mark it as
 			//invalid
 			m_load_status[current_id] = FILE_NOT_FOUND;
 		} else {
 			//Lock ready for load
-			boost::mutex::scoped_lock current_lock(*currently_loading->mutex);
+			boost::mutex::scoped_lock current_lock(*currently_loading.mutex);
 			m_load_status[current_id] = FILE_LOAD_IN_PROGRESS;
 
 			//Attempt the load
-			if (!currently_loading->res->load(stream)) {
+			if (!currently_loading.res->load(*stream)) {
 				//If it failed then we mark as invalid
 				m_load_status[current_id] = FILE_LOAD_FAILED;
 			} else {
 				//Lock the resources list
 				boost::mutex::scoped_lock resources_lock(m_resources_mutex);
-				//Insert a pointer to the resource (this increments the reference count
-				//so the resource is no longer destroyed at the end of load_resource)
-				m_resources.insert(std::make_pair(currently_loading->id, currently_loading->res));
+
+				//Insert the new resource into the list
+				m_resources.insert(std::make_pair(currently_loading.id, currently_loading.res));
+
+				//Set the load status to successful
 				m_load_status[current_id] = FILE_LOAD_SUCCESS;
-				m_file_resource_lookup[currently_loading->filename] = current_id;
+
+				//Associate the ID of the new resource with its filename
+				m_file_resource_lookup[currently_loading.filename] = current_id;
 			} //unlock m_resources
-		} //Unlock m_currently_loading
+		} //Unlock the resource
 	}
 
-	boost::mutex::scoped_lock lock(m_load_queue_mutex);
-
-	if (!m_load_queue.empty()) {
-		m_load_queue.pop_front();
-	}
-
-	if (currently_loading) {
+	//If we have just loaded a file, mark it as finished loading
+	if (loading) {
 		boost::mutex::scoped_lock finished_lock(m_finished_loading_mutex);
-		m_resources_finished_loading.push_back(currently_loading->id);
+		m_resources_finished_loading.push_back(currently_loading.id);
 	}
 
-	currently_loading = NULL;
 	sleep(0);
 	//We now continue around the loop
 }
@@ -144,4 +147,25 @@ resource_interface* resource_manager::get_resource(const resource_id& id) {
 
 	//Return a raw pointer to the resource
 	return (*i).second.get();
+}
+
+/**
+ * Reads a file using PhysFS and returns a pointer to an inputstream
+ * to it
+ */
+shared_ptr<istream> resource_manager::get_stream_from_file(const string& filename) {
+		if (!PHYSFS_exists(filename.c_str())) {
+			return shared_ptr<istream>();
+		}
+
+		PHYSFS_file* myfile = PHYSFS_openRead(filename.c_str());
+		PHYSFS_sint64 file_size = PHYSFS_fileLength(myfile);
+
+		vector<char> buffer(file_size);
+		PHYSFS_read (myfile, &buffer[0], 1, file_size);
+		string stringBuf(buffer.begin(), buffer.begin() + file_size);
+		PHYSFS_close(myfile);
+
+		shared_ptr<istringstream> iss(new istringstream(stringBuf));
+		return iss;
 }

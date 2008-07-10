@@ -112,6 +112,8 @@ class resource_manager : public resource_manager_interface, public threaded_clas
 
 		mutable boost::mutex m_finished_loading_mutex;
 		vector<resource_id> m_resources_finished_loading;
+
+		shared_ptr<istream> get_stream_from_file(const string& filename);
 };
 
 template <typename T>
@@ -141,8 +143,7 @@ resource_id resource_manager::load_resource(const string& filename) {
 	std::cout << "Waiting for load" << std::endl;
 	//Wait until the resource manager loads the resource
 	while (!has_resource_loading_finished(id)) {
-		std::cout << ".";
-		sleep(0);
+		sleep(1);
 	}
 
 	return id;

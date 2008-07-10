@@ -388,7 +388,7 @@
 	"icamerascenenode.h"
 	"camera.h"
 
-1215635296 /home/luke/Projects/KazEngine3/src/resources/resource_manager.h
+1215675851 /home/luke/Projects/KazEngine3/src/resources/resource_manager.h
 	<iostream>
 	<deque>
 	<vector>
@@ -409,8 +409,9 @@
 	<boost/thread/thread.hpp>
 	<tr1/functional>
 
-1215635155 source:/home/luke/Projects/KazEngine3/src/resources/resource_manager.cpp
+1215675725 source:/home/luke/Projects/KazEngine3/src/resources/resource_manager.cpp
 	<fstream>
 	<iostream>
+	<sstream>
 	"resource_manager.h"
 

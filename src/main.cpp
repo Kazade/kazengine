@@ -110,11 +110,13 @@ int main(int argc, char** argv) {
 	shared_ptr<IGraphicsDriver> video = engine->getGraphicsDriver();
 	shared_ptr<scene_manager_interface> scene = engine->getSceneManager();
 
+	engine->getWindow()->setWindowCaption("KazEngine Test");
+
 	scene->get_resource_manager()->add_to_search_path("q3_elkdm2.pk3");
 	scene->get_resource_manager()->add_to_search_path("neotech.pk3");
 
 	resource_id id = scene->get_resource_manager()->load_resource<quake3_bsp_map>("maps/q3_elkdm2.bsp");
-	if (!scene->get_resource_manager()->get_resource_load_status(id) != FILE_LOAD_SUCCESS) {
+	if (scene->get_resource_manager()->get_resource_load_status(id) != FILE_LOAD_SUCCESS) {
 		std::cout << "Could not load file" << std::endl;
 	}
 	//Create a new map scene node, how can we tie this into the resource manager?
@@ -124,7 +126,7 @@ int main(int argc, char** argv) {
 	//TODO: Load the map
 //	scene->setWorldGeometry("maps/q3_elkdm2.bsp");
 
-	engine->getWindow()->setWindowCaption("KazEngine Test");
+
 	engine->addEventHandler(app);
 
 	app->setScene(scene);
