@@ -119,6 +119,11 @@ void scene_manager::render_all() {
 	//Traverse the tree calling on_register_scene_node
 	m_root_node->on_register_scene_node();
 
+	smart_scene_node_list::const_iterator i;
+	for (i = m_nodes_for_rendering.begin(); i != m_nodes_for_rendering.end(); ++i) {
+		(*i)->on_pre_render();
+		(*i)->render();
+	}
 }
 
 void scene_manager::register_node_for_rendering(const scene_node_interface* node) {

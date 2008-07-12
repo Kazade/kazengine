@@ -6,7 +6,7 @@ scene_node::scene_node(scene_node_interface* parent, scene_manager_interface* mg
 m_parent_node(0),
 m_scene_manager(0),
 m_node_type(SNT_UNKNOWN),
-m_is_visible(false),
+m_is_visible(true),
 m_is_dead(false) {
 
 	assert(mgr); //A scene manager must be specified

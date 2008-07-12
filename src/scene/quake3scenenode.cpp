@@ -3,6 +3,7 @@
 #include "iscenemanager.h"
 #include "quake3scenenode.h"
 #include "map/loaders/quake3_bsp_map.h"
+#include "map/renderers/basic_map_renderer.h"
 
 using std::tr1::dynamic_pointer_cast;
 
@@ -41,7 +42,13 @@ bool quake3_scene_node::load_map(shared_ptr<resource_manager> rmgr, const string
 
 	if (result) {
 		m_map = dynamic_pointer_cast<base_map>(rmgr->get_resource(id));
+		m_map_renderer = shared_ptr<map_renderer_interface> (new basic_map_renderer());
+		m_map_renderer->initialize(m_map);
 	}
 
 	return result;
+}
+
+void quake3_scene_node::render() {
+	m_map_renderer->render_map();
 }

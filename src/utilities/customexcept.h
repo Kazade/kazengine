@@ -9,4 +9,10 @@ class not_implemented_error : public std::logic_error {
 		logic_error(m) {}
 };
 
+class io_exception : public std::runtime_error {
+	public:
+		io_exception(const string& m="Input/Output error"):
+		runtime_error(m) {}
+};
+
 #endif // CUSTOMEXCEPT_H_INCLUDED

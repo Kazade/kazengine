@@ -14,7 +14,7 @@ class map_renderer_interface {
 
 		virtual bool initialize(shared_ptr<base_map> map) = 0;
 		virtual void generate_resources() = 0;
-		virtual void pre_render(shared_ptr<frustum> frustum) = 0;
+		virtual void pre_render(shared_ptr<frustum> frustum, const float* camera_position) = 0;
 		virtual void post_render() = 0;
 		virtual void render_map() = 0;
 };

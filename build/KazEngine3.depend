@@ -23,7 +23,7 @@
 	"resources/resource_manager.h"
 	"icamerascenenode.h"
 
-1215691355 /home/luke/Projects/KazEngine3/src/map
+1215718947 /home/luke/Projects/KazEngine3/src/map
 
 1214289849 /home/luke/Projects/KazEngine3/src/core/renderwindow.h
 	<boost/noncopyable.hpp>
@@ -196,7 +196,7 @@
 1214418542 source:/home/luke/Projects/KazEngine3/src/map/map_vertex.cpp
 	"map_vertex.h"
 
-1214899260 source:/home/luke/Projects/KazEngine3/src/map/renderers/basic_map_renderer.cpp
+1215722648 source:/home/luke/Projects/KazEngine3/src/map/renderers/basic_map_renderer.cpp
 	"scene/frustum.h"
 	"basic_map_renderer.h"
 
@@ -212,7 +212,7 @@
 
 1214811483 /home/luke/Projects/KazEngine3/src/map/map_limits.h
 
-1214738763 /home/luke/Projects/KazEngine3/src/map/imap_renderer.h
+1215718945 /home/luke/Projects/KazEngine3/src/map/imap_renderer.h
 	<tr1/memory>
 	"base_map.h"
 
@@ -248,7 +248,7 @@
 	<kazmathxx/vec3.h>
 	"frustum.h"
 
-1215691355 source:/home/luke/Projects/KazEngine3/src/scene/scenemanager.cpp
+1215722880 source:/home/luke/Projects/KazEngine3/src/scene/scenemanager.cpp
 	"scenemanager.h"
 	"rootscenenode.h"
 	"quake3scenenode.h"
@@ -262,7 +262,7 @@
 	<map>
 	<tr1/memory>
 
-1215691355 source:/home/luke/Projects/KazEngine3/src/scene/scenenode.cpp
+1215722574 source:/home/luke/Projects/KazEngine3/src/scene/scenenode.cpp
 	"scenenode.h"
 	"iscenemanager.h"
 	"utilities/customexcept.h"
@@ -367,7 +367,7 @@
 1215691355 /home/luke/Projects/KazEngine3/src/scene/rootscenenode.h
 	"scenenode.h"
 
-1215717953 /home/luke/Projects/KazEngine3/src/scene/quake3scenenode.h
+1215718770 /home/luke/Projects/KazEngine3/src/scene/quake3scenenode.h
 	"scenenode.h"
 	"imapscenenode.h"
 
@@ -375,21 +375,22 @@
 	"map/base_map.h"
 	"map/imap_renderer.h"
 
-1215691355 /home/luke/Projects/KazEngine3/src/utilities/customexcept.h
+1215846929 /home/luke/Projects/KazEngine3/src/utilities/customexcept.h
 	<stdexcept>
 
-1215716986 source:/home/luke/Projects/KazEngine3/src/scene/quake3scenenode.cpp
+1215718895 source:/home/luke/Projects/KazEngine3/src/scene/quake3scenenode.cpp
 	<tr1/memory>
 	"resources/resource_manager.h"
 	"iscenemanager.h"
 	"quake3scenenode.h"
 	"map/loaders/quake3_bsp_map.h"
+	"map/renderers/basic_map_renderer.h"
 
 1215691355 /home/luke/Projects/KazEngine3/src/scene/fpscamerascenenode.h
 	"icamerascenenode.h"
 	"camera.h"
 
-1215715486 /home/luke/Projects/KazEngine3/src/resources/resource_manager.h
+1215847028 /home/luke/Projects/KazEngine3/src/resources/resource_manager.h
 	<iostream>
 	<deque>
 	<vector>

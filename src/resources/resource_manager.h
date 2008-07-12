@@ -11,6 +11,7 @@
 #include "utilities/threaded_class.h"
 #include "utilities/customexcept.h"
 
+using std::auto_ptr;
 using std::vector;
 using std::deque;
 using std::map;
@@ -19,8 +20,18 @@ using std::tr1::unordered_map;
 /**
  * A resource manager that uses integers as the resource_id
  */
+
+typedef unordered_map< resource_id, shared_ptr<resource_interface> > resource_map;
+
 class resource_manager : public resource_manager_interface, public threaded_class {
 	public:
+		struct queued_resource {
+			shared_ptr<resource_interface> res;
+			shared_ptr<boost::mutex> mutex;
+			string filename;
+			resource_id id;
+		};
+
 		resource_manager();
 		virtual ~resource_manager() {}
 
@@ -86,15 +97,11 @@ class resource_manager : public resource_manager_interface, public threaded_clas
 		void do_run();
 
 	private:
-		struct queued_resource {
-			shared_ptr<resource_interface> res;
-			shared_ptr<boost::mutex> mutex;
-			string filename;
-			resource_id id;
-		};
+		void load_resource_from_stream(
+																	auto_ptr<queued_resource>& currently_loading,
+																	shared_ptr<istream> stream);
 
-		/** Pointer to the resource we are currently loading */
-		queued_resource* m_currently_loading;
+		auto_ptr<queued_resource> get_next_resource_to_load();
 
 		/** Deque of resources to load */
 		boost::mutex m_load_queue_mutex;
@@ -104,7 +111,8 @@ class resource_manager : public resource_manager_interface, public threaded_clas
 
 		/** ID => resource lookup */
 		boost::mutex m_resources_mutex;
-		unordered_map< resource_id, shared_ptr<resource_interface> > m_resources;
+
+		resource_map m_resources;
 
 		unordered_map<string, resource_id> m_file_resource_lookup;
 

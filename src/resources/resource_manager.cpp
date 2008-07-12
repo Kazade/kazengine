@@ -9,11 +9,13 @@ using std::ifstream;
 
 bool resource_manager::s_was_initialized = false;
 
-resource_manager::resource_manager():
-m_currently_loading(NULL) {
+resource_manager::resource_manager() {
 
 }
 
+/**
+	guarentee: basic
+*/
 resource_id resource_manager::queue_file_for_loading(const string& filename,
 					shared_ptr<resource_interface> new_res, shared_ptr<boost::mutex> res_mutex) {
 
@@ -31,69 +33,89 @@ resource_id resource_manager::queue_file_for_loading(const string& filename,
 	return queued_res.id;
 }
 
+auto_ptr<resource_manager::queued_resource> resource_manager::get_next_resource_to_load() {
+	auto_ptr<queued_resource> result;
+
+	//We lock (the user might be adding stuff to the queue
+	boost::mutex::scoped_lock lock(m_load_queue_mutex);
+	//Get a pointer to the front of the queue
+	if (!m_load_queue.empty()) {
+		//If there are some items in the queue, get the first one
+		//and remove it from the queue.
+
+		//If this throws, the program will be in the same state as before (strong guarantee)
+		result = auto_ptr<queued_resource>(new queued_resource(m_load_queue.front()));
+
+		m_load_queue.pop_front();
+	}
+	//We can now unlock the mutex ready for more load requests
+
+	return result;
+}
+
+void resource_manager::load_resource_from_stream(
+																	auto_ptr<queued_resource>& currently_loading,
+																	shared_ptr<istream> stream) {
+	//Lock ready for load
+	boost::mutex::scoped_lock current_lock(*currently_loading->mutex);
+
+	resource_id current_id = currently_loading->id;
+	m_load_status[current_id] = FILE_LOAD_IN_PROGRESS;
+
+	//Attempt the load
+	if (!currently_loading->res->load(*stream)) {
+		//If it failed then we mark as invalid
+		m_load_status[current_id] = FILE_LOAD_FAILED;
+	} else {
+		//Lock the resources list
+		boost::mutex::scoped_lock resources_lock(m_resources_mutex);
+
+		//Insert the new resource into the list
+		// I can find no evidence anywhere that insert can throw a bad_alloc,
+		// yet, it's  logical that it must do if it can't allocate the memory
+		try {
+			m_resources.insert(std::make_pair(currently_loading->id,
+																										currently_loading->res));
+			//Set the load status to successful
+			m_load_status[current_id] = FILE_LOAD_SUCCESS;
+
+			//Associate the ID of the new resource with its filename
+			m_file_resource_lookup[currently_loading->filename] = current_id;
+
+		} catch (std::bad_alloc& e) {
+			//If we couldn't insert into the map, we mark the load as failed
+			m_load_status[current_id] = FILE_LOAD_FAILED;
+		}
+
+	} //unlock m_resources
+}
+
 void resource_manager::do_run() {
 	//Create a variable to store the resource we are currently loading
-	queued_resource currently_loading;
-
-	//Set the loading flag to false
-	bool loading = false;
-
-	{ //We lock (the user might be adding stuff to the queue
-		boost::mutex::scoped_lock lock(m_load_queue_mutex);
-		//Get a pointer to the front of the queue
-		if (!m_load_queue.empty()) {
-			//If there are some items in the queue, get the first one
-			//and remove it from the queue.
-			currently_loading = m_load_queue.front();
-			m_load_queue.pop_front();
-
-			//Set the loading flag to true
-			loading = true;
-		}
-		//We can now unlock the mutex ready for more load requests
-	}
+	auto_ptr<queued_resource> currently_loading;
+	currently_loading = get_next_resource_to_load();
 
 	//If we found a resource to load
-	if (loading) {
-		//create a file stream
-		shared_ptr<istream> stream = get_stream_from_file(currently_loading.filename);
+	if (currently_loading.get()) {
+		resource_id current_id = currently_loading->id;
 
-		resource_id current_id = currently_loading.id;
+		//create a file stream
+		shared_ptr<istream> stream = get_stream_from_file(currently_loading->filename);
 
 		if (!stream) {
 			//The file didnt exist or could not be opened for reading
 			//so we destroy the currently_loaded resource and mark it as
-			//invalid
+			//invalid (we can't throw an exception because of the whole thread thing)
 			m_load_status[current_id] = FILE_NOT_FOUND;
 		} else {
-			//Lock ready for load
-			boost::mutex::scoped_lock current_lock(*currently_loading.mutex);
-			m_load_status[current_id] = FILE_LOAD_IN_PROGRESS;
-
-			//Attempt the load
-			if (!currently_loading.res->load(*stream)) {
-				//If it failed then we mark as invalid
-				m_load_status[current_id] = FILE_LOAD_FAILED;
-			} else {
-				//Lock the resources list
-				boost::mutex::scoped_lock resources_lock(m_resources_mutex);
-
-				//Insert the new resource into the list
-				m_resources.insert(std::make_pair(currently_loading.id, currently_loading.res));
-
-				//Set the load status to successful
-				m_load_status[current_id] = FILE_LOAD_SUCCESS;
-
-				//Associate the ID of the new resource with its filename
-				m_file_resource_lookup[currently_loading.filename] = current_id;
-			} //unlock m_resources
-		} //Unlock the resource
+			load_resource_from_stream(currently_loading, stream);
+		}
 	}
 
 	//If we have just loaded a file, mark it as finished loading
-	if (loading) {
+	if (currently_loading.get()) {
 		boost::mutex::scoped_lock finished_lock(m_finished_loading_mutex);
-		m_resources_finished_loading.push_back(currently_loading.id);
+		m_resources_finished_loading.push_back(currently_loading->id);
 	}
 
 	sleep(0);
