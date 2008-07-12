@@ -146,6 +146,31 @@ struct quake3_lightvol {
 		unsigned char dir[2];
 };
 
+
+class quake3_subpatch {
+	public:
+		quake3_subpatch();
+
+		vector <Vec3>& getVertices() { return m_vertices; }
+		vector <Vec2>& getTexCoords() { return m_tex_coordinates; }
+
+		Vec3* get_control_points() { return m_control_points; }
+		Vec2* get_control_tex_coordinates() { return m_temp_tex_coordinates; }
+
+		void set_l(int l) { L = l; }
+		int get_l() { return L; }
+
+		void tesselate_vertices();
+		void calculate_indices();
+	private:
+		vector <Vec3> m_vertices;
+		vector <Vec2> m_tex_coordinates;
+		vector <unsigned int> m_indices;
+		Vec3 	m_control_points[9];
+		Vec2  m_temp_tex_coords[9];
+		int L;
+};
+
 /**
 Loads a Quake3 map
 */
@@ -212,6 +237,7 @@ class quake3_bsp_map : public bsp_map {
 		void convert_vertices();
 		void convert_faces();
 		void add_normal_face(const quake3_face& f);
+		void add_curved_surface(const quake3_face& f);
 };
 
 template <typename T>

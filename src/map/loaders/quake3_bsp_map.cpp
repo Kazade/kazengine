@@ -10,6 +10,8 @@ TODO:
 #include "map/basic_face.h"
 #include "quake3_bsp_map.h"
 
+const int CURVE_LEVEL = 20;
+
 file_load_status quake3_bsp_map::load(istream& stream) {
 
 	if (!stream.good()) {
@@ -286,6 +288,91 @@ void quake3_bsp_map::add_normal_face(const quake3_face& f) {
 
 	new_face->set_texture_index(f.texID); //Set the index to the texture array
 	m_faces.push_back(new_face);
+}
+
+quake3_subpatch::quake3_subpatch():
+L(CURVE_LEVEL) {
+
+}
+
+void quake3_subpatch::calculate_indices() {
+	assert(m_indices.empty() && "calculate_indices has been called twice");
+
+	// Compute the indices
+	for (int row = 0; row < L; ++row) {
+		for(int col = 0; col < L; ++col)	{
+			uint idx[4];
+			idx[0] = row * L1 + col;
+			idx[1] = (row + 1) * L1 + col;
+			idx[2] = row * L1 + col + 1;
+			idx[3] = (row + 1) * L1 + col + 1;
+
+			m_indices.push_back(idx[0]);
+			m_indices.push_back(idx[1]);
+			m_indices.push_back(idx[2]);
+
+			m_indices.push_back(idx[1]);
+			m_indices.push_back(idx[3]);
+			m_indices.push_back(idx[2]);
+		}
+	}
+}
+
+void quake3_subpatch::tesselate_vertices() {
+	assert(m_vertices.empty() && "Vertices array not empty!")
+
+	// The number of vertices along a side is 1 + num edges
+	const int L1 = L + 1;
+
+	m_vertices.resize(L1 * L1); //Resize our vertex array
+	// Compute the vertices
+	for (int i = 0; i <= L; ++i) {
+		double a = (double)i / L;
+		double b = 1 - a;
+
+		m_vertices[i] =
+			m_control_points[0] * (b * b) +
+			m_control_points[3] * (2 * b * a) +
+			m_control_points[6] * (a * a);
+	}
+
+	for (int i = 1; i <= L; ++i) {
+		double a = (double)i / L;
+		double b = 1.0 - a;
+
+		Vec3 temp[3];
+
+		for (int j = 0; j < 3; ++j) {
+			int k = 3 * j;
+			temp[j] =
+				m_control_points[k + 0] * (b * b) +
+				m_control_points[k + 1] * (2 * b * a) +
+				m_control_points[k + 2] * (a * a);
+		}
+
+		for(int j = 0; j <= L; ++j) {
+			double a = (double)j / L;
+			double b = 1.0 - a;
+
+			Vec3 vertex =
+				temp[0] * (b * b) +
+				temp[1] * (2 * b * a) +
+				temp[2] * (a * a);
+
+			m_vertices[i * L1 + j] = vertex;
+		}
+	}
+}
+
+void quake3_bsp_map::add_curved_surface(const quake3_face& f) {
+	vector<quake3_subpatch> sub_patches;
+	int width = 0, height = 0; //FIXME: get width and height
+
+	int num_patches_wide = (width - 1) >> 1;
+	int num_patches_high = (height - 1) >> 1;
+	int total_patches = numPatchesHigh * numPatchesWide;
+
+
 }
 
 void quake3_bsp_map::convert_faces() {
