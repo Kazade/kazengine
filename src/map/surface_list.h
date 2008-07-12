@@ -2,13 +2,15 @@
 #define SURFACE_LIST_H_INCLUDED
 
 #include <list>
+#include <tr1/memory>
 
 #include "map_limits.h"
 #include "map_face.h"
 
 using std::list;
+using std::tr1::shared_ptr;
 
-typedef list<map_face*> face_list;
+typedef list<shared_ptr<map_face> > face_list;
 
 enum sort_order {
 	BACK_TO_FRONT,

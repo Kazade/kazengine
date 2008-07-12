@@ -13,6 +13,7 @@ class quake3_scene_node :  public scene_node, public map_scene_node_interface {
 		bool load_map(shared_ptr<resource_manager> rmgr, const string& filename);
 		void set_map_renderer(shared_ptr<map_renderer_interface> renderer);
 
+		virtual void on_pre_render();
 		virtual void render();
 	private:
 		shared_ptr<base_map> m_map;

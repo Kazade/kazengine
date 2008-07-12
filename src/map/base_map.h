@@ -2,6 +2,7 @@
 #define MAP_H
 
 #include <vector>
+#include <tr1/memory>
 #include <kazmathxx/plane.h>
 
 #include "iresource.h"
@@ -10,11 +11,11 @@
 #include "map_face.h"
 #include "map_texture.h"
 
-typedef int resource_id;
-
-typedef vector<map_face*> face_array;
-
 using std::vector;
+using std::tr1::shared_ptr;
+
+typedef int resource_id;
+typedef vector<shared_ptr<map_face> > face_array;
 
 class base_map : public resource_interface {
     public:

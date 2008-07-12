@@ -7,12 +7,6 @@ base_map::base_map() {
 }
 
 base_map::~base_map() {
-    //dtor
-
-    //Delete the faces as they are a container of pointers
-    for (vector<map_face*>::iterator i = m_faces.begin(); i != m_faces.end(); ++i) {
-			delete (*i);
-    }
     m_faces.clear();
 }
 

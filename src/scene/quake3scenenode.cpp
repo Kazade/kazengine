@@ -49,6 +49,10 @@ bool quake3_scene_node::load_map(shared_ptr<resource_manager> rmgr, const string
 	return result;
 }
 
+void quake3_scene_node::on_pre_render() {
+	m_map_renderer->pre_render(shared_ptr<frustum>(), 0);
+}
+
 void quake3_scene_node::render() {
 	m_map_renderer->render_map();
 }

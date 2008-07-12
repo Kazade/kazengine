@@ -41,7 +41,7 @@ class map_face {
 
 		void clear();
 
-		vector<map_vertex> get_vertices() { return m_vertices; }
+		vector<map_vertex>& get_vertices() { return m_vertices; }
 
 	protected:
 		/*

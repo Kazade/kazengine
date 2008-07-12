@@ -271,22 +271,21 @@ void quake3_bsp_map::convert_vertices() {
 
 
 void quake3_bsp_map::add_normal_face(const quake3_face& f) {
-		m_faces.push_back(new basic_face());
+	shared_ptr<map_face> new_face(new basic_face());
+	new_face->clear();
 
-		map_face* new_face = m_faces[m_faces.size() - 1]; //Get a pointer to the new face
-		new_face->clear();
+	//Get the triangles that make up this face
+	for (int i = 0; i < f.totalMeshVertices; i+=3) {
+		int idx1 = f.startVertexIndex + m_raw_face_index_data[f.meshVertexIndex + i];
+		int idx2 = f.startVertexIndex + m_raw_face_index_data[f.meshVertexIndex + i + 2];
+		int idx3 = f.startVertexIndex + m_raw_face_index_data[f.meshVertexIndex + i + 1];
 
-		//Get the triangles that make up this face
-		for (int i = 0; i < f.totalMeshVertices; i+=3) {
-			int idx1 = f.startVertexIndex + m_raw_face_index_data[f.meshVertexIndex + i];
-			int idx2 = f.startVertexIndex + m_raw_face_index_data[f.meshVertexIndex + i + 2];
-			int idx3 = f.startVertexIndex + m_raw_face_index_data[f.meshVertexIndex + i + 1];
+		//Add the triangle to the new face
+		new_face->add_triangle(m_vertices[idx1], m_vertices[idx2], m_vertices[idx3]);
+	}
 
-			//Add the triangle to the new face
-			new_face->add_triangle(m_vertices[idx1], m_vertices[idx2], m_vertices[idx3]);
-		}
-
-		new_face->set_texture_index(f.texID); //Set the index to the texture array
+	new_face->set_texture_index(f.texID); //Set the index to the texture array
+	m_faces.push_back(new_face);
 }
 
 void quake3_bsp_map::convert_faces() {
@@ -302,7 +301,7 @@ void quake3_bsp_map::convert_faces() {
 
 		switch((*face).type) {
 			case 1:
-			#ifdef __DEBUG__
+			#ifndef NDEBUG
 				std::cout << ".";
 			#endif
 
@@ -312,7 +311,7 @@ void quake3_bsp_map::convert_faces() {
 		}
 	}
 
-	#ifdef __DEBUG__
+	#ifndef NDEBUG
 		std::cout << std::endl;
 	#endif
 }

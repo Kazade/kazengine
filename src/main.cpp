@@ -86,7 +86,7 @@ class App : public IEventHandler {
 
 			glMatrixMode(GL_PROJECTION);
 			glLoadIdentity();
-			gluPerspective(45.0f, (GLfloat)w / (GLfloat)h, 1.0f, 100.0f);
+			gluPerspective(45.0f, (GLfloat)w / (GLfloat)h, 1.0f, 1500.0f);
 
 			glMatrixMode(GL_MODELVIEW);
 			glLoadIdentity();
@@ -120,6 +120,10 @@ int main(int argc, char** argv) {
 	engine->addEventHandler(app);
 
 	app->setScene(scene);
+
+	glDisable(GL_TEXTURE_2D);
+	glDisable(GL_CULL_FACE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	while(engine->run()) {
 		app->update();

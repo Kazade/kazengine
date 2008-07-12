@@ -80,12 +80,14 @@ void basic_map_renderer::post_render() {
 
 void basic_map_renderer::render_map() {
 	//Render the polygons
+
 	glEnableClientState(GL_VERTEX_ARRAY);
 
 	face_list::iterator face;
 	for(face = m_opaque_surfaces.surfaces.begin(); face != m_opaque_surfaces.surfaces.end(); ++face) {
-		glVertexPointer(3, GL_FLOAT, sizeof(map_vertex), &(*face)->get_vertices()[0]);
-		glDrawArrays(GL_TRIANGLES, 0, (*face)->get_triangle_count());
+		int index_count = (*face)->get_triangle_count() * 3;
+		glVertexPointer(3, GL_FLOAT, sizeof(map_vertex), &(*face)->get_vertices()[0].position);
+		glDrawArrays(GL_TRIANGLES, 0, index_count);
 	}
 
 	glDisableClientState(GL_VERTEX_ARRAY);

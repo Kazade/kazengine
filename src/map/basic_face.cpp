@@ -7,5 +7,6 @@ void basic_face::add_triangle(const map_vertex& v1, const map_vertex& v2, const 
 	get_vertices().push_back(v2);
 	get_vertices().push_back(v3);
 
+	map_vertex* test = &get_vertices()[0];
 	m_triangle_count++;
 }
