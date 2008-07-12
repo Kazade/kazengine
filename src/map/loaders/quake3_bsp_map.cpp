@@ -296,6 +296,8 @@ L(CURVE_LEVEL) {
 }
 
 void quake3_subpatch::calculate_indices() {
+	const int L1 = L + 1;
+
 	assert(m_indices.empty() && "calculate_indices has been called twice");
 
 	// Compute the indices
@@ -319,7 +321,7 @@ void quake3_subpatch::calculate_indices() {
 }
 
 void quake3_subpatch::tesselate_vertices() {
-	assert(m_vertices.empty() && "Vertices array not empty!")
+	assert(m_vertices.empty() && "Vertices array not empty!");
 
 	// The number of vertices along a side is 1 + num edges
 	const int L1 = L + 1;
@@ -330,7 +332,7 @@ void quake3_subpatch::tesselate_vertices() {
 		double a = (double)i / L;
 		double b = 1 - a;
 
-		m_vertices[i] =
+		m_vertices[i].position =
 			m_control_points[0] * (b * b) +
 			m_control_points[3] * (2 * b * a) +
 			m_control_points[6] * (a * a);
@@ -359,20 +361,62 @@ void quake3_subpatch::tesselate_vertices() {
 				temp[1] * (2 * b * a) +
 				temp[2] * (a * a);
 
-			m_vertices[i * L1 + j] = vertex;
+			m_vertices[i * L1 + j].position = vertex;
 		}
 	}
 }
 
+void quake3_subpatch::append_triangles_to_array(vector<map_vertex>& vertices) {
+	vector <unsigned int>::const_iterator i = m_indices.begin();
+	for (; i != m_indices.end(); ++i) {
+		vertices.push_back(m_vertices[(*i)]);
+	}
+}
+
 void quake3_bsp_map::add_curved_surface(const quake3_face& f) {
-	vector<quake3_subpatch> sub_patches;
-	int width = 0, height = 0; //FIXME: get width and height
+	int width = f.size[0], height = f.size[1]; //FIXME: get width and height
 
 	int num_patches_wide = (width - 1) >> 1;
 	int num_patches_high = (height - 1) >> 1;
-	int total_patches = numPatchesHigh * numPatchesWide;
+	int total_patches = num_patches_high * num_patches_wide;
+
+	vector<quake3_subpatch> sub_patches(total_patches);
+
+	for (int y = 0; y < num_patches_high; ++y) {
+		for (int x = 0; x < num_patches_wide; ++x) {
+			int current_patch = y * num_patches_wide + x;
+
+			for(int row = 0; row < 3; ++row) {
+				for(int point = 0; point < 3; ++point) {
+					//Set the vertex for each point
+					int control_point_index = row * 3 + point;
+
+					int vertex_index = (y * 2 * width + x * 2) + row * width + point;
+
+					Vec3* control_points = sub_patches[current_patch].get_control_points();
 
 
+					control_points[control_point_index] = m_vertices[f.startVertexIndex + vertex_index].position;
+					//m_SubPatches[currentPatch].m_ControlPoints[row * 3 + point].m_Normal.Normalize();
+				}
+			}
+
+			//tesselate the subpatch
+			sub_patches[current_patch].tesselate_vertices();
+		}
+	}
+
+	shared_ptr<map_face> new_face(new basic_face());
+
+	for (vector<quake3_subpatch>::iterator patch = sub_patches.begin();
+			patch != sub_patches.end(); ++patch) {
+
+			(*patch).calculate_indices();
+			(*patch).append_triangles_to_array(new_face->get_vertices());
+	}
+
+	new_face->set_texture_index(f.texID); //Set the index to the texture array
+	m_faces.push_back(new_face);
 }
 
 void quake3_bsp_map::convert_faces() {
@@ -393,6 +437,11 @@ void quake3_bsp_map::convert_faces() {
 			#endif
 
 				add_normal_face((*face));
+			break;
+			case 2:
+				add_curved_surface((*face));
+				break;
+
 			default:
 				continue;
 		}

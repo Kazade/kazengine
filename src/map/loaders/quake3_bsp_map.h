@@ -151,23 +151,21 @@ class quake3_subpatch {
 	public:
 		quake3_subpatch();
 
-		vector <Vec3>& getVertices() { return m_vertices; }
-		vector <Vec2>& getTexCoords() { return m_tex_coordinates; }
+		vector<map_vertex>& getVertices() { return m_vertices; }
 
 		Vec3* get_control_points() { return m_control_points; }
-		Vec2* get_control_tex_coordinates() { return m_temp_tex_coordinates; }
 
 		void set_l(int l) { L = l; }
 		int get_l() { return L; }
 
 		void tesselate_vertices();
 		void calculate_indices();
+
+		void append_triangles_to_array(vector<map_vertex>& vertices);
 	private:
-		vector <Vec3> m_vertices;
-		vector <Vec2> m_tex_coordinates;
-		vector <unsigned int> m_indices;
+		vector<map_vertex> m_vertices;
+		vector<unsigned int> m_indices;
 		Vec3 	m_control_points[9];
-		Vec2  m_temp_tex_coords[9];
 		int L;
 };
 

@@ -167,12 +167,12 @@
 1215850641 /home/luke/Projects/KazEngine3/src/map/basic_face.h
 	"map_face.h"
 
-1215849955 source:/home/luke/Projects/KazEngine3/src/map/loaders/quake3_bsp_map.cpp
+1215865554 source:/home/luke/Projects/KazEngine3/src/map/loaders/quake3_bsp_map.cpp
 	<iostream>
 	"map/basic_face.h"
 	"quake3_bsp_map.h"
 
-1214899245 /home/luke/Projects/KazEngine3/src/map/loaders/quake3_bsp_map.h
+1215863616 /home/luke/Projects/KazEngine3/src/map/loaders/quake3_bsp_map.h
 	<map>
 	"map/bsp_map.h"
 
@@ -355,7 +355,7 @@
 
 1215691355 /home/luke/Projects/KazEngine3/src/scene/icamerascenenode.h
 
-1215851032 source:/home/luke/Projects/KazEngine3/src/main.cpp
+1215864719 source:/home/luke/Projects/KazEngine3/src/main.cpp
 	<iostream>
 	<boost/filesystem.hpp>
 	<GL/gl.h>

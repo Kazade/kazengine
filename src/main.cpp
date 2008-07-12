@@ -125,10 +125,16 @@ int main(int argc, char** argv) {
 	glDisable(GL_CULL_FACE);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
+	float angle = 0.0f;
 	while(engine->run()) {
 		app->update();
 
 		video->beginScene();
+			glTranslatef(0, -3, -20);
+
+			(angle > 359.0f) ? angle -= 360.0f : ++angle;
+
+			glRotatef(angle, 0, 1, 0);
 			scene->render_all();
 		video->endScene();
 	}
