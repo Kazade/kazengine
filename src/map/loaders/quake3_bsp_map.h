@@ -175,6 +175,8 @@ Loads a Quake3 map
 
 class quake3_bsp_map : public bsp_map {
 	public:
+		quake3_bsp_map(resource_manager_interface* owning_manager);
+
 		file_load_status load(istream& stream);
 		void unload();
 		string get_last_error();
@@ -234,6 +236,8 @@ class quake3_bsp_map : public bsp_map {
 		void do_post_load();
 		void convert_vertices();
 		void convert_faces();
+		void convert_and_load_textures();
+
 		void add_normal_face(const quake3_face& f);
 		void add_curved_surface(const quake3_face& f);
 };

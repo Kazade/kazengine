@@ -28,7 +28,7 @@ bool quake3_scene_node::load_map(shared_ptr<resource_manager> rmgr, const string
 	//Queue a file for loading asyncronously
 	bool result = true;
 
-	shared_ptr<resource_interface> q3_map(new quake3_bsp_map());
+	shared_ptr<resource_interface> q3_map(new quake3_bsp_map(rmgr.get()));
 	shared_ptr<boost::mutex> map_mutex(new boost::mutex);
 
 	//Load the quake map

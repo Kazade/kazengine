@@ -5,6 +5,11 @@
 #include "bsp_data.h"
 
 class bsp_map : public base_map {
+	public:
+		bsp_map(resource_manager_interface* owning_manager):
+		base_map(owning_manager) {
+
+		}
 	protected:
 		bsp_data m_bsp_data;
 };

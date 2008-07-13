@@ -12,6 +12,11 @@ TODO:
 
 const int CURVE_LEVEL = 10;
 
+quake3_bsp_map::quake3_bsp_map(resource_manager_interface* owning_manager):
+bsp_map(owning_manager) {
+
+}
+
 file_load_status quake3_bsp_map::load(istream& stream) {
 
 	if (!stream.good()) {
@@ -233,6 +238,7 @@ string quake3_bsp_map::get_last_error() {
 
 
 void quake3_bsp_map::do_post_load() {
+	convert_and_load_textures(); //Load these first so they can load in a parallel thread
 	convert_vertices();
 	convert_faces();
 }
@@ -425,7 +431,7 @@ void quake3_bsp_map::convert_faces() {
 	//Reserve enough for 3 * num faces. it may be more or less than
 	//that but it doesnt matter, we are just preventing loads
 	// of mem copying
-	m_faces.reserve(m_raw_face_data.size() * 3);
+	m_faces.reserve(m_raw_face_data.size());
 
 	for (quake3_face_iterator face = m_raw_face_data.begin();
 		face != m_raw_face_data.end(); ++face) {
@@ -450,4 +456,13 @@ void quake3_bsp_map::convert_faces() {
 	#ifndef NDEBUG
 		std::cout << std::endl;
 	#endif
+}
+
+void quake3_bsp_map::convert_and_load_textures() {
+	typedef vector<quake3_texture>::iterator quake3_texture_iterator;
+
+	for (quake3_texture_iterator texture = m_raw_texture_data.begin();
+		texture != m_raw_texture_data.end(); ++texture) {
+		//TODO: load textures
+	}
 }

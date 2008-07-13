@@ -2,7 +2,8 @@
 
 #include "base_map.h"
 
-base_map::base_map() {
+base_map::base_map(resource_manager_interface* owning_manager):
+m_owning_resource_manager(owning_manager) {
     //ctor
 }
 

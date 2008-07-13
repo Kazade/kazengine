@@ -132,7 +132,7 @@ resource_id resource_manager::load_resource(const string& filename) {
 		resource process to load it.
 	*/
 	//Create the resource
-	shared_ptr<resource_interface> new_resource(new T());
+	shared_ptr<resource_interface> new_resource(new T(this));
 	resource_id id = generate_next_id();
 
 	queued_resource blocked_resource;

@@ -40,6 +40,8 @@
 			<Add library="/usr/local/lib/libKazmathxx.so" />
 			<Add library="/usr/lib/libphysfs.so" />
 			<Add library="/usr/lib/libboost_thread.so" />
+			<Add library="/usr/lib/libIL.so" />
+			<Add library="/usr/lib/libILU.so" />
 		</Linker>
 		<Unit filename="../src/core/engineinterface.cpp" />
 		<Unit filename="../src/core/engineinterface.h" />
@@ -80,8 +82,11 @@
 		<Unit filename="../src/map/renderers/bsp_map_renderer.cpp" />
 		<Unit filename="../src/map/renderers/bsp_map_renderer.h" />
 		<Unit filename="../src/map/surface_list.h" />
+		<Unit filename="../src/resources/devil_texture.cpp" />
+		<Unit filename="../src/resources/devil_texture.h" />
 		<Unit filename="../src/resources/iresource.h" />
 		<Unit filename="../src/resources/iresource_manager.h" />
+		<Unit filename="../src/resources/itexture.h" />
 		<Unit filename="../src/resources/resource_manager.cpp" />
 		<Unit filename="../src/resources/resource_manager.h" />
 		<Unit filename="../src/scene/camera.cpp" />

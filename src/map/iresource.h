@@ -13,6 +13,8 @@ enum file_load_status {
 	FILE_LOAD_SUCCESS
 };
 
+class resource_manager_interface;
+
 /**
 Describes an interface that all resources should implement
 */
@@ -24,6 +26,7 @@ class resource_interface {
 		virtual void unload() = 0;
 		virtual string get_last_error() = 0;
 
+		virtual resource_manager_interface* get_owning_resource_manager() = 0;
 };
 
 
