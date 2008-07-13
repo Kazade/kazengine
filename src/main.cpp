@@ -122,7 +122,9 @@ int main(int argc, char** argv) {
 	app->setScene(scene);
 
 	glDisable(GL_TEXTURE_2D);
-	glDisable(GL_CULL_FACE);
+	//glEnable(GL_NORMALIZE);
+	//glEnable(GL_LIGHT0);
+	//glEnable(GL_LIGHTING);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	float angle = 0.0f;
@@ -130,7 +132,7 @@ int main(int argc, char** argv) {
 		app->update();
 
 		video->beginScene();
-			glTranslatef(0, -3, -20);
+			glTranslatef(0, -3, -50);
 
 			(angle > 359.0f) ? angle -= 360.0f : ++angle;
 

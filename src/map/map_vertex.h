@@ -6,25 +6,16 @@
 #include "colour4.h"
 
 struct map_vertex {
-	map_vertex() {
-		kmVec3Zero(&position);
-		kmVec3Zero(&normal);
-	}
+	map_vertex();
 
-	map_vertex(const map_vertex& rhs) {
-		kmVec3Assign(&position, &rhs.position);
-	}
+	map_vertex operator+(const map_vertex& rhs) const;
+	map_vertex operator*(const float& rhs) const;
 
-	const map_vertex operator=(const map_vertex& rhs) {
-		kmVec3Assign(&position, &rhs.position);
-		return *this;
-	}
-
-		Vec3 position;
-		Vec2 texture_coordinate;
-		Vec2 lightmap_coordinate;
-		Vec3 normal;
-		Colour4 colour;
+	Vec3 position;
+	Vec2 texture_coordinate;
+	Vec2 lightmap_coordinate;
+	Vec3 normal;
+	Colour4 colour;
 };
 
 #endif // MAP_VERTEX_H

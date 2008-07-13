@@ -10,7 +10,7 @@ TODO:
 #include "map/basic_face.h"
 #include "quake3_bsp_map.h"
 
-const int CURVE_LEVEL = 20;
+const int CURVE_LEVEL = 10;
 
 file_load_status quake3_bsp_map::load(istream& stream) {
 
@@ -332,7 +332,7 @@ void quake3_subpatch::tesselate_vertices() {
 		double a = (double)i / L;
 		double b = 1 - a;
 
-		m_vertices[i].position =
+		m_vertices[i] =
 			m_control_points[0] * (b * b) +
 			m_control_points[3] * (2 * b * a) +
 			m_control_points[6] * (a * a);
@@ -342,7 +342,7 @@ void quake3_subpatch::tesselate_vertices() {
 		double a = (double)i / L;
 		double b = 1.0 - a;
 
-		Vec3 temp[3];
+		map_vertex temp[3];
 
 		for (int j = 0; j < 3; ++j) {
 			int k = 3 * j;
@@ -356,12 +356,12 @@ void quake3_subpatch::tesselate_vertices() {
 			double a = (double)j / L;
 			double b = 1.0 - a;
 
-			Vec3 vertex =
+			map_vertex vertex =
 				temp[0] * (b * b) +
 				temp[1] * (2 * b * a) +
 				temp[2] * (a * a);
 
-			m_vertices[i * L1 + j].position = vertex;
+			m_vertices[i * L1 + j] = vertex;
 		}
 	}
 }
@@ -393,10 +393,10 @@ void quake3_bsp_map::add_curved_surface(const quake3_face& f) {
 
 					int vertex_index = (y * 2 * width + x * 2) + row * width + point;
 
-					Vec3* control_points = sub_patches[current_patch].get_control_points();
+					map_vertex* control_points = sub_patches[current_patch].get_control_points();
 
 
-					control_points[control_point_index] = m_vertices[f.startVertexIndex + vertex_index].position;
+					control_points[control_point_index] = m_vertices[f.startVertexIndex + vertex_index];
 					//m_SubPatches[currentPatch].m_ControlPoints[row * 3 + point].m_Normal.Normalize();
 				}
 			}

@@ -153,7 +153,7 @@ class quake3_subpatch {
 
 		vector<map_vertex>& getVertices() { return m_vertices; }
 
-		Vec3* get_control_points() { return m_control_points; }
+		map_vertex* get_control_points() { return m_control_points; }
 
 		void set_l(int l) { L = l; }
 		int get_l() { return L; }
@@ -165,7 +165,7 @@ class quake3_subpatch {
 	private:
 		vector<map_vertex> m_vertices;
 		vector<unsigned int> m_indices;
-		Vec3 	m_control_points[9];
+		map_vertex 	m_control_points[9];
 		int L;
 };
 
