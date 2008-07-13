@@ -461,8 +461,11 @@ void quake3_bsp_map::convert_faces() {
 void quake3_bsp_map::convert_and_load_textures() {
 	typedef vector<quake3_texture>::iterator quake3_texture_iterator;
 
+	m_textures.resize(m_raw_texture_data.resize());
+
 	for (quake3_texture_iterator texture = m_raw_texture_data.begin();
 		texture != m_raw_texture_data.end(); ++texture) {
 		//TODO: load textures
+		//resource_id id = get_owning_resource_manager()->queue_file_for_loading(
 	}
 }
