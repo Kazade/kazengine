@@ -15,6 +15,11 @@ class quake3_scene_node :  public scene_node, public map_scene_node_interface {
 
 		virtual void on_pre_render();
 		virtual void render();
+
+		virtual shared_ptr<map_renderer_interface> get_map_renderer() {
+			return m_map_renderer;
+		}
+
 	private:
 		shared_ptr<base_map> m_map;
 		shared_ptr<map_renderer_interface> m_map_renderer;

@@ -39,6 +39,13 @@ class devil_texture : public resource_interface, public texture_interface {
 			return m_ogl_texture_id;
 		}
 
+		string get_last_error() {
+			assert(0 && "MUst implement this!");
+		}
+
+		resource_id get_resource_id() const {
+			return m_resource_id;
+		}
 	private:
 		ILuint m_il_texture_id;
 
@@ -51,6 +58,8 @@ class devil_texture : public resource_interface, public texture_interface {
 		int m_height;
 
 		GLuint m_ogl_texture_id;
+
+		resource_id m_resource_id;
 };
 
 #endif // DEVIL_TEXTURE_H_INCLUDED

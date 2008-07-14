@@ -51,7 +51,7 @@ class resource_manager : public resource_manager_interface, public threaded_clas
 
 		template <typename T>
 		resource_id load_resource(const string& filename);
-		bool has_resource_loading_finished(const resource_id id) const;
+		virtual bool has_resource_loading_finished(const resource_id id) const;
 
 		bool is_resource_loaded(const resource_id& id) const;
 

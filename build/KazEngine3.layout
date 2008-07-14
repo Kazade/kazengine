@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="../src/map/loaders/quake3_bsp_map.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="8246" topLine="232" />
+	<File name="../src/map/map_texture.h" open="1" top="0" tabpos="2">
+		<Cursor position="311" topLine="0" />
 	</File>
-	<File name="../src/map/loaders/quake3_bsp_map.h" open="1" top="0" tabpos="2">
-		<Cursor position="5835" topLine="224" />
+	<File name="../src/map/renderers/basic_map_renderer.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="2812" topLine="57" />
+	</File>
+	<File name="../src/map/renderers/basic_map_renderer.h" open="1" top="0" tabpos="6">
+		<Cursor position="638" topLine="0" />
+	</File>
+	<File name="../src/scene/imapscenenode.h" open="1" top="0" tabpos="5">
+		<Cursor position="410" topLine="0" />
+	</File>
+	<File name="../src/scene/quake3scenenode.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="1267" topLine="25" />
+	</File>
+	<File name="../src/scene/quake3scenenode.h" open="1" top="0" tabpos="7">
+		<Cursor position="631" topLine="0" />
+	</File>
+	<File name="../src/scene/scenemanager.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="2721" topLine="86" />
 	</File>
 </CodeBlocks_layout_file>

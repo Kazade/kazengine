@@ -6,7 +6,9 @@ TODO:
 
 
 #include <iostream>
-
+#include <boost/thread/thread.hpp>
+#include "resources/devil_texture.h"
+#include "resources/iresource_manager.h"
 #include "map/basic_face.h"
 #include "quake3_bsp_map.h"
 
@@ -461,11 +463,20 @@ void quake3_bsp_map::convert_faces() {
 void quake3_bsp_map::convert_and_load_textures() {
 	typedef vector<quake3_texture>::iterator quake3_texture_iterator;
 
-	m_textures.resize(m_raw_texture_data.resize());
+	m_textures.resize(m_raw_texture_data.size());
 
+	int i = 0;
 	for (quake3_texture_iterator texture = m_raw_texture_data.begin();
 		texture != m_raw_texture_data.end(); ++texture) {
 		//TODO: load textures
-		//resource_id id = get_owning_resource_manager()->queue_file_for_loading(
+		shared_ptr<boost::mutex> new_mutex(new boost::mutex());
+		shared_ptr<resource_interface> new_texture(new devil_texture());
+
+		//Load the textures asynchronously
+		resource_id id = get_owning_resource_manager()->queue_file_for_loading(
+							(*texture).file, new_texture, new_mutex);
+
+		m_textures[i++].set_resource_id(id);
+		//TODO: copy other texture stuff across
 	}
 }

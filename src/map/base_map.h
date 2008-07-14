@@ -17,6 +17,8 @@ using std::tr1::shared_ptr;
 typedef int resource_id;
 typedef vector<shared_ptr<map_face> > face_array;
 
+class resource_manager_interface;
+
 class base_map : public resource_interface {
     public:
 			base_map(resource_manager_interface* owning_manager);
@@ -26,6 +28,14 @@ class base_map : public resource_interface {
 
 			virtual resource_id get_resource_id() const {
 				return m_resource_id;
+			}
+
+			virtual resource_manager_interface* get_owning_resource_manager() {
+				return m_owning_resource_manager;
+			}
+
+			vector<map_texture>& get_textures() {
+				return m_textures;
 			}
 
     protected:

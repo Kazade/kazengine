@@ -95,6 +95,10 @@ map_scene_node_interface* scene_manager::add_quake3_scene_node(const string& fil
 		remove_scene_node(dynamic_cast<scene_node_interface*>(mapnode));
 		mapnode = NULL;
 	}
+
+	//Generate any textures or whatever
+	mapnode->get_map_renderer()->generate_resources();
+
 	return mapnode;
 }
 

@@ -6,11 +6,15 @@
 
 using std::string;
 
+typedef int resource_id;
+
 class map_texture {
 	public:
 		map_texture();
 
 		GLuint get_opengl_texture_id() { return m_opengl_texture_id; }
+		void set_opengl_texture_id(GLuint id) { m_opengl_texture_id = id; }
+
 		resource_id get_resource_id() { return m_resource_id; }
 		void set_resource_id(const resource_id& id) { m_resource_id = id; }
 	private:

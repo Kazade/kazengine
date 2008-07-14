@@ -17,6 +17,8 @@ class map_renderer_interface {
 		virtual void pre_render(shared_ptr<frustum> frustum, const float* camera_position) = 0;
 		virtual void post_render() = 0;
 		virtual void render_map() = 0;
+
+		virtual shared_ptr<resource_manager_interface> get_resource_manager() = 0;
 };
 
 #endif // IMAP_RENDERER_H_INCLUDED

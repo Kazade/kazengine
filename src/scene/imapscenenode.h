@@ -12,6 +12,8 @@ class map_scene_node_interface {
 
 		virtual bool load_map(shared_ptr<resource_manager> rmgr, const string& filename) = 0;
 		virtual void set_map_renderer(shared_ptr<map_renderer_interface> renderer) = 0;
+
+		virtual shared_ptr<map_renderer_interface> get_map_renderer() = 0;
 };
 
 #endif // IMAPSCENENODE_H_INCLUDED

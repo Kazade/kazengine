@@ -8,7 +8,7 @@
 
 class basic_map_renderer : public map_renderer_interface {
 	public:
-		basic_map_renderer();
+		basic_map_renderer(shared_ptr<resource_manager_interface>);
 		virtual ~basic_map_renderer();
 
 		bool initialize(shared_ptr<base_map> map);
@@ -17,6 +17,10 @@ class basic_map_renderer : public map_renderer_interface {
 		void post_render();
 		void render_map();
 
+		virtual shared_ptr<resource_manager_interface> get_resource_manager() {
+			return m_resource_manager;
+		}
+
 	private:
 		shared_ptr<base_map> m_map_pointer;
 
@@ -24,6 +28,7 @@ class basic_map_renderer : public map_renderer_interface {
 		surface_list m_opaque_surfaces;
 		surface_list m_translucent_surfaces;
 
+		shared_ptr<resource_manager_interface> m_resource_manager;
 };
 
 

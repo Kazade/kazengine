@@ -42,7 +42,7 @@ bool quake3_scene_node::load_map(shared_ptr<resource_manager> rmgr, const string
 
 	if (result) {
 		m_map = dynamic_pointer_cast<base_map>(rmgr->get_resource(id));
-		m_map_renderer = shared_ptr<map_renderer_interface> (new basic_map_renderer());
+		m_map_renderer = shared_ptr<map_renderer_interface> (new basic_map_renderer(rmgr));
 		m_map_renderer->initialize(m_map);
 	}
 
@@ -56,3 +56,4 @@ void quake3_scene_node::on_pre_render() {
 void quake3_scene_node::render() {
 	m_map_renderer->render_map();
 }
+

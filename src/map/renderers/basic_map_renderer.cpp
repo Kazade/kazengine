@@ -1,7 +1,14 @@
+#include <tr1/memory>
+
 #include "scene/frustum.h"
+#include "resources/iresource_manager.h"
+#include "resources/itexture.h"
 #include "basic_map_renderer.h"
 
-basic_map_renderer::basic_map_renderer() {
+using std::tr1::dynamic_pointer_cast;
+
+basic_map_renderer::basic_map_renderer(shared_ptr<resource_manager_interface> rmgr):
+m_resource_manager(rmgr) {
 
 }
 
@@ -50,6 +57,30 @@ bool basic_map_renderer::initialize(shared_ptr<base_map> map) {
 
 void basic_map_renderer::generate_resources() {
 	//Generate the textures for OpenGL
+
+	vector<map_texture>::iterator texture = m_map_pointer->get_textures().begin();
+
+	for (; texture != m_map_pointer->get_textures().end(); ++texture) {
+		resource_id id = (*texture).get_resource_id();
+		//We wait until the texture has been loaded
+		while (!get_resource_manager()->has_resource_loading_finished(id)) {
+			sleep(0);
+		}
+
+		//Get a pointer to the resource
+		shared_ptr<texture_interface> tex;
+		tex = dynamic_pointer_cast<texture_interface>(get_resource_manager()->get_resource(id));
+
+		if (!tex) {
+			throw std::runtime_error("Attempted to use an invalid resource id to obtain a texture");
+		}
+
+		//generate the texture
+		tex->generate();
+
+		//Store the opengl texture ID for the newly generated texture
+		(*texture).set_opengl_texture_id(tex->get_ogl_texture_id());
+	}
 }
 
 void basic_map_renderer::pre_render(shared_ptr<frustum> frustum, const float* camera_position) {
