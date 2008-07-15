@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="../src/map/map_texture.h" open="1" top="0" tabpos="2">
-		<Cursor position="311" topLine="0" />
+	<File name="../src/main.cpp" open="1" top="1" tabpos="9">
+		<Cursor position="2898" topLine="111" />
 	</File>
-	<File name="../src/map/renderers/basic_map_renderer.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="2812" topLine="57" />
+	<File name="../src/map/loaders/quake3_bsp_map.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="14972" topLine="462" />
 	</File>
-	<File name="../src/map/renderers/basic_map_renderer.h" open="1" top="0" tabpos="6">
-		<Cursor position="638" topLine="0" />
+	<File name="../src/map/renderers/basic_map_renderer.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="3758" topLine="99" />
 	</File>
-	<File name="../src/scene/imapscenenode.h" open="1" top="0" tabpos="5">
-		<Cursor position="410" topLine="0" />
+	<File name="../src/resources/devil_texture.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="300" topLine="0" />
 	</File>
-	<File name="../src/scene/quake3scenenode.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="1267" topLine="25" />
+	<File name="../src/resources/devil_texture.h" open="1" top="0" tabpos="7">
+		<Cursor position="1226" topLine="39" />
 	</File>
-	<File name="../src/scene/quake3scenenode.h" open="1" top="0" tabpos="7">
-		<Cursor position="631" topLine="0" />
+	<File name="../src/resources/iresource.h" open="1" top="0" tabpos="8">
+		<Cursor position="0" topLine="9" />
 	</File>
-	<File name="../src/scene/scenemanager.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="2721" topLine="86" />
+	<File name="../src/resources/resource_manager.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="418" topLine="6" />
+	</File>
+	<File name="../src/scene/quake3scenenode.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="1185" topLine="24" />
+	</File>
+	<File name="../src/scene/scenemanager.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="2683" topLine="76" />
 	</File>
 </CodeBlocks_layout_file>

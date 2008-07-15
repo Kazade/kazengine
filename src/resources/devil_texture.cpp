@@ -2,7 +2,14 @@
 
 #include "devil_texture.h"
 
+bool devil_texture::s_il_was_initialized = false;
+
 file_load_status devil_texture::load(istream& stream) {
+	if (!s_il_was_initialized) {
+		ilInit(); //Lazy initialization
+		s_il_was_initialized = true;
+	}
+
 	file_load_status result = FILE_LOAD_FAILED;
 
 	if (load_raw_data(stream)) {

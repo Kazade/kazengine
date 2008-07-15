@@ -474,7 +474,9 @@ void quake3_bsp_map::convert_and_load_textures() {
 		texture != m_raw_texture_data.end(); ++texture) {
 
 		string filename_to_check = (*texture).file;
-
+		//We search the listed extensions above to find an available file,
+		//If the file is not available loading will fail (it will look for a file
+		//without an extension). This is fine.
 		for (vector<string>::const_iterator ext = extensions.begin();
 				ext != extensions.end(); ++ext) {
 

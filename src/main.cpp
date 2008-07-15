@@ -121,11 +121,11 @@ int main(int argc, char** argv) {
 
 	app->setScene(scene);
 
-	glDisable(GL_TEXTURE_2D);
+	//glDisable(GL_TEXTURE_2D);
 	//glEnable(GL_NORMALIZE);
 	//glEnable(GL_LIGHT0);
 	//glEnable(GL_LIGHTING);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	float angle = 0.0f;
 	while(engine->run()) {

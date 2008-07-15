@@ -60,6 +60,8 @@ class devil_texture : public resource_interface, public texture_interface {
 		GLuint m_ogl_texture_id;
 
 		resource_id m_resource_id;
+
+		static bool s_il_was_initialized;
 };
 
 #endif // DEVIL_TEXTURE_H_INCLUDED

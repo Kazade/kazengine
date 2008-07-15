@@ -119,13 +119,17 @@ void basic_map_renderer::render_map() {
 	//Render the polygons
 
 	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
 	face_list::iterator face;
 	for(face = m_opaque_surfaces.surfaces.begin(); face != m_opaque_surfaces.surfaces.end(); ++face) {
+		glBindTexture(GL_TEXTURE_2D, m_map_pointer->get_textures()[(*face)->get_texture_index()].get_opengl_texture_id());
 		int index_count = (*face)->get_triangle_count() * 3;
 		glVertexPointer(3, GL_FLOAT, sizeof(map_vertex), &(*face)->get_vertices()[0].position);
+		glTexCoordPointer(2, GL_FLOAT, sizeof(map_vertex), &(*face)->get_vertices()[0].texture_coordinate);
 		glDrawArrays(GL_TRIANGLES, 0, index_count);
 	}
 
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
 }

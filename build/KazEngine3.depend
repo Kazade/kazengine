@@ -167,7 +167,7 @@
 1215850641 /home/luke/Projects/KazEngine3/src/map/basic_face.h
 	"map_face.h"
 
-1216106624 source:/home/luke/Projects/KazEngine3/src/map/loaders/quake3_bsp_map.cpp
+1216106851 source:/home/luke/Projects/KazEngine3/src/map/loaders/quake3_bsp_map.cpp
 	<iostream>
 	<boost/thread/thread.hpp>
 	"resources/devil_texture.h"
@@ -200,7 +200,7 @@
 1215936032 source:/home/luke/Projects/KazEngine3/src/map/map_vertex.cpp
 	"map_vertex.h"
 
-1216106247 source:/home/luke/Projects/KazEngine3/src/map/renderers/basic_map_renderer.cpp
+1216107381 source:/home/luke/Projects/KazEngine3/src/map/renderers/basic_map_renderer.cpp
 	<tr1/memory>
 	<ostream>
 	<iostream>
@@ -427,11 +427,11 @@
 	<sstream>
 	"resource_manager.h"
 
-1215940047 source:/home/luke/Projects/KazEngine3/src/resources/devil_texture.cpp
+1216106976 source:/home/luke/Projects/KazEngine3/src/resources/devil_texture.cpp
 	<GL/glu.h>
 	"devil_texture.h"
 
-1216021810 /home/luke/Projects/KazEngine3/src/resources/devil_texture.h
+1216106939 /home/luke/Projects/KazEngine3/src/resources/devil_texture.h
 	<cassert>
 	<IL/il.h>
 	<vector>
