@@ -268,6 +268,9 @@ void quake3_bsp_map::convert_vertices() {
 
 		swap_axis(m_vertices[j].position); //Convert to normal coordinate system
 
+		m_vertices[j].texture_coordinate.x = (*i).texCoord.x;
+		m_vertices[j].texture_coordinate.y = 1.0f - (*i).texCoord.y;
+
 		++j; //Move to the next vertex
 
 		#ifdef __DEBUG__

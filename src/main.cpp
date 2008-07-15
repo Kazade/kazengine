@@ -132,7 +132,7 @@ int main(int argc, char** argv) {
 		app->update();
 
 		video->beginScene();
-			glTranslatef(0, -3, -50);
+			glTranslatef(0, -3, -10);
 
 			(angle > 359.0f) ? angle -= 360.0f : ++angle;
 
