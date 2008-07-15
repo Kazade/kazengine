@@ -1,4 +1,6 @@
 #include <tr1/memory>
+#include <ostream>
+#include <iostream>
 
 #include "scene/frustum.h"
 #include "resources/iresource_manager.h"
@@ -72,7 +74,11 @@ void basic_map_renderer::generate_resources() {
 		tex = dynamic_pointer_cast<texture_interface>(get_resource_manager()->get_resource(id));
 
 		if (!tex) {
-			throw std::runtime_error("Attempted to use an invalid resource id to obtain a texture");
+#ifndef NDEBUG
+			std::cout << "Texture could not be loaded: " << id << std::endl;
+#endif
+			(*texture).set_opengl_texture_id(0);
+			continue;
 		}
 
 		//generate the texture
