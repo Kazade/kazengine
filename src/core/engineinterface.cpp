@@ -110,7 +110,7 @@ bool EngineInterface::run() {
 				for (EventHandlerList::iterator handler = m_EventHandlers.begin(); handler != m_EventHandlers.end(); ++handler) {
 					bool result = (*handler)->onEvent(e);
 					if (result) { //If the event was handled we leave this loop
-						break;
+						break; //TODO: WTF? This won't work!!!
 					}
 				}
 			break;
