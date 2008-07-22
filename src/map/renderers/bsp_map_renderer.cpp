@@ -2,6 +2,11 @@
 
 bool bsp_map_renderer::initialize(shared_ptr<base_map> map) {
 
+	//We can only use the bsp renderer with a bsp map
+	if (!dynamic_pointer_cast<bsp_map> (map) ) {
+		throw std::logic_error("Attempt to use a BSP renderer on a non-BSP map");
+	}
+
 	return true;
 }
 
