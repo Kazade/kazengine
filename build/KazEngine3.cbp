@@ -115,10 +115,12 @@
 		<Unit filename="../src/scene/skybox.h" />
 		<Unit filename="../src/utilities/colour.h" />
 		<Unit filename="../src/utilities/customexcept.h" />
+		<Unit filename="../src/utilities/itimer.h" />
 		<Unit filename="../src/utilities/logger.cpp" />
 		<Unit filename="../src/utilities/logger.h" />
 		<Unit filename="../src/utilities/patterns/abstractfactory.h" />
 		<Unit filename="../src/utilities/threaded_class.h" />
+		<Unit filename="../src/utilities/timer.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

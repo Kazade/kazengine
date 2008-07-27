@@ -463,6 +463,24 @@ void quake3_bsp_map::convert_faces() {
 	#endif
 }
 
+void quake3_bsp_map::add_mesh_surface(const quake3_face& f) {
+	shared_ptr<map_face> new_face(new basic_face());
+	new_face->clear();
+
+	//Get the triangles that make up this face
+	for (int i = 0; i < f.totalMeshVertices; i+=3) {
+		int idx1 = f.startVertexIndex + m_raw_face_index_data[f.meshVertexIndex + i];
+		int idx2 = f.startVertexIndex + m_raw_face_index_data[f.meshVertexIndex + i + 2];
+		int idx3 = f.startVertexIndex + m_raw_face_index_data[f.meshVertexIndex + i + 1];
+
+		//Add the triangle to the new face
+		new_face->add_triangle(m_vertices[idx1], m_vertices[idx2], m_vertices[idx3]);
+	}
+
+	new_face->set_texture_index(f.texID); //Set the index to the texture array
+	m_faces.push_back(new_face);
+}
+
 void quake3_bsp_map::convert_and_load_textures() {
 	typedef vector<quake3_texture>::iterator quake3_texture_iterator;
 
