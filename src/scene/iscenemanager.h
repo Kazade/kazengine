@@ -47,6 +47,8 @@ class scene_manager_interface {
 		virtual void deinitialize() = 0;
 
 		virtual bool remove_scene_node(const scene_node_interface* node) = 0;
+
+		virtual void update(float dT) = 0;
 };
 
 #endif // ISCENEMANAGER_H_INCLUDED

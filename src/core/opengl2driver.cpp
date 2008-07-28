@@ -3,30 +3,35 @@
 
 #include "opengl2driver.h"
 
-void OpenGL2Driver::draw3DTriangle(const vector<Vec3>& vertices, const Colour& colour) {
+void opengl_2_driver::draw_3d_triangle(const vector<Vec3>& vertices, const Colour& colour) {
 	glColor4ub(colour.red, colour.green, colour.blue, colour.alpha);
 }
 
-void OpenGL2Driver::beginScene() {
+void opengl_2_driver::begin_scene() {
+	m_timer->update();
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 }
 
-void OpenGL2Driver::endScene() {
+void opengl_2_driver::end_scene() {
 	SDL_GL_SwapBuffers();
 }
 
-bool OpenGL2Driver::doInitialize() {
-	loadSupportedExtensions();
+bool opengl_2_driver::do_initialize() {
+	load_supported_extensions();
 
 	//Set some sane defaults
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_CULL_FACE);
+
+	m_timer->initialize();
+
 	return true;
 }
 
-bool OpenGL2Driver::loadSupportedExtensions() {
+bool opengl_2_driver::load_supported_extensions() {
 	return true;
 }

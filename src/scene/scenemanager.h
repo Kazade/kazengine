@@ -11,16 +11,18 @@
 #include "iscenemanager.h"
 #include "resources/resource_manager.h"
 
+
 using std::tr1::shared_ptr;
 using std::string;
 using std::list;
 
 class scene_node_interface;
+class graphics_driver_interface;
 
 typedef list<shared_ptr<scene_node_interface> > smart_scene_node_list;
 class scene_manager : public scene_manager_interface {
 	public:
-		scene_manager();
+		scene_manager(shared_ptr<graphics_driver_interface> video_device);
 		virtual ~scene_manager();
 
 		bool register_scene_node_factory(shared_ptr<scene_node_factory_interface> factory);
@@ -58,6 +60,10 @@ class scene_manager : public scene_manager_interface {
 		shared_ptr<camera_scene_node_interface> m_active_camera; ///< The currently active camera
 
 		shared_ptr<resource_manager> m_resource_manager;
+
+		shared_ptr<graphics_driver_interface> m_video_device;
+
+		virtual void update(float dT);
 };
 
 #include "icamerascenenode.h"

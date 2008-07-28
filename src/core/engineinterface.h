@@ -20,7 +20,7 @@ class EngineInterface {
 	public:
 		virtual ~EngineInterface();
 
-		const shared_ptr<IGraphicsDriver> getGraphicsDriver() { return m_GraphicsDriver; }
+		const shared_ptr<graphics_driver_interface> getGraphicsDriver() { return m_GraphicsDriver; }
 		const shared_ptr<scene_manager_interface> getSceneManager() { return m_SceneManager; }
 		const shared_ptr<IWindow> getWindow() { return m_Window; }
 		const shared_ptr<Logger> getLogger() { return m_Logger; }
@@ -34,7 +34,7 @@ class EngineInterface {
 	private:
 		EngineInterface(); //Only createEngineInterface can create a new Engine
 
-		shared_ptr<IGraphicsDriver> m_GraphicsDriver;
+		shared_ptr<graphics_driver_interface> m_GraphicsDriver;
 		shared_ptr<scene_manager_interface> m_SceneManager;
 		shared_ptr<IWindow> m_Window;
 		shared_ptr<Logger> m_Logger;
@@ -42,7 +42,7 @@ class EngineInterface {
 
 		//Only createEngineInterface can call these methods
 		bool setSceneManager(shared_ptr<scene_manager_interface> sceneManager);
-		bool setGraphicsDriver(shared_ptr<IGraphicsDriver> videoDriver);
+		bool setGraphicsDriver(shared_ptr<graphics_driver_interface> videoDriver);
 		bool setWindow(shared_ptr<IWindow> window);
 	//	bool setGuiEnvironment(shared_ptr<GuiEnvironment> gui);
 

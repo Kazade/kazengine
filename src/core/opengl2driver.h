@@ -2,12 +2,14 @@
 #define OPENGL2DRIVER_H_INCLUDED
 
 #include "utilities/colour.h"
+#include "utilities/timer.h"
 #include "igraphicsdriver.h"
 
-class OpenGL2Driver : public IGraphicsDriver {
+class opengl_2_driver : public graphics_driver_interface {
 	public:
-		OpenGL2Driver() {
+		opengl_2_driver() {
 			m_Ext.vertexBufferObjects = false;
+			m_timer = shared_ptr<timer_interface>(new timer());
 		}
 
 		struct ExtensionsEnabled {
@@ -15,15 +17,21 @@ class OpenGL2Driver : public IGraphicsDriver {
 		} m_Ext;
 
 
-		void beginScene();
-		void endScene();
-		void draw3DTriangle(const vector<Vec3>& vertices, const Colour& colour);
+		void begin_scene();
+		void end_scene();
+		void draw_3d_triangle(const vector<Vec3>& vertices, const Colour& colour);
+
+		shared_ptr<timer_interface> get_timer() {
+			return m_timer;
+		}
 
 	protected:
-		bool doInitialize();
+		bool do_initialize();
 
 	private:
-		bool loadSupportedExtensions();
+		bool load_supported_extensions();
+
+		shared_ptr<timer_interface> m_timer;
 };
 
 

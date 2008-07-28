@@ -107,7 +107,7 @@ int main(int argc, char** argv) {
 	shared_ptr<App> app(new App());
 
 	shared_ptr<EngineInterface> engine = createEngineInterface(Vec2(640, 480), BitDepth(0), false);
-	shared_ptr<IGraphicsDriver> video = engine->getGraphicsDriver();
+	shared_ptr<graphics_driver_interface> video = engine->getGraphicsDriver();
 	shared_ptr<scene_manager_interface> scene = engine->getSceneManager();
 
 	engine->getWindow()->setWindowCaption("KazEngine Test");
@@ -131,14 +131,14 @@ int main(int argc, char** argv) {
 	while(engine->run()) {
 		app->update();
 
-		video->beginScene();
+		video->begin_scene();
 			glTranslatef(0, -3, -10);
 
 			(angle > 359.0f) ? angle -= 360.0f : ++angle;
 
 			glRotatef(angle, 0, 1, 0);
 			scene->render_all();
-		video->endScene();
+		video->end_scene();
 	}
 
 	resource_manager::deinitialize();

@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="../src/map/loaders/quake3_bsp_map.cpp" open="1" top="1" tabpos="7">
-		<Cursor position="14659" topLine="462" />
+	<File name="../src/core/engineinterface.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="927" topLine="7" />
+	</File>
+	<File name="../src/core/engineinterface.h" open="1" top="0" tabpos="8">
+		<Cursor position="1405" topLine="5" />
+	</File>
+	<File name="../src/core/igraphicsdriver.h" open="1" top="0" tabpos="15">
+		<Cursor position="243" topLine="0" />
+	</File>
+	<File name="../src/core/opengl2driver.cpp" open="1" top="0" tabpos="16">
+		<Cursor position="493" topLine="0" />
+	</File>
+	<File name="../src/core/opengl2driver.h" open="1" top="0" tabpos="13">
+		<Cursor position="605" topLine="0" />
+	</File>
+	<File name="../src/main.cpp" open="1" top="0" tabpos="10">
+		<Cursor position="2972" topLine="84" />
+	</File>
+	<File name="../src/map/loaders/quake3_bsp_map.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="14659" topLine="456" />
 	</File>
 	<File name="../src/map/loaders/quake3_bsp_map.h" open="1" top="0" tabpos="3">
-		<Cursor position="5526" topLine="222" />
+		<Cursor position="5526" topLine="198" />
 	</File>
 	<File name="../src/map/renderers/basic_map_renderer.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="3069" topLine="85" />
+		<Cursor position="3069" topLine="72" />
 	</File>
 	<File name="../src/map/renderers/basic_map_renderer.h" open="1" top="0" tabpos="4">
 		<Cursor position="529" topLine="0" />
@@ -16,10 +34,19 @@
 	<File name="../src/map/surface_list.h" open="1" top="0" tabpos="6">
 		<Cursor position="0" topLine="0" />
 	</File>
+	<File name="../src/scene/iscenemanager.h" open="1" top="1" tabpos="12">
+		<Cursor position="1618" topLine="0" />
+	</File>
+	<File name="../src/scene/scenemanager.cpp" open="1" top="0" tabpos="11">
+		<Cursor position="255" topLine="0" />
+	</File>
+	<File name="../src/scene/scenemanager.h" open="1" top="0" tabpos="14">
+		<Cursor position="2079" topLine="9" />
+	</File>
 	<File name="../src/utilities/itimer.h" open="1" top="0" tabpos="1">
-		<Cursor position="0" topLine="0" />
+		<Cursor position="121" topLine="0" />
 	</File>
 	<File name="../src/utilities/timer.h" open="1" top="0" tabpos="2">
-		<Cursor position="387" topLine="0" />
+		<Cursor position="431" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

@@ -6,7 +6,8 @@
 
 using std::tr1::dynamic_pointer_cast;
 
-scene_manager::scene_manager() {
+scene_manager::scene_manager(shared_ptr<graphics_driver_interface> video_device):
+m_video_device(video_device) {
 	m_root_node = shared_ptr<scene_node_interface> (new root_scene_node(this));
 
 	m_resource_manager = shared_ptr<resource_manager> (new resource_manager);

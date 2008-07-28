@@ -30,8 +30,8 @@ shared_ptr<EngineInterface> createEngineInterface(const Vec2& dimensions,
 	newEngine->addEventHandler(window);
 
 	//FIXME: Must create this dynamically so we can switch to 3 at some point
-	shared_ptr<IGraphicsDriver> videoDriver(new OpenGL2Driver());
-	shared_ptr<scene_manager_interface> sceneManager(new scene_manager());
+	shared_ptr<graphics_driver_interface> videoDriver(new opengl_2_driver());
+	shared_ptr<scene_manager_interface> sceneManager(new scene_manager(videoDriver));
 	sceneManager->initialize();
 
 	if (!videoDriver->initialize()) {
@@ -68,7 +68,7 @@ bool EngineInterface::setSceneManager(shared_ptr<scene_manager_interface> sceneM
 	return true;
 }
 
-bool EngineInterface::setGraphicsDriver(shared_ptr<IGraphicsDriver> videoDriver) {
+bool EngineInterface::setGraphicsDriver(shared_ptr<graphics_driver_interface> videoDriver) {
 	if (!videoDriver) {
 		return false;
 	}
@@ -110,7 +110,7 @@ bool EngineInterface::run() {
 				for (EventHandlerList::iterator handler = m_EventHandlers.begin(); handler != m_EventHandlers.end(); ++handler) {
 					bool result = (*handler)->onEvent(e);
 					if (result) { //If the event was handled we leave this loop
-						break; //TODO: WTF? This won't work!!!
+						break;
 					}
 				}
 			break;

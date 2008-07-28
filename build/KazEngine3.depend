@@ -784,3 +784,353 @@
 1214915681 source:/home/luke/.gvfs/projects on 192.168.1.2/KazEngine3/src/utilities/logger.cpp
 	"utilities/logger.h"
 
+1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/core/guienvironment.cpp
+	"guienvironment.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/core/guienvironment.h
+	<kazmathxx/vec2.h>
+	<tr1/memory>
+	<vector>
+	"ieventhandler.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/core/ieventhandler.h
+	<SDL/SDL.h>
+	"ilogholder.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/core/ilogholder.h
+	<tr1/memory>
+	"utilities/logger.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/utilities/logger.h
+	<iostream>
+	<string>
+	<map>
+	<fstream>
+	<tr1/memory>
+	<boost/noncopyable.hpp>
+	<boost/filesystem.hpp>
+	<cassert>
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map
+
+1217143474 source:/home/luke/Projects/KazEngine3/kazengine/src/core/opengl2driver.cpp
+	<GL/gl.h>
+	<SDL/SDL.h>
+	"opengl2driver.h"
+
+1217143464 /home/luke/Projects/KazEngine3/kazengine/src/core/opengl2driver.h
+	"utilities/colour.h"
+	"utilities/timer.h"
+	"igraphicsdriver.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/utilities/colour.h
+
+1217143383 /home/luke/Projects/KazEngine3/kazengine/src/core/igraphicsdriver.h
+	<tr1/memory>
+	<kazmathxx/vec3.h>
+	<vector>
+	"utilities/colour.h"
+
+1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/core/sdlwindow.cpp
+	"sdlwindow.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/core/sdlwindow.h
+	"iwindow.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/core/iwindow.h
+	<cassert>
+	<kazmathxx/vec2.h>
+	<string>
+	"ieventhandler.h"
+
+1217143490 source:/home/luke/Projects/KazEngine3/kazengine/src/main.cpp
+	<iostream>
+	<boost/filesystem.hpp>
+	<GL/gl.h>
+	<GL/glu.h>
+	"scene/camera.h"
+	"scene/imapscenenode.h"
+	"core/engineinterface.h"
+	"resources/resource_manager.h"
+	"map/loaders/quake3_bsp_map.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/scene/camera.h
+	<kazmathxx/vec3.h>
+	<kazmath/quaternion.h>
+	<string>
+	"scene/frustum.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/scene/frustum.h
+	<kazmathxx/plane.h>
+	<kazmathxx/aabb.h>
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/scene/imapscenenode.h
+	"map/base_map.h"
+	"map/imap_renderer.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map/base_map.h
+	<vector>
+	<tr1/memory>
+	<kazmathxx/plane.h>
+	"iresource.h"
+	"map_vertex.h"
+	"map_face.h"
+	"map_texture.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map/iresource.h
+	<istream>
+	<string>
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map/map_vertex.h
+	<kazmathxx/vec2.h>
+	<kazmathxx/vec3.h>
+	"colour4.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map/colour4.h
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map/map_face.h
+	<vector>
+	<kazmathxx/vec3.h>
+	"map_vertex.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map/map_texture.h
+	<string>
+	<GL/gl.h>
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map/imap_renderer.h
+	<tr1/memory>
+	"base_map.h"
+
+1217143021 /home/luke/Projects/KazEngine3/kazengine/src/core/engineinterface.h
+	<tr1/memory>
+	<kazmathxx/vec2.h>
+	<list>
+	"igraphicsdriver.h"
+	"utilities/logger.h"
+	"scene/scenemanager.h"
+	"iwindow.h"
+	"guienvironment.h"
+
+1217146405 /home/luke/Projects/KazEngine3/kazengine/src/scene/scenemanager.h
+	<stdexcept>
+	<map>
+	<string>
+	<list>
+	<tr1/memory>
+	<kazmathxx/vec4.h>
+	"iscenemanager.h"
+	"resources/resource_manager.h"
+	"icamerascenenode.h"
+
+1217146423 /home/luke/Projects/KazEngine3/kazengine/src/scene/iscenemanager.h
+	<tr1/memory>
+	<string>
+	"iscenenode.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/scene/iscenenode.h
+	<vector>
+	<map>
+	<string>
+	<list>
+	<tr1/memory>
+	<kazmathxx/mat4.h>
+	<kazmathxx/vec3.h>
+	<kazmathxx/aabb.h>
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/resources/resource_manager.h
+	<iostream>
+	<deque>
+	<vector>
+	<map>
+	<tr1/unordered_map>
+	<physfs.h>
+	"iresource_manager.h"
+	"utilities/threaded_class.h"
+	"utilities/customexcept.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/resources/iresource_manager.h
+	<tr1/memory>
+	<boost/thread/thread.hpp>
+	"iresource.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/resources/iresource.h
+	<istream>
+	<string>
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/utilities/threaded_class.h
+	<tr1/memory>
+	<boost/thread/thread.hpp>
+	<tr1/functional>
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/utilities/customexcept.h
+	<stdexcept>
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/scene/icamerascenenode.h
+
+1217140039 /home/luke/Projects/KazEngine3/kazengine/src/map/loaders/quake3_bsp_map.h
+	<map>
+	"map/bsp_map.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map/bsp_map.h
+	"base_map.h"
+	"bsp_data.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map/bsp_data.h
+	"bsp_node.h"
+	"bsp_leaf.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map/bsp_node.h
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map/bsp_leaf.h
+
+1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/map/base_map.cpp
+	<iostream>
+	"base_map.h"
+
+1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/map/basic_face.cpp
+	"basic_face.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map/basic_face.h
+	"map_face.h"
+
+1217140039 source:/home/luke/Projects/KazEngine3/kazengine/src/map/loaders/quake3_bsp_map.cpp
+	<iostream>
+	<boost/thread/thread.hpp>
+	"resources/devil_texture.h"
+	"resources/iresource_manager.h"
+	"map/basic_face.h"
+	"quake3_bsp_map.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/resources/devil_texture.h
+	<cassert>
+	<IL/il.h>
+	<vector>
+	"iresource.h"
+	"itexture.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/resources/itexture.h
+	<GL/gl.h>
+
+1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/map/map_face.cpp
+	"map_face.h"
+
+1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/map/map_texture.cpp
+	"map_texture.h"
+
+1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/map/map_vertex.cpp
+	"map_vertex.h"
+
+1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/map/renderers/basic_map_renderer.cpp
+	<tr1/memory>
+	<ostream>
+	<iostream>
+	"scene/frustum.h"
+	"resources/iresource_manager.h"
+	"resources/itexture.h"
+	"basic_map_renderer.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map/renderers/basic_map_renderer.h
+	<kazmathxx/aabb.h>
+	"map/surface_list.h"
+	"map/imap_renderer.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map/surface_list.h
+	<list>
+	<tr1/memory>
+	"map_limits.h"
+	"map_face.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map/map_limits.h
+
+1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/map/renderers/bsp_map_renderer.cpp
+	"bsp_map_renderer.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map/renderers/bsp_map_renderer.h
+	"map/imap_renderer.h"
+
+1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/resources/devil_texture.cpp
+	<GL/glu.h>
+	"devil_texture.h"
+
+1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/resources/resource_manager.cpp
+	<fstream>
+	<iostream>
+	<sstream>
+	"resource_manager.h"
+
+1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/scene/camera.cpp
+	<kazmath/utility.h>
+	<kazmathxx/mat4.h>
+	<kazmathxx/vec3.h>
+	<GL/gl.h>
+	"scene/camera.h"
+
+1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/scene/entity.cpp
+	"scene/entity.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/scene/entity.h
+	<tr1/memory>
+	<string>
+	"resources/resource_manager.h"
+
+1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/scene/frustum.cpp
+	<GL/gl.h>
+	<kazmathxx/vec3.h>
+	"frustum.h"
+
+1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/scene/quake3scenenode.cpp
+	<tr1/memory>
+	"resources/resource_manager.h"
+	"iscenemanager.h"
+	"quake3scenenode.h"
+	"map/loaders/quake3_bsp_map.h"
+	"map/renderers/basic_map_renderer.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/scene/quake3scenenode.h
+	"scenenode.h"
+	"imapscenenode.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/scene/scenenode.h
+	"iscenenode.h"
+
+1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/scene/scenenode.cpp
+	"scenenode.h"
+	"iscenemanager.h"
+	"utilities/customexcept.h"
+
+1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/scene/skybox.cpp
+	<GL/gl.h>
+	<boost/filesystem.hpp>
+	"scene/skybox.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/scene/skybox.h
+	"scene/entity.h"
+
+1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/utilities/logger.cpp
+	"utilities/logger.h"
+
+1217143439 source:/home/luke/Projects/KazEngine3/kazengine/src/core/engineinterface.cpp
+	<SDL/SDL.h>
+	"engineinterface.h"
+	"opengl2driver.h"
+	"sdlwindow.h"
+
+1217143430 /home/luke/Projects/KazEngine3/kazengine/src/utilities/timer.h
+	"itimer.h"
+
+1217143251 /home/luke/Projects/KazEngine3/kazengine/src/utilities/itimer.h
+
+1217143022 source:/home/luke/Projects/KazEngine3/kazengine/src/scene/scenemanager.cpp
+	"scenemanager.h"
+	"rootscenenode.h"
+	"quake3scenenode.h"
+	"fpscamerascenenode.h"
+	"utilities/customexcept.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/scene/rootscenenode.h
+	"scenenode.h"
+
+1217139749 /home/luke/Projects/KazEngine3/kazengine/src/scene/fpscamerascenenode.h
+	"icamerascenenode.h"
+	"camera.h"
+
