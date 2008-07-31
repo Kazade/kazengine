@@ -10,13 +10,14 @@
 #include "scene/scenemanager.h"
 #include "iwindow.h"
 #include "guienvironment.h"
+#include "iengine.h"
 
 using std::tr1::shared_ptr;
 using std::list;
 
 typedef list<shared_ptr<event_handler_interface> > EventHandlerList;
 
-class engine {
+class engine : public engine_interface  {
 	public:
 		virtual ~engine();
 
@@ -27,7 +28,7 @@ class engine {
 
 		bool run();
 
-		void add_event_handler(shared_ptr<event_handler_interface> handler);
+		bool add_event_handler(shared_ptr<event_handler_interface> handler);
 		void remove_event_handler(shared_ptr<event_handler_interface> handler);
 	protected:
 
@@ -50,12 +51,12 @@ class engine {
 
 		EventHandlerList m_EventHandlers;
 
-    friend shared_ptr<engine> createEngineInterface(const Vec2& dimensions,
+    friend shared_ptr<engine_interface> createEngineInterface(const Vec2& dimensions,
 	               const BitDepth& bits, bool fullscreen, bool stencilBuffer, bool enableVsync);
 };
 
 
-extern shared_ptr<engine> createEngineInterface(const Vec2& dimensions,
+extern shared_ptr<engine_interface> createEngineInterface(const Vec2& dimensions,
         const BitDepth& bits, bool fullscreen=false, bool stencilBuffer=true, bool enableVsync=false);
 
 #endif // ENGINEINTERFACE_H_INCLUDED

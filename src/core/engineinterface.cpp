@@ -9,7 +9,7 @@
 	and a video driver.
 */
 
-shared_ptr<engine> createEngineInterface(const Vec2& dimensions,
+shared_ptr<engine_interface> createEngineInterface(const Vec2& dimensions,
             const BitDepth& bits, bool fullscreen, bool stencilBuffer, bool enableVsync) {
 
 	shared_ptr<engine> newEngine(new engine());
@@ -119,9 +119,10 @@ bool engine::run() {
 	return !m_IsDone;
 }
 
-void engine::add_event_handler(shared_ptr<event_handler_interface> handler) {
+bool engine::add_event_handler(shared_ptr<event_handler_interface> handler) {
 	get_logger()->debug("Adding event handler");
 	m_EventHandlers.insert(m_EventHandlers.end(), handler);
+	return true;
 }
 
 void engine::remove_event_handler(shared_ptr<event_handler_interface> handler) {

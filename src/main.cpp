@@ -108,17 +108,17 @@ int main(int argc, char** argv) {
 	shared_ptr<App> app(new App());
 
 	shared_ptr<engine_interface> engine = createEngineInterface(Vec2(640, 480), BitDepth(0), false);
-	shared_ptr<graphics_driver_interface> video = engine->getGraphicsDriver();
-	shared_ptr<scene_manager_interface> scene = engine->getSceneManager();
+	shared_ptr<graphics_driver_interface> video = engine->get_graphics_driver();
+	shared_ptr<scene_manager_interface> scene = engine->get_scene_manager();
 
-	engine->getWindow()->setWindowCaption("KazEngine Test");
+	engine->get_window()->setWindowCaption("KazEngine Test");
 
 	scene->get_resource_manager()->add_to_search_path("q3_elkdm2.pk3");
 	scene->get_resource_manager()->add_to_search_path("neotech.pk3");
 
 	scene->add_quake3_scene_node("maps/q3_elkdm2.bsp");
 
-	engine->addEventHandler(app);
+	engine->add_event_handler(app);
 
 	app->setScene(scene);
 

@@ -792,13 +792,13 @@
 1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/core/guienvironment.cpp
 	"guienvironment.h"
 
-1217139749 /home/luke/Projects/KazEngine3/kazengine/src/core/guienvironment.h
+1217526925 /home/luke/Projects/KazEngine3/kazengine/src/core/guienvironment.h
 	<kazmathxx/vec2.h>
 	<tr1/memory>
 	<vector>
 	"ieventhandler.h"
 
-1217139749 /home/luke/Projects/KazEngine3/kazengine/src/core/ieventhandler.h
+1217526925 /home/luke/Projects/KazEngine3/kazengine/src/core/ieventhandler.h
 	<SDL/SDL.h>
 	"ilogholder.h"
 
@@ -816,7 +816,7 @@
 	<boost/filesystem.hpp>
 	<cassert>
 
-1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map
+1217526925 /home/luke/Projects/KazEngine3/kazengine/src/map
 
 1217143474 source:/home/luke/Projects/KazEngine3/kazengine/src/core/opengl2driver.cpp
 	<GL/gl.h>
@@ -836,23 +836,24 @@
 	<vector>
 	"utilities/colour.h"
 
-1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/core/sdlwindow.cpp
+1217526925 source:/home/luke/Projects/KazEngine3/kazengine/src/core/sdlwindow.cpp
 	"sdlwindow.h"
 
-1217139749 /home/luke/Projects/KazEngine3/kazengine/src/core/sdlwindow.h
+1217526925 /home/luke/Projects/KazEngine3/kazengine/src/core/sdlwindow.h
 	"iwindow.h"
 
-1217139749 /home/luke/Projects/KazEngine3/kazengine/src/core/iwindow.h
+1217526925 /home/luke/Projects/KazEngine3/kazengine/src/core/iwindow.h
 	<cassert>
 	<kazmathxx/vec2.h>
 	<string>
 	"ieventhandler.h"
 
-1217143490 source:/home/luke/Projects/KazEngine3/kazengine/src/main.cpp
+1217528117 source:/home/luke/Projects/KazEngine3/kazengine/src/main.cpp
 	<iostream>
 	<boost/filesystem.hpp>
 	<GL/gl.h>
 	<GL/glu.h>
+	"core/iengine.h"
 	"scene/camera.h"
 	"scene/imapscenenode.h"
 	"core/engineinterface.h"
@@ -906,7 +907,7 @@
 	<tr1/memory>
 	"base_map.h"
 
-1217143021 /home/luke/Projects/KazEngine3/kazengine/src/core/engineinterface.h
+1217528535 /home/luke/Projects/KazEngine3/kazengine/src/core/engineinterface.h
 	<tr1/memory>
 	<kazmathxx/vec2.h>
 	<list>
@@ -915,6 +916,7 @@
 	"scene/scenemanager.h"
 	"iwindow.h"
 	"guienvironment.h"
+	"iengine.h"
 
 1217146405 /home/luke/Projects/KazEngine3/kazengine/src/scene/scenemanager.h
 	<stdexcept>
@@ -972,7 +974,7 @@
 
 1217139749 /home/luke/Projects/KazEngine3/kazengine/src/scene/icamerascenenode.h
 
-1217140039 /home/luke/Projects/KazEngine3/kazengine/src/map/loaders/quake3_bsp_map.h
+1217526925 /home/luke/Projects/KazEngine3/kazengine/src/map/loaders/quake3_bsp_map.h
 	<map>
 	"map/bsp_map.h"
 
@@ -984,7 +986,7 @@
 	"bsp_node.h"
 	"bsp_leaf.h"
 
-1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map/bsp_node.h
+1217526925 /home/luke/Projects/KazEngine3/kazengine/src/map/bsp_node.h
 
 1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map/bsp_leaf.h
 
@@ -998,7 +1000,7 @@
 1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map/basic_face.h
 	"map_face.h"
 
-1217140039 source:/home/luke/Projects/KazEngine3/kazengine/src/map/loaders/quake3_bsp_map.cpp
+1217526925 source:/home/luke/Projects/KazEngine3/kazengine/src/map/loaders/quake3_bsp_map.cpp
 	<iostream>
 	<boost/thread/thread.hpp>
 	"resources/devil_texture.h"
@@ -1047,10 +1049,13 @@
 
 1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map/map_limits.h
 
-1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/map/renderers/bsp_map_renderer.cpp
+1217526925 source:/home/luke/Projects/KazEngine3/kazengine/src/map/renderers/bsp_map_renderer.cpp
+	<iostream>
+	<tr1/memory>
+	"../bsp_map.h"
 	"bsp_map_renderer.h"
 
-1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map/renderers/bsp_map_renderer.h
+1217526925 /home/luke/Projects/KazEngine3/kazengine/src/map/renderers/bsp_map_renderer.h
 	"map/imap_renderer.h"
 
 1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/resources/devil_texture.cpp
@@ -1114,7 +1119,7 @@
 1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/utilities/logger.cpp
 	"utilities/logger.h"
 
-1217143439 source:/home/luke/Projects/KazEngine3/kazengine/src/core/engineinterface.cpp
+1217528559 source:/home/luke/Projects/KazEngine3/kazengine/src/core/engineinterface.cpp
 	<SDL/SDL.h>
 	"engineinterface.h"
 	"opengl2driver.h"
@@ -1125,7 +1130,7 @@
 
 1217143251 /home/luke/Projects/KazEngine3/kazengine/src/utilities/itimer.h
 
-1217143022 source:/home/luke/Projects/KazEngine3/kazengine/src/scene/scenemanager.cpp
+1217526925 source:/home/luke/Projects/KazEngine3/kazengine/src/scene/scenemanager.cpp
 	"scenemanager.h"
 	"rootscenenode.h"
 	"quake3scenenode.h"
@@ -1143,4 +1148,7 @@
 	"itimer.h"
 
 1217228408 /home/luke/Projects/KazEngine3/src/utilities/itimer.h
+
+1217528500 /home/luke/Projects/KazEngine3/kazengine/src/core/iengine.h
+	<tr1/memory>
 
