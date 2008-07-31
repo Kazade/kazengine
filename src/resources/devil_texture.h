@@ -41,6 +41,7 @@ class devil_texture : public resource_interface, public texture_interface {
 
 		string get_last_error() {
 			assert(0 && "MUst implement this!");
+			return string();
 		}
 
 		resource_id get_resource_id() const {

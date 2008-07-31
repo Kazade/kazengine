@@ -79,7 +79,7 @@ bool quake3_bsp_map::load_and_check_header(istream& stream) {
 }
 
 void quake3_bsp_map::read_lumps(istream& stream) {
-	#ifdef __DEBUG__
+	#ifndef NDEBUG
 		std::cout << "Loading lumps" << std::endl;
 	#endif
 	m_lumps.resize(iMaxLumpsOffset); //Resize the lumps array
@@ -87,7 +87,7 @@ void quake3_bsp_map::read_lumps(istream& stream) {
 }
 
 void quake3_bsp_map::read_entities(istream& stream) {
-	#ifdef __DEBUG__
+	#ifndef NDEBUG
 		std::cout << "Reading entities" << std::endl;
 	#endif
 	int entity_length = m_lumps[iEntitiesOffset].length;
@@ -95,7 +95,7 @@ void quake3_bsp_map::read_entities(istream& stream) {
 }
 
 void quake3_bsp_map::read_vertices(istream& stream) {
-	#ifdef __DEBUG__
+	#ifndef NDEBUG
 		std::cout << "Reading vertices" << std::endl;
 	#endif
 	int vertex_length = m_lumps[iVerticesOffset].length / sizeof(quake3_vertex);
@@ -103,7 +103,7 @@ void quake3_bsp_map::read_vertices(istream& stream) {
 }
 
 void quake3_bsp_map::read_face_indices(istream& stream) {
-	#ifdef __DEBUG__
+	#ifndef NDEBUG
 		std::cout << "Reading face indices" << std::endl;
 	#endif
 	int face_index_length = m_lumps[iMeshVerticesOffset].length / sizeof(unsigned int);
@@ -111,7 +111,7 @@ void quake3_bsp_map::read_face_indices(istream& stream) {
 }
 
 void quake3_bsp_map::read_faces(istream& stream) {
-	#ifdef __DEBUG__
+	#ifndef NDEBUG
 		std::cout << "Reading faces" << std::endl;
 	#endif
 	int face_length = m_lumps[iFacesOffset].length / sizeof(quake3_face);
@@ -119,7 +119,7 @@ void quake3_bsp_map::read_faces(istream& stream) {
 }
 
 void quake3_bsp_map::read_textures(istream& stream) {
-	#ifdef __DEBUG__
+	#ifndef NDEBUG
 		std::cout << "Reading textures" << std::endl;
 	#endif
 	int texture_length = m_lumps[iTextureOffset].length / sizeof(quake3_texture);
@@ -127,7 +127,7 @@ void quake3_bsp_map::read_textures(istream& stream) {
 }
 
 void quake3_bsp_map::read_lightmaps(istream& stream) {
-	#ifdef __DEBUG__
+	#ifndef NDEBUG
 		std::cout << "Reading lightmaps" << std::endl;
 	#endif
 	int lightmap_length = m_lumps[iLightMapsOffset].length / sizeof(quake3_lightmap);
@@ -135,7 +135,7 @@ void quake3_bsp_map::read_lightmaps(istream& stream) {
 }
 
 void quake3_bsp_map::read_bsp_nodes(istream& stream) {
-	#ifdef __DEBUG__
+	#ifndef NDEBUG
 		std::cout << "Reading BSP nodes" << std::endl;
 	#endif
 	int bsp_node_length = m_lumps[iNodesOffset].length / sizeof(quake3_bsp_node);
@@ -143,7 +143,7 @@ void quake3_bsp_map::read_bsp_nodes(istream& stream) {
 }
 
 void quake3_bsp_map::read_bsp_leaf_faces(istream& stream) {
-	#ifdef __DEBUG__
+	#ifndef NDEBUG
 		std::cout << "Reading BSP leaf faces" << std::endl;
 	#endif
 	int bsp_leaf_face_length = m_lumps[iLeafFacesOffset].length / sizeof(int);
@@ -151,7 +151,7 @@ void quake3_bsp_map::read_bsp_leaf_faces(istream& stream) {
 }
 
 void quake3_bsp_map::read_bsp_leaves(istream& stream) {
-	#ifdef __DEBUG__
+	#ifndef NDEBUG
 		std::cout << "Reading BSP leaves" << std::endl;
 	#endif
 	int bsp_leaf_length = m_lumps[iLeafOffset].length / sizeof(quake3_bsp_leaf);
@@ -159,7 +159,7 @@ void quake3_bsp_map::read_bsp_leaves(istream& stream) {
 }
 
 void quake3_bsp_map::read_bsp_leaf_brushes(istream& stream) {
-	#ifdef __DEBUG__
+	#ifndef NDEBUG
 		std::cout << "Reading BSP leaf brushes" << std::endl;
 	#endif
 	int bsp_leaf_brush_length = m_lumps[iLeafBrushesOffset].length / sizeof(int);
@@ -167,7 +167,7 @@ void quake3_bsp_map::read_bsp_leaf_brushes(istream& stream) {
 }
 
 void quake3_bsp_map::read_planes(istream& stream) {
-	#ifdef __DEBUG__
+	#ifndef NDEBUG
 		std::cout << "Reading planes" << std::endl;
 	#endif
 	int plane_length = m_lumps[iPlanesOffset].length / sizeof(quake3_plane);
@@ -175,7 +175,7 @@ void quake3_bsp_map::read_planes(istream& stream) {
 }
 
 void quake3_bsp_map::read_models(istream& stream) {
-	#ifdef __DEBUG__
+	#ifndef NDEBUG
 		std::cout << "Reading models" << std::endl;
 	#endif
 	int model_length = m_lumps[iModelsOffset].length / sizeof(quake3_map_model);
@@ -183,7 +183,7 @@ void quake3_bsp_map::read_models(istream& stream) {
 }
 
 void quake3_bsp_map::read_brushes(istream& stream) {
-	#ifdef __DEBUG__
+	#ifndef NDEBUG
 		std::cout << "Reading brushes" << std::endl;
 	#endif
 	int brush_length = m_lumps[iBrushesOffset].length / sizeof(quake3_brush);
@@ -191,7 +191,7 @@ void quake3_bsp_map::read_brushes(istream& stream) {
 }
 
 void quake3_bsp_map::read_brushsides(istream& stream) {
-	#ifdef __DEBUG__
+	#ifndef NDEBUG
 		std::cout << "Reading brushsides" << std::endl;
 	#endif
 	int brushside_length = m_lumps[iBrushesSidesOffset].length / sizeof(quake3_brushside);
@@ -199,7 +199,7 @@ void quake3_bsp_map::read_brushsides(istream& stream) {
 }
 
 void quake3_bsp_map::read_effects(istream& stream) {
-	#ifdef __DEBUG__
+	#ifndef NDEBUG
 		std::cout << "Reading effects" << std::endl;
 	#endif
 	int effect_length = m_lumps[iShaderFilesOffset].length / sizeof(quake3_effect);
@@ -207,7 +207,7 @@ void quake3_bsp_map::read_effects(istream& stream) {
 }
 
 void quake3_bsp_map::read_lightvols(istream& stream) {
-	#ifdef __DEBUG__
+	#ifndef NDEBUG
 		std::cout << "Reading light vols" << std::endl;
 	#endif
 	int lightvol_length = m_lumps[iLightVolumeOffset].length / sizeof(quake3_lightvol);
@@ -274,11 +274,11 @@ void quake3_bsp_map::convert_vertices() {
 
 		++j; //Move to the next vertex
 
-		#ifdef __DEBUG__
+		#ifndef NDEBUG
 			std::cout << ".";
 		#endif
 	}
-	#ifdef __DEBUG__
+	#ifndef NDEBUG
 		std::cout << std::endl;
 	#endif
 }

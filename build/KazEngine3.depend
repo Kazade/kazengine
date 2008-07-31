@@ -167,13 +167,22 @@
 1215850641 /home/luke/Projects/KazEngine3/src/map/basic_face.h
 	"map_face.h"
 
-1217317007 source:/home/luke/Projects/KazEngine3/src/map/loaders/quake3_bsp_map.cpp
+1216125047 D:build/KazEngine3.depend
+
+1216472027 source:/home/luke/Projects/KazEngine3/src/map/loaders/quake3_bsp_map.cpp
+
+1216472767 aed4f7b5c7d4fa1ee9d23ca69ffd6dbd12c6f:build/KazEngine3.depend
 	<iostream>
 	<boost/thread/thread.hpp>
 	"resources/devil_texture.h"
 	"resources/iresource_manager.h"
 	"map/basic_face.h"
 	"quake3_bsp_map.h"
+	<cassert>
+	<IL/il.h>
+	<vector>
+	"iresource.h"
+	"itexture.h"
 
 1217316962 /home/luke/Projects/KazEngine3/src/map/loaders/quake3_bsp_map.h
 	<map>
@@ -436,12 +445,7 @@
 	<GL/glu.h>
 	"devil_texture.h"
 
-1216757102 /home/luke/Projects/KazEngine3/src/resources/devil_texture.h
-	<cassert>
-	<IL/il.h>
-	<vector>
-	"iresource.h"
-	"itexture.h"
+1216472767 /home/luke/Projects/KazEngine3/src/resources/devil_texture.h
 
 1216125047 /home/luke/Projects/KazEngine3/src/resources/itexture.h
 	<GL/gl.h>
@@ -792,13 +796,13 @@
 1217139749 source:/home/luke/Projects/KazEngine3/kazengine/src/core/guienvironment.cpp
 	"guienvironment.h"
 
-1217526925 /home/luke/Projects/KazEngine3/kazengine/src/core/guienvironment.h
+1217528663 /home/luke/Projects/KazEngine3/kazengine/src/core/guienvironment.h
 	<kazmathxx/vec2.h>
 	<tr1/memory>
 	<vector>
 	"ieventhandler.h"
 
-1217526925 /home/luke/Projects/KazEngine3/kazengine/src/core/ieventhandler.h
+1217528663 /home/luke/Projects/KazEngine3/kazengine/src/core/ieventhandler.h
 	<SDL/SDL.h>
 	"ilogholder.h"
 
@@ -816,7 +820,7 @@
 	<boost/filesystem.hpp>
 	<cassert>
 
-1217526925 /home/luke/Projects/KazEngine3/kazengine/src/map
+1217528663 /home/luke/Projects/KazEngine3/kazengine/src/map
 
 1217143474 source:/home/luke/Projects/KazEngine3/kazengine/src/core/opengl2driver.cpp
 	<GL/gl.h>
@@ -929,7 +933,7 @@
 	"resources/resource_manager.h"
 	"icamerascenenode.h"
 
-1217146423 /home/luke/Projects/KazEngine3/kazengine/src/scene/iscenemanager.h
+1217528663 /home/luke/Projects/KazEngine3/kazengine/src/scene/iscenemanager.h
 	<tr1/memory>
 	<string>
 	"iscenenode.h"
@@ -974,7 +978,7 @@
 
 1217139749 /home/luke/Projects/KazEngine3/kazengine/src/scene/icamerascenenode.h
 
-1217526925 /home/luke/Projects/KazEngine3/kazengine/src/map/loaders/quake3_bsp_map.h
+1217528663 /home/luke/Projects/KazEngine3/kazengine/src/map/loaders/quake3_bsp_map.h
 	<map>
 	"map/bsp_map.h"
 
@@ -986,7 +990,7 @@
 	"bsp_node.h"
 	"bsp_leaf.h"
 
-1217526925 /home/luke/Projects/KazEngine3/kazengine/src/map/bsp_node.h
+1217528663 /home/luke/Projects/KazEngine3/kazengine/src/map/bsp_node.h
 
 1217139749 /home/luke/Projects/KazEngine3/kazengine/src/map/bsp_leaf.h
 
@@ -1008,7 +1012,7 @@
 	"map/basic_face.h"
 	"quake3_bsp_map.h"
 
-1217139749 /home/luke/Projects/KazEngine3/kazengine/src/resources/devil_texture.h
+1217528691 /home/luke/Projects/KazEngine3/kazengine/src/resources/devil_texture.h
 	<cassert>
 	<IL/il.h>
 	<vector>

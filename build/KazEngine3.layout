@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="../src/core/engineinterface.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="3065" topLine="105" />
+	<File name="../src/core/engineinterface.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="1613" topLine="0" />
 	</File>
 	<File name="../src/core/engineinterface.h" open="1" top="0" tabpos="1">
-		<Cursor position="1799" topLine="27" />
+		<Cursor position="1686" topLine="3" />
 	</File>
 	<File name="../src/core/guienvironment.h" open="0" top="0" tabpos="0">
 		<Cursor position="303" topLine="0" />
 	</File>
-	<File name="../src/core/iengine.h" open="1" top="1" tabpos="2">
-		<Cursor position="480" topLine="0" />
+	<File name="../src/core/iengine.h" open="1" top="0" tabpos="2">
+		<Cursor position="822" topLine="0" />
 	</File>
 	<File name="../src/core/ieventhandler.h" open="0" top="0" tabpos="0">
 		<Cursor position="355" topLine="0" />
@@ -29,7 +29,7 @@
 		<Cursor position="490" topLine="0" />
 	</File>
 	<File name="../src/main.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="385" topLine="0" />
+		<Cursor position="2332" topLine="59" />
 	</File>
 	<File name="../src/resources/devil_texture.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="1979" topLine="47" />
