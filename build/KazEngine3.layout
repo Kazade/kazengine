@@ -1,13 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
+<<<<<<< HEAD:build/KazEngine3.layout
 	<ActiveTarget name="Release" />
 	<File name="../src/map/loaders/quake3_bsp_map.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="13926" topLine="423" />
+=======
+	<ActiveTarget name="Debug" />
+	<File name="../src/map/loaders/quake3_bsp_map.cpp" open="1" top="1" tabpos="7">
+		<Cursor position="14659" topLine="462" />
 	</File>
+	<File name="../src/map/loaders/quake3_bsp_map.h" open="1" top="0" tabpos="3">
+		<Cursor position="5526" topLine="222" />
+>>>>>>> ee39c4499993464e19ddcbe25cc255695f246e93:build/KazEngine3.layout
+	</File>
+<<<<<<< HEAD:build/KazEngine3.layout
 	<File name="../src/map/renderers/bsp_map_renderer.cpp" open="1" top="1" tabpos="3">
 		<Cursor position="144" topLine="0" />
+=======
+	<File name="../src/map/renderers/basic_map_renderer.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="3069" topLine="85" />
+>>>>>>> ee39c4499993464e19ddcbe25cc255695f246e93:build/KazEngine3.layout
 	</File>
+<<<<<<< HEAD:build/KazEngine3.layout
 	<File name="../src/resources/devil_texture.h" open="1" top="0" tabpos="2">
 		<Cursor position="932" topLine="30" />
+=======
+	<File name="../src/map/renderers/basic_map_renderer.h" open="1" top="0" tabpos="4">
+		<Cursor position="529" topLine="0" />
+	</File>
+	<File name="../src/map/surface_list.h" open="1" top="0" tabpos="6">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="../src/utilities/itimer.h" open="1" top="0" tabpos="1">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="../src/utilities/timer.h" open="1" top="0" tabpos="2">
+		<Cursor position="387" topLine="0" />
+>>>>>>> ee39c4499993464e19ddcbe25cc255695f246e93:build/KazEngine3.layout
 	</File>
 </CodeBlocks_layout_file>

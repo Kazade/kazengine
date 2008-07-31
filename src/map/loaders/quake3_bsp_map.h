@@ -240,6 +240,7 @@ class quake3_bsp_map : public bsp_map {
 
 		void add_normal_face(const quake3_face& f);
 		void add_curved_surface(const quake3_face& f);
+		void add_mesh_surface(const quake3_face& f);
 };
 
 template <typename T>
