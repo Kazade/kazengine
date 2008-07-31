@@ -18,7 +18,7 @@ struct BitDepth {
 	uint bits;
 };
 
-class IWindow : public IEventHandler {
+class IWindow : public event_handler_interface {
 	public:
 		virtual ~IWindow() {}
 

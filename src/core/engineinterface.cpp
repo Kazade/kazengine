@@ -9,11 +9,10 @@
 	and a video driver.
 */
 
-shared_ptr<EngineInterface> createEngineInterface(const Vec2& dimensions,
-													const BitDepth& bits, bool fullscreen,
-													bool stencilBuffer, bool enableVsync) {
+shared_ptr<engine> createEngineInterface(const Vec2& dimensions,
+            const BitDepth& bits, bool fullscreen, bool stencilBuffer, bool enableVsync) {
 
-	shared_ptr<EngineInterface> newEngine(new EngineInterface());
+	shared_ptr<engine> newEngine(new engine());
 
 	if(SDL_Init(SDL_INIT_VIDEO) != 0) {
 		throw std::runtime_error("Could not initialize SDL");
@@ -27,7 +26,7 @@ shared_ptr<EngineInterface> createEngineInterface(const Vec2& dimensions,
 	}
 
 	newEngine->setWindow(window);
-	newEngine->addEventHandler(window);
+	newEngine->add_event_handler(window);
 
 	//FIXME: Must create this dynamically so we can switch to 3 at some point
 	shared_ptr<graphics_driver_interface> videoDriver(new opengl_2_driver());
@@ -48,67 +47,67 @@ shared_ptr<EngineInterface> createEngineInterface(const Vec2& dimensions,
 	return newEngine;
 }
 
-EngineInterface::EngineInterface():
+engine::engine():
 m_IsDone(false) {
-	m_Logger = Logger::getLogger("engine");
+	m_logger = Logger::getLogger("engine");
 
-	m_Logger->setLevel(CURRENT_LEVEL);
+	m_logger->setLevel(CURRENT_LEVEL);
 }
 
-EngineInterface::~EngineInterface() {
+engine::~engine() {
 	SDL_Quit();
 }
 
-bool EngineInterface::setSceneManager(shared_ptr<scene_manager_interface> sceneManager) {
+bool engine::setSceneManager(shared_ptr<scene_manager_interface> sceneManager) {
 	if (!sceneManager) {
 		return false;
 	}
 
-	m_SceneManager = sceneManager;
+	m_scene_manager = sceneManager;
 	return true;
 }
 
-bool EngineInterface::setGraphicsDriver(shared_ptr<graphics_driver_interface> videoDriver) {
+bool engine::setGraphicsDriver(shared_ptr<graphics_driver_interface> videoDriver) {
 	if (!videoDriver) {
 		return false;
 	}
 
-	m_GraphicsDriver = videoDriver;
+	m_graphics_driver = videoDriver;
 
 	return true;
 }
 
-bool EngineInterface::setWindow(shared_ptr<IWindow> window) {
+bool engine::setWindow(shared_ptr<IWindow> window) {
 	if (!window) {
 		return false;
 	}
 
-	m_Window = window;
+	m_window = window;
 
 	return true;
 }
 
-/*bool EngineInterface::setGuiEnvironment(shared_ptr<GuiEnvironment> gui) {
+/*bool engine::setGuiEnvironment(shared_ptr<GuiEnvironment> gui) {
 	m_GUIEnvironment = gui;
 
 	return true;
 }*/
 
 
-bool EngineInterface::run() {
+bool engine::run() {
 	SDL_Event e;
 
 	while (!m_IsDone && SDL_PollEvent(&e)) {
 		switch(e.type) {
 			case SDL_QUIT:
 				m_IsDone = true;
-				removeEventHandler(m_Window);
-				m_Window->destroy();
+				remove_event_handler(m_window);
+				m_window->destroy();
 			break;
 
 			default:
 				for (EventHandlerList::iterator handler = m_EventHandlers.begin(); handler != m_EventHandlers.end(); ++handler) {
-					bool result = (*handler)->onEvent(e);
+					bool result = (*handler)->on_event_received(e);
 					if (result) { //If the event was handled we leave this loop
 						break;
 					}
@@ -120,13 +119,13 @@ bool EngineInterface::run() {
 	return !m_IsDone;
 }
 
-void EngineInterface::addEventHandler(shared_ptr<IEventHandler> handler) {
-	getLogger()->debug("Adding event handler");
+void engine::add_event_handler(shared_ptr<event_handler_interface> handler) {
+	get_logger()->debug("Adding event handler");
 	m_EventHandlers.insert(m_EventHandlers.end(), handler);
 }
 
-void EngineInterface::removeEventHandler(shared_ptr<IEventHandler> handler) {
-	getLogger()->debug("Removing event handler");
+void engine::remove_event_handler(shared_ptr<event_handler_interface> handler) {
+	get_logger()->debug("Removing event handler");
 
 	EventHandlerList::size_type size = m_EventHandlers.size();
 

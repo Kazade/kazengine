@@ -2,6 +2,7 @@
 #include <boost/filesystem.hpp>
 #include <GL/gl.h>
 #include <GL/glu.h>
+#include "core/iengine.h"
 #include "scene/camera.h"
 #include "scene/imapscenenode.h"
 #include "core/engineinterface.h"
@@ -16,7 +17,7 @@ using boost::filesystem::path;
 //#include <gluie/gluie.h>
 
 
-class App : public IEventHandler {
+class App : public event_handler_interface {
 	public:
 		App() {
 
@@ -24,7 +25,7 @@ class App : public IEventHandler {
 			memset(&m_Keys, 0, sizeof(bool) * SDLK_LAST);
 		}
 
-		bool onEvent(const SDL_Event& e) {
+		bool on_event_received(const SDL_Event& e) {
 			switch(e.type) {
 				case SDL_VIDEORESIZE:
 					resize(e.resize.w, e.resize.h);
@@ -106,7 +107,7 @@ int main(int argc, char** argv) {
 
 	shared_ptr<App> app(new App());
 
-	shared_ptr<EngineInterface> engine = createEngineInterface(Vec2(640, 480), BitDepth(0), false);
+	shared_ptr<engine_interface> engine = createEngineInterface(Vec2(640, 480), BitDepth(0), false);
 	shared_ptr<graphics_driver_interface> video = engine->getGraphicsDriver();
 	shared_ptr<scene_manager_interface> scene = engine->getSceneManager();
 

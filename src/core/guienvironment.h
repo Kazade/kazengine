@@ -12,7 +12,7 @@
 using std::tr1::shared_ptr;
 using std::vector;
 
-class GuiEnvironment : public IEventHandler {
+class GuiEnvironment : public event_handler_interface {
 	public:
 		GuiEnvironment(const string& layout);
 		virtual ~GuiEnvironment();

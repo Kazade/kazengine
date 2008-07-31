@@ -172,3 +172,7 @@ smart_scene_node_list::iterator scene_manager::get_node_iterator(const scene_nod
 shared_ptr<resource_manager> scene_manager::get_resource_manager() {
 	return m_resource_manager;
 }
+
+void scene_manager::update(float dT) {
+
+}

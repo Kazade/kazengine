@@ -62,7 +62,7 @@ void SDLWindow::destroy() {
 	}
 }
 
-bool SDLWindow::onEvent(const SDL_Event& e) {
+bool SDLWindow::on_event_received(const SDL_Event& e) {
 	switch(e.type) {
 		case SDL_ACTIVEEVENT:
 			if (e.active.state == SDL_APPMOUSEFOCUS) {

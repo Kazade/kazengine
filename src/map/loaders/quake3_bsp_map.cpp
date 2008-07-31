@@ -243,6 +243,7 @@ void quake3_bsp_map::do_post_load() {
 	convert_and_load_textures(); //Load these first so they can load in a parallel thread
 	convert_vertices();
 	convert_faces();
+	convert_bsp_data();
 }
 
 void quake3_bsp_map::convert_vertices() {
@@ -515,5 +516,29 @@ void quake3_bsp_map::convert_and_load_textures() {
 
 		m_textures[i++].set_resource_id(id);
 		//TODO: copy other texture stuff across
+	}
+}
+
+void quake3_bsp_map::convert_bsp_data() {
+	m_bsp_data.nodes.resize(m_raw_bsp_node_data.size());
+
+	int i = 0;
+	for (vector<quake3_bsp_node>::const_iterator it = m_raw_bsp_node_data.begin();
+	        it != m_raw_bsp_node_data.end(); ++it) {
+
+		m_bsp_data.nodes[i].m_children[BNI_FRONT] = (*it).frontIndex;
+		m_bsp_data.nodes[i].m_children[BNI_BACK] = (*it).backIndex;
+
+		m_bsp_data.nodes[i].m_mins[0] = (*it).aabbMin.x;
+		m_bsp_data.nodes[i].m_mins[1] = (*it).aabbMin.y;
+		m_bsp_data.nodes[i].m_mins[2] = (*it).aabbMin.z;
+
+		m_bsp_data.nodes[i].m_maxs[0] = (*it).aabbMax.x;
+		m_bsp_data.nodes[i].m_maxs[1] = (*it).aabbMax.y;
+		m_bsp_data.nodes[i].m_maxs[2] = (*it).aabbMax.z;
+
+		m_bsp_data.nodes[i].m_plane_index = (*it).planeIndex;
+
+		++i;
 	}
 }

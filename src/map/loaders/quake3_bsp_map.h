@@ -9,6 +9,14 @@ using std::map;
 
 struct quake3_point_i{
 	int x, y, z;
+
+	operator int* () {
+		return reinterpret_cast<int*>(this);
+	}
+
+	operator const int* () {
+		return reinterpret_cast<const int*> (this);
+	}
 };
 
 struct quake3_point_3f {
@@ -237,6 +245,7 @@ class quake3_bsp_map : public bsp_map {
 		void convert_vertices();
 		void convert_faces();
 		void convert_and_load_textures();
+		void convert_bsp_data();
 
 		void add_normal_face(const quake3_face& f);
 		void add_curved_surface(const quake3_face& f);

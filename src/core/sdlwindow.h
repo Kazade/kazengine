@@ -14,7 +14,7 @@ class SDLWindow : public IWindow {
 		virtual bool isFullscreen() { return m_Fullscreen; }
 		virtual bool isWindowActive() { return m_WindowActive; }
 
-		virtual bool onEvent(const SDL_Event& e);
+		virtual bool on_event_received(const SDL_Event& e);
 
 	private:
 		Vec2 m_Size;

@@ -50,6 +50,7 @@
 		<Unit filename="../src/core/engineinterface.h" />
 		<Unit filename="../src/core/guienvironment.cpp" />
 		<Unit filename="../src/core/guienvironment.h" />
+		<Unit filename="../src/core/iengine.h" />
 		<Unit filename="../src/core/ieventhandler.h" />
 		<Unit filename="../src/core/igraphicsdriver.h" />
 		<Unit filename="../src/core/ilogholder.h" />

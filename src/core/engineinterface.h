@@ -14,30 +14,30 @@
 using std::tr1::shared_ptr;
 using std::list;
 
-typedef list<shared_ptr<IEventHandler> > EventHandlerList;
+typedef list<shared_ptr<event_handler_interface> > EventHandlerList;
 
-class EngineInterface {
+class engine {
 	public:
-		virtual ~EngineInterface();
+		virtual ~engine();
 
-		const shared_ptr<graphics_driver_interface> getGraphicsDriver() { return m_GraphicsDriver; }
-		const shared_ptr<scene_manager_interface> getSceneManager() { return m_SceneManager; }
-		const shared_ptr<IWindow> getWindow() { return m_Window; }
-		const shared_ptr<Logger> getLogger() { return m_Logger; }
+		const shared_ptr<graphics_driver_interface> get_graphics_driver() { return m_graphics_driver; }
+		const shared_ptr<scene_manager_interface> get_scene_manager() { return m_scene_manager; }
+		const shared_ptr<IWindow> get_window() { return m_window; }
+		const shared_ptr<Logger> get_logger() { return m_logger; }
 
 		bool run();
 
-		void addEventHandler(shared_ptr<IEventHandler> handler);
-		void removeEventHandler(shared_ptr<IEventHandler> handler);
+		void add_event_handler(shared_ptr<event_handler_interface> handler);
+		void remove_event_handler(shared_ptr<event_handler_interface> handler);
 	protected:
 
 	private:
-		EngineInterface(); //Only createEngineInterface can create a new Engine
+		engine(); //Only createEngineInterface can create a new Engine
 
-		shared_ptr<graphics_driver_interface> m_GraphicsDriver;
-		shared_ptr<scene_manager_interface> m_SceneManager;
-		shared_ptr<IWindow> m_Window;
-		shared_ptr<Logger> m_Logger;
+		shared_ptr<graphics_driver_interface> m_graphics_driver;
+		shared_ptr<scene_manager_interface> m_scene_manager;
+		shared_ptr<IWindow> m_window;
+		shared_ptr<Logger> m_logger;
 //		shared_ptr<GuiEnvironment> m_GUIEnvironment;
 
 		//Only createEngineInterface can call these methods
@@ -50,19 +50,12 @@ class EngineInterface {
 
 		EventHandlerList m_EventHandlers;
 
-	friend shared_ptr<EngineInterface> createEngineInterface(const Vec2& dimensions,
-																													const BitDepth& bits,
-																													bool fullscreen,
-																													bool stencilBuffer,
-																													bool enableVsync);
+    friend shared_ptr<engine> createEngineInterface(const Vec2& dimensions,
+	               const BitDepth& bits, bool fullscreen, bool stencilBuffer, bool enableVsync);
 };
 
 
-
-extern shared_ptr<EngineInterface> createEngineInterface(const Vec2& dimensions,
-																													const BitDepth& bits,
-																													bool fullscreen=false,
-																													bool stencilBuffer=true,
-																													bool enableVsync=false);
+extern shared_ptr<engine> createEngineInterface(const Vec2& dimensions,
+        const BitDepth& bits, bool fullscreen=false, bool stencilBuffer=true, bool enableVsync=false);
 
 #endif // ENGINEINTERFACE_H_INCLUDED

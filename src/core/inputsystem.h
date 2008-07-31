@@ -25,7 +25,7 @@ class Mouse {
 };
 
 
-class InputSystem : public IEventHandler {
+class InputSystem : public event_handler_interface {
 	public:
 		void resize(int w, int h); //Notify the input system of the window size
 };
