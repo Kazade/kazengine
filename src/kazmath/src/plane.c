@@ -118,8 +118,18 @@ kmVec3*  kmPlaneIntersectLine(kmVec3* pOut, const kmPlane* pP, const kmVec3* pV1
 
 kmPlane* kmPlaneNormalize(kmPlane* pOut, const kmPlane* pP)
 {
-	kmScalar l = 1.0 / kmVec3Length(&pP->m_N); //Get 1/length
-	kmVec3Normalize(&pOut->m_N, &pP->m_N); //Normalize the vector and assign to pOut
+	kmVec3 n;
+	n.x = pP->a;
+	n.y = pP->b;
+	n.z = pP->c;
+
+	kmScalar l = 1.0 / kmVec3Length(&n); //Get 1/length
+	kmVec3Normalize(&n, &n); //Normalize the vector and assign to pOut
+
+	pOut->a = n.x;
+	pOut->b = n.y;
+	pOut->c = n.z;
+
 	pOut->d = pP->d * l; //Scale the D value and assign to pOut
 
 	return pOut;
@@ -128,5 +138,19 @@ kmPlane* kmPlaneNormalize(kmPlane* pOut, const kmPlane* pP)
 kmPlane* kmPlaneScale(kmPlane* pOut, const kmPlane* pP, kmScalar s)
 {
 	assert(0);
+}
+
+POINT_CLASSIFICATION kmPlaneClassifyPoint(const kmPlane* pIn, const kmVec3* pP)
+{
+   // This function will determine if a point is on, in front of, or behind
+   // the plane.  First we store the dot product of the plane and the point.
+   float distance = pIn->a * pP->x + pIn->b * pP->y + pIn->c * pP->z + pIn->d;
+
+   // Simply put if the dot product is greater than 0 then it is infront of it.
+   // If it is less than 0 then it is behind it.  And if it is 0 then it is on it.
+   if(distance > 0.001) return POINT_INFRONT_OF_PLANE;
+   if(distance < -0.001) return POINT_BEHIND_PLANE;
+
+   return POINT_ON_PLANE;
 }
 

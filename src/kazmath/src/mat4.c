@@ -323,7 +323,7 @@ kmMat4* kmMat4Scaling(kmMat4* pOut, const kmScalar x, const kmScalar y, const km
 	return pOut;
 }
 
-kmMat4* kmMat4Trankmation(kmMat4* pOut, const kmScalar x, const kmScalar y, const kmScalar z)
+kmMat4* kmMat4Translation(kmMat4* pOut, const kmScalar x, const kmScalar y, const kmScalar z)
 {
 	//FIXME: Write a test for this
 	//assert(0);

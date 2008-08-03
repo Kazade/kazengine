@@ -2,12 +2,8 @@
 
 #include "plane.h"
 
-Plane::Plane():
-        a(0.0),
-        b(0.0),
-        c(0.0),
-        d(0.0) {
-
+Plane::Plane() {
+ a = b = c = d = 0.0;
 }
 
 Plane::Plane(const kmVec3& v1, const kmVec3& v2, const kmVec3& v3) {
@@ -32,6 +28,12 @@ Plane::Plane(const Plane& p) {
     assert(0);
 }
 
-PLANE_CLASSIFY Plane::classifyPoint(const kmVec3& point) {
+POINT_CLASSIFICATION Plane::classifyPoint(const kmVec3& point) {
+	return kmPlaneClassifyPoint(this, &point);
+}
 
+kmScalar Plane::getDistance(const kmVec3& vec) const {
+	assert(0);
+	//return kmPlaneDistanceFromPoint(this, &vec);
+	return 0.0f;
 }

@@ -3,11 +3,13 @@ mat4.h
 vec4.h
 vec3.h
 vec2.h
+plane.h
 )
 
 SET(KAZMATHXX_SRCS
 vec3.cxx
 vec2.cxx
+plane.cxx
 )
 
 INCLUDE_DIRECTORIES(.)

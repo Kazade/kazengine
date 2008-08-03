@@ -51,7 +51,7 @@ int bsp_map_renderer::get_camera_leaf(const Vec3& camera_position) {
 		result = planes[nodes[i].m_plane_index].classifyPoint(camera_position);
 
 		// Test if the camera is in front or behind the plane.
-		if(result == FRONT_PLANE) {
+		if(result == POINT_INFRONT_OF_PLANE) {
 			i = nodes[i].m_children[BNI_FRONT];
 		} else {
 			i = nodes[i].m_children[BNI_BACK];

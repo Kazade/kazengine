@@ -95,7 +95,7 @@ class fps_camera_scene_node : public scene_node, public camera_scene_node_interf
 		struct Key {
 			Key():
 			pressed(false),
-			key(0) {
+			key(SDLK_UNKNOWN) {
 
 			}
 			bool pressed;

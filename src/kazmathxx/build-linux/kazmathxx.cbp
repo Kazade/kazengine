@@ -34,6 +34,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="../../kazmath/src" />
 		</Compiler>
 		<Unit filename="../src/mat4.cxx" />
 		<Unit filename="../src/mat4.h" />

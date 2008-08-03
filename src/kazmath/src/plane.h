@@ -33,6 +33,12 @@ typedef struct kmPlane {
 extern "C" {
 #endif
 
+typedef enum POINT_CLASSIFICATION {
+	POINT_INFRONT_OF_PLANE = 0,
+	POINT_BEHIND_PLANE,
+	POINT_ON_PLANE,
+} POINT_CLASSIFICATION;
+
 kmScalar kmPlaneDot(const kmPlane* pP, const struct kmVec4* pV);
 kmScalar kmPlaneDotCoord(const kmPlane* pP, const struct kmVec3* pV);
 kmScalar kmPlaneDotNormal(const kmPlane* pP, const struct kmVec3* pV);
@@ -41,6 +47,7 @@ kmPlane* kmPlaneFromPoints(kmPlane* pOut, const struct kmVec3* p1, const struct 
 kmVec3*  kmPlaneIntersectLine(struct kmVec3* pOut, const kmPlane* pP, const struct kmVec3* pV1, const struct kmVec3* pV2);
 kmPlane* kmPlaneNormalize(kmPlane* pOut, const kmPlane* pP);
 kmPlane* kmPlaneScale(kmPlane* pOut, const kmPlane* pP, kmScalar s);
+POINT_CLASSIFICATION kmPlaneClassifyPoint(const kmPlane* pIn, const kmVec3* pP); /** Classifys a point against a plane */
 
 #ifdef __cplusplus
 }

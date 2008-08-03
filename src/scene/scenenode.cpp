@@ -1,3 +1,5 @@
+#include <kazmathxx/mat4.h>
+
 #include "scenenode.h"
 #include "iscenemanager.h"
 #include "utilities/customexcept.h"
