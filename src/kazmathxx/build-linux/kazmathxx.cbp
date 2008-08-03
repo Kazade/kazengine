@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/libkazmathxx" prefix_auto="1" extension_auto="1" />
+				<Option output="../libkazmathxx-debug" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="3" />
 				<Option compiler="gcc" />
@@ -18,7 +18,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/libkazmathxx" prefix_auto="1" extension_auto="1" />
+				<Option output="../libkazmathxx" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="3" />
 				<Option compiler="gcc" />
@@ -35,7 +35,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="../src/mat4.cxx" />
 		<Unit filename="../src/mat4.h" />
+		<Unit filename="../src/plane.cxx" />
+		<Unit filename="../src/plane.h" />
 		<Unit filename="../src/vec2.cxx" />
 		<Unit filename="../src/vec2.h" />
 		<Unit filename="../src/vec3.cxx" />

@@ -8,10 +8,18 @@
 Class to represent a 3D plane
 */
 
+enum PLANE_CLASSIFY {
+		PC_FRONT,
+		PC_BACK,
+		PC_ONPLANE
+};
+
 struct Plane : public kmPlane {
 	Plane(); ///Default constructor
 	Plane(const kmVec3& v1, const kmVec3& v2, const kmVec3& v3); ///Builds a plane from 3 points (i.e. a triangle)
 	Plane(const Plane& p); ///Copy constructor
+
+	PLANE_CLASSIFY classifyPoint(const kmVec3& point);
 };
 
 #endif

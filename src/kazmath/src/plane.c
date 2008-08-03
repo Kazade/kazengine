@@ -28,24 +28,24 @@ kmScalar kmPlaneDot(const kmPlane* pP, const kmVec4* pV)
 {
 	//a*x + b*y + c*z + d*w
 
-	return (pP->m_N.x * pV->x +
-			pP->m_N.y * pV->y +
-			pP->m_N.z * pV->z +
-			pP->m_D * pV->w);
+	return (pP->a * pV->x +
+			pP->b * pV->y +
+			pP->c * pV->z +
+			pP->d * pV->w);
 }
 
 kmScalar kmPlaneDotCoord(const kmPlane* pP, const kmVec3* pV)
 {
-	return (pP->m_N.x * pV->x +
-			pP->m_N.y * pV->y +
-			pP->m_N.z * pV->z + pP->m_D);
+	return (pP->a * pV->x +
+			pP->b * pV->y +
+			pP->c * pV->z + pP->d);
 }
 
 kmScalar kmPlaneDotNormal(const kmPlane* pP, const kmVec3* pV)
 {
-	return (pP->m_N.x * pV->x +
-			pP->m_N.y * pV->y +
-			pP->m_N.z * pV->z);
+	return (pP->a * pV->x +
+			pP->b * pV->y +
+			pP->c * pV->z);
 }
 
 kmPlane* kmPlaneFromPointNormal(kmPlane* pOut, const kmVec3* pPoint, const kmVec3* pNormal)
@@ -58,10 +58,10 @@ kmPlane* kmPlaneFromPointNormal(kmPlane* pOut, const kmVec3* pPoint, const kmVec
 	*/
 
 
-	pOut->m_N.x = pNormal->x;
-	pOut->m_N.y = pNormal->y;
-	pOut->m_N.z = pNormal->z;
-	pOut->m_D = -kmVec3Dot(pNormal, pPoint);
+	pOut->a = pNormal->x;
+	pOut->b = pNormal->y;
+	pOut->c = pNormal->z;
+	pOut->d = -kmVec3Dot(pNormal, pPoint);
 
 	return pOut;
 }
@@ -82,8 +82,12 @@ kmPlane* kmPlaneFromPoints(kmPlane* pOut, const kmVec3* p1, const kmVec3* p2, co
 	kmVec3Subtract(&v2, p3, p1);
 	kmVec3Cross(&n, &v1, &v2); //Use the cross product to get the normal
 
-	kmVec3Normalize(&pOut->m_N, &n); //Normalize it and assign to pOut->m_N
-	pOut->m_D = kmVec3Dot(kmVec3Scale(&n, &n, -1.0), p1);
+	kmVec3Normalize(&n, &n); //Normalize it and assign to pOut->m_N
+
+	pOut->a = n.x;
+	pOut->b = n.y;
+	pOut->c = n.z;
+	pOut->d = kmVec3Dot(kmVec3Scale(&n, &n, -1.0), p1);
 
 	return pOut;
 }
@@ -101,23 +105,22 @@ kmVec3*  kmPlaneIntersectLine(kmVec3* pOut, const kmPlane* pP, const kmVec3* pV1
 	kmVec3 d;
 	kmVec3Subtract(&d, pV2, pV1); //Get the direction vector
 
-	if (fabs(kmVec3Dot(&pP->m_N, &d)) > kmEpsilon)
+
+	//TODO: Continue here!
+	/*if (fabs(kmVec3Dot(&pP->m_N, &d)) > kmEpsilon)
 	{
 		//If we get here then the plane and line are parallel (i.e. no intersection)
 		pOut = nullptr; //Set to nullptr
 
 		return pOut;
-	}
-
-	//TODO: Continue here!
-
+	} */
 }
 
 kmPlane* kmPlaneNormalize(kmPlane* pOut, const kmPlane* pP)
 {
 	kmScalar l = 1.0 / kmVec3Length(&pP->m_N); //Get 1/length
 	kmVec3Normalize(&pOut->m_N, &pP->m_N); //Normalize the vector and assign to pOut
-	pOut->m_D = pP->m_D * l; //Scale the D value and assign to pOut
+	pOut->d = pP->d * l; //Scale the D value and assign to pOut
 
 	return pOut;
 }

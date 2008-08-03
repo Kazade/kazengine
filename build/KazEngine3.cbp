@@ -48,6 +48,7 @@
 			<Add library="/usr/lib/libIL.so" />
 			<Add library="/usr/lib/libILU.so" />
 			<Add library="../src/kazmath/build-linux/bin/Debug/libkazmath.so" />
+			<Add library="../src/kazmathxx/libkazmathxx-debug.so" />
 		</Linker>
 		<Unit filename="../src/core/engineinterface.cpp" />
 		<Unit filename="../src/core/engineinterface.h" />

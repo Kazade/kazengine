@@ -26,8 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 struct kmVec3;
 
 typedef struct kmPlane {
-	struct kmVec3 		m_N;
-	kmScalar 	m_D;
+	kmScalar 	a, b, c, d;
 } kmPlane;
 
 #ifdef __cplusplus
