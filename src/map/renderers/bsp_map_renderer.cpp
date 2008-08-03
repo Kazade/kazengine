@@ -14,6 +14,8 @@ bool bsp_map_renderer::initialize(shared_ptr<base_map> map) {
 			return false;
 	}
 
+	m_map = bsp_map_instance;
+
 	return true;
 }
 
@@ -33,4 +35,29 @@ void bsp_map_renderer::post_render() {
 
 void bsp_map_renderer::render_map() {
 
+}
+
+int bsp_map_renderer::get_camera_leaf(const Vec3& camera_position) {
+  int i = 0, result = 0;
+
+	//Get a reference to the nodes and planes of this map
+	vector<bsp_node>& nodes = m_map->get_bsp_data().nodes;
+	vector<Plane>& planes = m_map->get_planes();
+
+   // Loop through all the nodes until we find one that is a negative
+   // number.  That negative number means we are in a leaf.
+	while(i >= 0) {
+		// Get if the point is in front or behind the plane.
+		result = planes[nodes[i].m_plane_index].classifyPoint(camera_position);
+
+		// Test if the camera is in front or behind the plane.
+		if(result == FRONT_PLANE) {
+			i = nodes[i].m_children[BNI_FRONT];
+		} else {
+			i = nodes[i].m_children[BNI_BACK];
+		}
+	}
+
+	// Since we can't have a negative index, make it positive.
+	return ~i;
 }

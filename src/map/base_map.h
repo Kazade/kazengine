@@ -38,6 +38,10 @@ class base_map : public resource_interface {
 				return m_textures;
 			}
 
+			vector<Plane>& get_planes() {
+				return m_planes;
+			}
+
     protected:
 			vector<map_vertex> m_vertices;
 			face_array m_faces;

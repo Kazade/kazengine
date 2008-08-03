@@ -14,6 +14,9 @@ class bsp_map_renderer : public map_renderer_interface {
 	private:
 		bool is_cluster_visible(int cluster_1_id, int cluster_2_id);
 		void calc_visible_faces(shared_ptr<frustum> frustum);
+		int get_camera_leaf(const Vec3& camera_position);
+
+		shared_ptr<bsp_map> m_map;
 };
 
 #endif // BSP_MAP_RENDERER_H_INCLUDED

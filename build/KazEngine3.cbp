@@ -33,19 +33,21 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-Weffc++" />
 			<Add option="-Wall" />
 			<Add directory="../src" />
+			<Add directory="../src/kazmath/src" />
+			<Add directory="../src/kazmathxx/src" />
 		</Compiler>
 		<Linker>
 			<Add library="/usr/lib/libSDL.so" />
 			<Add library="/usr/lib/libGL.so" />
 			<Add library="/usr/lib/libGLU.so" />
-			<Add library="/usr/local/lib/libKazmath.so" />
-			<Add library="/usr/local/lib/libKazmathxx.so" />
 			<Add library="/usr/lib/libphysfs.so" />
 			<Add library="/usr/lib/libboost_thread.so" />
 			<Add library="/usr/lib/libIL.so" />
 			<Add library="/usr/lib/libILU.so" />
+			<Add library="../src/kazmath/build-linux/bin/Debug/libkazmath.so" />
 		</Linker>
 		<Unit filename="../src/core/engineinterface.cpp" />
 		<Unit filename="../src/core/engineinterface.h" />
@@ -61,6 +63,17 @@
 		<Unit filename="../src/core/opengl2driver.h" />
 		<Unit filename="../src/core/sdlwindow.cpp" />
 		<Unit filename="../src/core/sdlwindow.h" />
+		<Unit filename="../src/kazmath/src/mat4.h" />
+		<Unit filename="../src/kazmath/src/plane.h" />
+		<Unit filename="../src/kazmath/src/quaternion.h" />
+		<Unit filename="../src/kazmath/src/utility.h" />
+		<Unit filename="../src/kazmath/src/vec2.h" />
+		<Unit filename="../src/kazmath/src/vec3.h" />
+		<Unit filename="../src/kazmath/src/vec4.h" />
+		<Unit filename="../src/kazmathxx/src/mat4.h" />
+		<Unit filename="../src/kazmathxx/src/vec2.h" />
+		<Unit filename="../src/kazmathxx/src/vec3.h" />
+		<Unit filename="../src/kazmathxx/src/vec4.h" />
 		<Unit filename="../src/main.cpp" />
 		<Unit filename="../src/map/base_map.cpp" />
 		<Unit filename="../src/map/base_map.h" />

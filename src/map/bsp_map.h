@@ -10,6 +10,10 @@ class bsp_map : public base_map {
 		base_map(owning_manager) {
 
 		}
+
+		bsp_data& get_bsp_data() {
+			return m_bsp_data;
+		}
 	protected:
 		bsp_data m_bsp_data;
 };
