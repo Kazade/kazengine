@@ -18,6 +18,7 @@ using std::list;
 
 class scene_node_interface;
 class graphics_driver_interface;
+class engine_interface;
 
 typedef list<shared_ptr<scene_node_interface> > smart_scene_node_list;
 class scene_manager : public scene_manager_interface {
@@ -48,6 +49,10 @@ class scene_manager : public scene_manager_interface {
 		virtual map_scene_node_interface* add_quake3_scene_node(const string& filename);
 		virtual bool remove_scene_node(const scene_node_interface* node);
 
+		void set_parent_engine(shared_ptr<engine_interface> parent_engine) {
+			m_parent_engine = parent_engine;
+		}
+
 	private:
 		shared_ptr<scene_node_interface> m_root_node;
 		smart_scene_node_list m_node_list; ///< A list of all nodes
@@ -62,6 +67,8 @@ class scene_manager : public scene_manager_interface {
 		shared_ptr<resource_manager> m_resource_manager;
 
 		shared_ptr<graphics_driver_interface> m_video_device;
+
+		shared_ptr<engine_interface> m_parent_engine;
 
 		virtual void update(float dT);
 };

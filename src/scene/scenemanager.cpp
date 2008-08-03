@@ -3,7 +3,9 @@
 #include "quake3scenenode.h"
 #include "fpscamerascenenode.h"
 #include "utilities/customexcept.h"
+#include "core/iengine.h"
 
+using std::tr1::static_pointer_cast;
 using std::tr1::dynamic_pointer_cast;
 
 scene_manager::scene_manager(shared_ptr<graphics_driver_interface> video_device):
@@ -76,6 +78,7 @@ scene_node_interface* scene_manager::add_built_in_scene_node(scene_node_type typ
 		case SNT_CAMERA:
 			{
 				new_node = shared_ptr<scene_node_interface> (new fps_camera_scene_node(parent, this));
+				m_parent_engine->add_event_handler(dynamic_pointer_cast<event_handler_interface>(new_node));
 			}
 		break;
 		default:

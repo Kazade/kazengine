@@ -114,9 +114,11 @@ int main(int argc, char** argv) {
 	engine->get_window()->setWindowCaption("KazEngine Test");
 
 	scene->get_resource_manager()->add_to_search_path("q3_elkdm2.pk3");
-	scene->get_resource_manager()->add_to_search_path("neotech.pk3");
+	scene->get_resource_manager()->add_to_search_path("pak1-maps.pk3");
+	scene->get_resource_manager()->add_to_search_path("pak4-textures.pk3");
 
-	scene->add_quake3_scene_node("maps/q3_elkdm2.bsp");
+//	scene->add_quake3_scene_node("maps/q3_elkdm2.bsp");
+	scene->add_quake3_scene_node("maps/aggressor.bsp");
 
 	engine->add_event_handler(app);
 
@@ -133,11 +135,11 @@ int main(int argc, char** argv) {
 		app->update();
 
 		video->begin_scene();
-			glTranslatef(0, -3, -10);
+	//		glTranslatef(0, -3, -10);
+//
+			//(angle > 359.0f) ? angle -= 360.0f : ++angle;
 
-			(angle > 359.0f) ? angle -= 360.0f : ++angle;
-
-			glRotatef(angle, 0, 1, 0);
+		//	glRotatef(angle, 0, 1, 0);
 			scene->render_all();
 		video->end_scene();
 	}

@@ -13,6 +13,7 @@ class scene_node_factory_interface;
 class camera_scene_node_interface;
 class resource_manager;
 class map_scene_node_interface;
+class engine_interface;
 
 class scene_manager_interface {
 	public:
@@ -49,6 +50,8 @@ class scene_manager_interface {
 		virtual bool remove_scene_node(const scene_node_interface* node) = 0;
 
 		virtual void update(float dT) = 0;
+
+		virtual void set_parent_engine(shared_ptr<engine_interface> parent_engine) = 0;
 };
 
 #endif // ISCENEMANAGER_H_INCLUDED

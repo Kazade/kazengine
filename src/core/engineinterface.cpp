@@ -40,10 +40,14 @@ shared_ptr<engine_interface> createEngineInterface(const Vec2& dimensions,
 	newEngine->setGraphicsDriver(videoDriver);
 	newEngine->setSceneManager(sceneManager);
 
+	//Give the scene manager a pointer to it's parent
+	sceneManager->set_parent_engine(newEngine);
+
 	//Create a default camera
 	scene_node_interface* cam = sceneManager->add_built_in_scene_node(SNT_CAMERA);
 	sceneManager->set_active_camera(node_down_cast<camera_scene_node_interface> (cam));
 
+	//TODO: Register the camera for event handling
 	return newEngine;
 }
 
