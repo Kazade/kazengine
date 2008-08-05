@@ -30,6 +30,8 @@ class engine : public engine_interface  {
 
 		bool add_event_handler(shared_ptr<event_handler_interface> handler);
 		void remove_event_handler(shared_ptr<event_handler_interface> handler);
+
+		virtual float get_time_diff();
 	protected:
 
 	private:
@@ -39,6 +41,7 @@ class engine : public engine_interface  {
 		shared_ptr<scene_manager_interface> m_scene_manager;
 		shared_ptr<IWindow> m_window;
 		shared_ptr<Logger> m_logger;
+		shared_ptr<timer_interface> m_timer;
 //		shared_ptr<GuiEnvironment> m_GUIEnvironment;
 
 		//Only createEngineInterface can call these methods

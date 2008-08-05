@@ -27,3 +27,32 @@
 	<kazmath/plane.h>
 	<kazmath/vec3.h>
 
+1217797957 source:/home/luke/Projects/KazEngine3/src/kazmathxx/src/plane.cxx
+	<cassert>
+	"plane.h"
+
+1217797957 /home/luke/Projects/KazEngine3/src/kazmathxx/src/plane.h
+	<kazmath/plane.h>
+	<kazmath/vec3.h>
+
+1217797957 source:/home/luke/Projects/KazEngine3/src/kazmathxx/src/vec2.cxx
+	"vec2.h"
+
+1217836927 /home/luke/Projects/KazEngine3/src/kazmathxx/src/vec2.h
+	<kazmath/vec2.h>
+
+1217797957 source:/home/luke/Projects/KazEngine3/src/kazmathxx/src/vec3.cxx
+	"vec3.h"
+
+1217837035 /home/luke/Projects/KazEngine3/src/kazmathxx/src/vec3.h
+	<kazmath/vec3.h>
+	<kazmath/vec2.h>
+
+1217836647 source:/home/luke/Projects/KazEngine3/src/kazmathxx/src/mat4.cxx
+	<cassert>
+	<memory>
+	"mat4.h"
+
+1217797957 /home/luke/Projects/KazEngine3/src/kazmathxx/src/mat4.h
+	<kazmath/mat4.h>
+

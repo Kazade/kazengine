@@ -10,6 +10,7 @@ class camera_scene_node_interface {
 		virtual void roll(const float amount) = 0;
 
 		virtual void move_relative(const kmVec3& vec) = 0;
+		virtual void use() = 0;
 /*		virtual void set_fixed_axis(const kmVec3& axis) = 0;
 		virtual void enable_fixed_axis(bool enabled=true) = 0;*/
 };

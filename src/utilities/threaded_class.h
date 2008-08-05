@@ -11,7 +11,8 @@ using std::tr1::bind;
 class threaded_class {
 	public:
 		threaded_class():
-		m_stop_requested(false) {
+		m_stop_requested(false),
+		m_thread(shared_ptr<boost::thread>()) {
 
 		}
 

@@ -12,25 +12,22 @@ struct Colour {
 		explicit Colour(const ColourComponent& r,
 						const ColourComponent& g,
 						const ColourComponent& b,
-						const ColourComponent& a) {
-
-			red = r;
-			green = g;
-			blue = b;
-			alpha = a;
-		}
+						const ColourComponent& a):
+						red(r),
+						green(g),
+						blue(b),
+						alpha(a) {	}
 
 		explicit Colour(const ColourComponent& r,
 						const ColourComponent& g,
-						const ColourComponent& b) {
+						const ColourComponent& b):
+						red(r),
+						green(g),
+						blue(b),
+						alpha(255) {}
 
-			red = r;
-			green = g;
-			blue = b;
-			alpha = 255;
-		}
-
-		Colour(const Colour& c) {
+		Colour(const Colour& c):
+		red(0), green(0), blue(0), alpha(0) {
 			red = c.red;
 			blue = c.blue;
 			green = c.green;

@@ -5,12 +5,19 @@
 
 class timer : public timer_interface {
 		public:
+            timer():
+            m_last_time(0),
+            m_current_time(0) {
+
+            }
+
 			virtual void update() {
 				m_last_time = m_current_time;
 				m_current_time = static_cast<float>(SDL_GetTicks());
 			}
 
 			virtual float get_elapsed_time() {
+			    update();
 				float result = m_current_time - m_last_time;
 				return result / 1000.0f;
 			}

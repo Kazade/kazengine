@@ -1,6 +1,7 @@
 #ifndef SDLWINDOW_H_INCLUDED
 #define SDLWINDOW_H_INCLUDED
 
+#include <boost/noncopyable.hpp>
 #include "iwindow.h"
 
 class SDLWindow : public IWindow {
@@ -22,6 +23,9 @@ class SDLWindow : public IWindow {
 		bool m_Fullscreen;
 		bool m_WindowActive;
 		SDL_Surface* m_Screen;
+
+		SDLWindow(const SDLWindow&); //Noncopyable
+		SDLWindow operator=(const SDLWindow&); //Noncopyable
 };
 
 #endif // SDLWINDOW_H_INCLUDED

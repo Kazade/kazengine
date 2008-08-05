@@ -50,39 +50,39 @@ void frustum::calculate_frustum(const float* model, const float* proj) {
 
 
 	// Calculate the right side of the frustum.
-	m_planes[0].n.x = clip[3]  - clip[0];
-	m_planes[0].n.y = clip[7]  - clip[4];
-	m_planes[0].n.z = clip[11] - clip[8];
+	m_planes[0].a = clip[3]  - clip[0];
+	m_planes[0].b = clip[7]  - clip[4];
+	m_planes[0].c = clip[11] - clip[8];
 	m_planes[0].d = clip[15] - clip[12];
 
 	// Calculate the left side of the frustum.
-	m_planes[1].n.x = clip[3]  + clip[0];
-	m_planes[1].n.y = clip[7]  + clip[4];
-	m_planes[1].n.z = clip[11] + clip[8];
+	m_planes[1].a = clip[3]  + clip[0];
+	m_planes[1].b = clip[7]  + clip[4];
+	m_planes[1].c = clip[11] + clip[8];
 	m_planes[1].d = clip[15] + clip[12];
 
 	// Calculate the bottom side of the frustum.
-	m_planes[2].n.x = clip[3]  + clip[1];
-	m_planes[2].n.y = clip[7]  + clip[5];
-	m_planes[2].n.z = clip[11] + clip[9];
+	m_planes[2].a = clip[3]  + clip[1];
+	m_planes[2].b = clip[7]  + clip[5];
+	m_planes[2].c = clip[11] + clip[9];
 	m_planes[2].d = clip[15] + clip[13];
 
 	// Calculate the top side of the frustum.
-	m_planes[3].n.x = clip[3]  - clip[1];
-	m_planes[3].n.y = clip[7]  - clip[5];
-	m_planes[3].n.z = clip[11] - clip[9];
+	m_planes[3].a = clip[3]  - clip[1];
+	m_planes[3].b = clip[7]  - clip[5];
+	m_planes[3].c = clip[11] - clip[9];
 	m_planes[3].d = clip[15] - clip[13];
 
 	// Calculate the far side of the frustum.
-	m_planes[4].n.x = clip[3]  - clip[2];
-	m_planes[4].n.y = clip[7]  - clip[6];
-	m_planes[4].n.z = clip[11] - clip[10];
+	m_planes[4].a = clip[3]  - clip[2];
+	m_planes[4].b = clip[7]  - clip[6];
+	m_planes[4].c = clip[11] - clip[10];
 	m_planes[4].d = clip[15] - clip[14];
 
 	// Calculate the near side of the frustum.
-	m_planes[5].n.x = clip[3]  + clip[2];
-	m_planes[5].n.y = clip[7]  + clip[6];
-	m_planes[5].n.z = clip[11] + clip[10];
+	m_planes[5].a = clip[3]  + clip[2];
+	m_planes[5].b = clip[7]  + clip[6];
+	m_planes[5].c = clip[11] + clip[10];
 	m_planes[5].d = clip[15] + clip[14];
 }
 
@@ -92,14 +92,14 @@ void frustum::normalize_frustum() {
 	// Loop through each side of the frustum and normalize it.
 	for(int i = 0; i < 6; i++)
 	{
-			magnitude = (float)sqrt(m_planes[i].n.x * m_planes[i].n.x +
-														 m_planes[i].n.y * m_planes[i].n.y +
-																 m_planes[i].n.z * m_planes[i].n.z);
+			magnitude = (float)sqrt(m_planes[i].a * m_planes[i].a +
+														 m_planes[i].b * m_planes[i].b +
+																 m_planes[i].c * m_planes[i].c);
 			magnitude = 1.0f / magnitude;
 
-			m_planes[i].n.x *= magnitude;
-			m_planes[i].n.y *= magnitude;
-			m_planes[i].n.z *= magnitude;
+			m_planes[i].a *= magnitude;
+			m_planes[i].b *= magnitude;
+			m_planes[i].c *= magnitude;
 			m_planes[i].d *= magnitude;
 	}
 }

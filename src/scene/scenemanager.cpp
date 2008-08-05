@@ -128,8 +128,20 @@ void scene_manager::render_all() {
 	m_root_node->on_register_scene_node();
 
 	smart_scene_node_list::const_iterator i;
+
+    float dt = m_parent_engine->get_time_diff();
+
+	for (i = m_nodes_for_rendering.begin(); i != m_nodes_for_rendering.end(); ++i) {
+		(*i)->on_animate(dt);
+	}
+
 	for (i = m_nodes_for_rendering.begin(); i != m_nodes_for_rendering.end(); ++i) {
 		(*i)->on_pre_render();
+	}
+
+    get_active_camera()->use();
+
+	for (i = m_nodes_for_rendering.begin(); i != m_nodes_for_rendering.end(); ++i) {
 		(*i)->render();
 	}
 }

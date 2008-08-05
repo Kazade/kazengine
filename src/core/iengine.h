@@ -25,6 +25,8 @@ class engine_interface {
         virtual const shared_ptr<IWindow> get_window() = 0;
 
         virtual bool run() = 0;
+
+        virtual float get_time_diff() = 0;
 };
 
 

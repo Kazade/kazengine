@@ -32,14 +32,14 @@ class App : public event_handler_interface {
 					return true;
 				break;
 
-				case SDL_KEYDOWN:
+/*				case SDL_KEYDOWN:
 					m_Keys[e.key.keysym.sym] = true;
 					return true;
 
 				case SDL_KEYUP:
 					m_Keys[e.key.keysym.sym] = false;
 					return true;
-				break;
+				break;*/
 			}
 
 			return false;
@@ -53,29 +53,6 @@ class App : public event_handler_interface {
 //			scene->get_active_camera()->set_fixed_axis(Vec3(0, 1, 0));
 //			scene->get_active_camera()->enable_fixed_axis(true);
 
-			if (m_Keys[SDLK_LEFT]) {
-				scene->get_active_camera()->yaw(5.0f);
-			}
-
-			if (m_Keys[SDLK_RIGHT]) {
-				scene->get_active_camera()->yaw(-5.0f);
-			}
-
-			if (m_Keys[SDLK_UP]) {
-				scene->get_active_camera()->pitch(5.0f);
-			}
-
-			if (m_Keys[SDLK_DOWN]) {
-				scene->get_active_camera()->pitch(-5.0f);
-			}
-
-			if (m_Keys[SDLK_w]) {
-				scene->get_active_camera()->move_relative(Vec3(0, 0, 0.4f));
-			}
-
-			if (m_Keys[SDLK_s]) {
-				scene->get_active_camera()->move_relative(Vec3(0, 0, -0.4f));
-			}
 		}
 
 		void resize(int w, int h) {
@@ -116,13 +93,14 @@ int main(int argc, char** argv) {
 	scene->get_resource_manager()->add_to_search_path("q3_elkdm2.pk3");
 	scene->get_resource_manager()->add_to_search_path("pak1-maps.pk3");
 	scene->get_resource_manager()->add_to_search_path("pak4-textures.pk3");
+	scene->get_resource_manager()->add_to_search_path("map-acid3dm7.pk3");
 
-//	scene->add_quake3_scene_node("maps/q3_elkdm2.bsp");
-	scene->add_quake3_scene_node("maps/aggressor.bsp");
+	scene->add_quake3_scene_node("maps/q3_elkdm2.bsp");
+	//scene->add_quake3_scene_node("maps/acid3dm7.bsp");
 
 	engine->add_event_handler(app);
 
-	app->setScene(scene);
+//	app->setScene(scene);
 
 	//glDisable(GL_TEXTURE_2D);
 	//glEnable(GL_NORMALIZE);
@@ -132,7 +110,7 @@ int main(int argc, char** argv) {
 
 	float angle = 0.0f;
 	while(engine->run()) {
-		app->update();
+//		app->update();
 
 		video->begin_scene();
 	//		glTranslatef(0, -3, -10);

@@ -55,6 +55,7 @@ void scene_node::detach() {
 	scene_node_interface* parent = get_parent();
 	if (parent) {
 		parent->remove_child(this);
+		m_parent_node = NULL;
 	}
 }
 
