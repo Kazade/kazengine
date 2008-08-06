@@ -142,6 +142,12 @@ struct quake3_brushside {
 	int texture; // 	Texture index.
 };
 
+struct quake3_bsp_cluster {
+ int totalClusters;
+ int size;
+ vector<unsigned char> bitSet;
+};
+
 struct quake3_effect {
 	char name[64]; // 	Effect shader.
 	int brush; // 	Brush that generated this effect.
@@ -208,6 +214,7 @@ class quake3_bsp_map : public bsp_map {
 		void read_brushsides(istream& stream);
 		void read_effects(istream& stream);
 		void read_lightvols(istream& stream);
+		void read_visibility_data(istream& stream);
 
 		quake3_header m_header;
 		vector<quake3_file_lump> m_lumps;
@@ -229,6 +236,8 @@ class quake3_bsp_map : public bsp_map {
 		vector<quake3_brushside> m_raw_brushsides;
 		vector<quake3_effect> m_raw_effect_data;
 		vector<quake3_lightvol> m_raw_lightvol_data;
+
+        quake3_bsp_cluster m_raw_cluster_data;
 
 		string m_last_error;
 
