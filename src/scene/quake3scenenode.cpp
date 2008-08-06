@@ -48,7 +48,7 @@ bool quake3_scene_node::load_map(shared_ptr<resource_manager> rmgr, const string
 }
 
 void quake3_scene_node::on_pre_render() {
-	m_map_renderer->pre_render(shared_ptr<frustum>(), 0);
+	m_map_renderer->pre_render(get_scene_manager()->get_active_camera());
 }
 
 void quake3_scene_node::render() {

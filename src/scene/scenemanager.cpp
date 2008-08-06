@@ -154,8 +154,8 @@ void scene_manager::register_node_for_rendering(const scene_node_interface* node
 	m_nodes_for_rendering.push_back(*i);
 }
 
-camera_scene_node_interface* scene_manager::get_active_camera() {
-	return m_active_camera.get();
+shared_ptr<camera_scene_node_interface> scene_manager::get_active_camera() {
+	return m_active_camera;
 }
 
 void scene_manager::set_active_camera(camera_scene_node_interface* camera) {

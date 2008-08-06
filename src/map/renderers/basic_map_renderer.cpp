@@ -3,6 +3,9 @@
 #include <iostream>
 
 #include "scene/frustum.h"
+#include "scene/iscenenode.h"
+#include "scene/icamerascenenode.h"
+
 #include "resources/iresource_manager.h"
 #include "resources/itexture.h"
 #include "basic_map_renderer.h"
@@ -89,8 +92,9 @@ void basic_map_renderer::generate_resources() {
 	}
 }
 
-void basic_map_renderer::pre_render(shared_ptr<frustum> frustum, const float* camera_position) {
+void basic_map_renderer::pre_render(shared_ptr<camera_scene_node_interface> camera) {
 	//Build visible list by texture, sort the opaque and transparent surfaces
+	Vec3 camera_position = dynamic_pointer_cast<scene_node_interface>(camera)->get_position();
 	face_array faces = m_map_pointer->get_faces();
 
 	m_translucent_surfaces.surfaces.clear();

@@ -32,7 +32,7 @@ class scene_manager_interface {
 		//Render all of the scene nodes
 		virtual void render_all() = 0;
 
-		virtual camera_scene_node_interface* get_active_camera() = 0;
+		virtual shared_ptr<camera_scene_node_interface> get_active_camera() = 0;
 		virtual void set_active_camera(camera_scene_node_interface* camera) = 0;
 
 		//Remove any dead nodes

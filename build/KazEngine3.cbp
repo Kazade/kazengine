@@ -80,6 +80,7 @@
 		<Unit filename="../src/map/base_map.h" />
 		<Unit filename="../src/map/basic_face.cpp" />
 		<Unit filename="../src/map/basic_face.h" />
+		<Unit filename="../src/map/bsp_cluster.h" />
 		<Unit filename="../src/map/bsp_data.h" />
 		<Unit filename="../src/map/bsp_leaf.h" />
 		<Unit filename="../src/map/bsp_map.h" />

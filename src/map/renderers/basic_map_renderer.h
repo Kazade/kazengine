@@ -13,7 +13,7 @@ class basic_map_renderer : public map_renderer_interface {
 
 		bool initialize(shared_ptr<base_map> map);
 		void generate_resources();
-		void pre_render(shared_ptr<frustum> frustum, const float* camera_position);
+		void pre_render(shared_ptr<camera_scene_node_interface> camera);
 		void post_render();
 		void render_map();
 

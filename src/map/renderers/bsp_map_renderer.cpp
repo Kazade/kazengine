@@ -3,8 +3,11 @@
 
 #include "../bsp_map.h"
 #include "bsp_map_renderer.h"
+#include "scene/icamerascenenode.h"
+#include "scene/iscenenode.h"
 
 using std::tr1::dynamic_pointer_cast;
+
 bool bsp_map_renderer::initialize(shared_ptr<base_map> map) {
     shared_ptr<bsp_map> bsp_map_instance = dynamic_pointer_cast<bsp_map>(map);
     if (!bsp_map_instance) {
@@ -24,8 +27,30 @@ void bsp_map_renderer::generate_resources() {
 
 }
 
+void bsp_map_renderer::calculate_visible_faces(shared_ptr<camera_scene_node_interface> camera) {
+	m_visible_faces.clear();
+
+	bsp_data& bsp_data = m_map->get_bsp_data();
+
+	int camera_leaf = get_camera_leaf(dynamic_pointer_cast<scene_node_interface>(camera)->get_position());
+	int camera_cluster = bsp_data.leaves[camera_leaf].cluster;
+
+	vector<bsp_leaf>::const_iterator leaf = bsp_data.leaves.begin();
+	for (; leaf != bsp_data.leaves.end(); ++leaf) {
+		if (!is_cluster_visible(camera_cluster, (*leaf).cluster)) {
+			continue;
+		}
+
+		//TODO: Implement is_aabb_visible in the frutum and use it here
+		//if (!camera->get_frustum().is_aabb_visible(
+
+		/*TODO: Go through faces to build the visible face list, perhaps this
+		should also sort the faces on transparency so it is faster */
+	}
+}
+
 /** Perform any prerendering steps using the frustum for any culling operations */
-void bsp_map_renderer::pre_render(shared_ptr<frustum> frustum) {
+void bsp_map_renderer::pre_render(shared_ptr<camera_scene_node_interface> camera) {
 
 }
 

@@ -38,7 +38,7 @@ class scene_manager : public scene_manager_interface {
 
 		void register_node_for_rendering(const scene_node_interface* node);
 
-		camera_scene_node_interface* get_active_camera();
+		shared_ptr<camera_scene_node_interface> get_active_camera();
 		void set_active_camera(camera_scene_node_interface* camera);
 
 		shared_ptr<resource_manager> get_resource_manager();
