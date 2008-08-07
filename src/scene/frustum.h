@@ -6,9 +6,11 @@
 
 class frustum {
 	public:
-		bool point_in_frustum(const float* point);
-		bool cube_in_frustum(const float* point, const float size);
-		bool aabb_in_frustum(const kmAABB& aabb);
+		bool is_point_in_frustum(const float* point) const;
+		bool is_cube_in_frustum(const float* point, const float size) const;
+		bool is_aabb_in_frustum(const kmAABB& aabb) const;
+		bool is_aabb_in_frustum(float minX, float minY, float minZ,
+                              float maxX, float maxY, float maxZ) const;
 
 		void update_frustum();
 		void update_frustum(const float* model, const float* proj);
