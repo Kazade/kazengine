@@ -97,6 +97,10 @@ public:
             m_camera.yaw(move_speed * dt);
         }
     }
+
+    virtual const frustum& get_frustum() {
+		return m_frustum;
+    }
     //void set_fixed_axis(const kmVec3& axis) = 0;
     //void enable_fixed_axis(bool enabled=true) = 0;
 private:
@@ -122,6 +126,8 @@ private:
     };
 
     Key m_key_map[CA_MAX];
+
+    frustum m_frustum;
 };
 
 #endif // FPSCAMERASCENENODE_H_INCLUDED

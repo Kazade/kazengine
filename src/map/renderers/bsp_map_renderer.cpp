@@ -5,6 +5,7 @@
 #include "bsp_map_renderer.h"
 #include "scene/icamerascenenode.h"
 #include "scene/iscenenode.h"
+#include "scene/frustum.h"
 
 using std::tr1::dynamic_pointer_cast;
 
@@ -41,10 +42,10 @@ void bsp_map_renderer::calculate_visible_faces(shared_ptr<camera_scene_node_inte
             continue;
         }
 
-        if (!camera->get_frustum().isAABBVisible(bsp_data_ref.leaves[i].min.x,
-                bsp_data_ref.leaves[i].min.y, bsp_data_ref.leaves[i].min.z,
-                bsp_data_ref.leaves[i].max.x, bsp_data_ref.leaves[i].max.y,
-                bsp_data_ref.leaves[i].max.z)) {
+        if (!camera->get_frustum().is_aabb_in_frustum((*leaf).mins[0],
+                (*leaf).mins[1], (*leaf).mins[2],
+                (*leaf).maxs[0], (*leaf).maxs[1],
+                (*leaf).maxs[2])) {
             continue;
         }
 
