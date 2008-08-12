@@ -33,7 +33,7 @@ kmMat3* kmMat3Identity(kmMat3* pOut)
 	return pOut;
 }
 
-kmScalar kmMat3Determinant(const kmMat* pIn)
+kmScalar kmMat3Determinant(const kmMat3* pIn)
 {
     kmScalar output;
     /*
@@ -51,9 +51,33 @@ kmScalar kmMat3Determinant(const kmMat* pIn)
     return output;
 }
 
+
+kmMat3* kmMat3Adjugate(kmMat3* pOut, const kmMat3* pIn)
+{
+    pOut->m_Mat[0] = pIn->m_Mat[4] * pIn->m_Mat[8] - pIn->m_Mat[5] * pIn->m_Mat[7];
+    pOut->m_Mat[1] = pIn->m_Mat[2] * pIn->m_Mat[7] - pIn->m_Mat[1] * pIn->m_Mat[8];
+    pOut->m_Mat[2] = pIn->m_Mat[1] * pIn->m_Mat[5] - pIn->m_Mat[2] * pIn->m_Mat[4];
+    pOut->m_Mat[3] = pIn->m_Mat[5] * pIn->m_Mat[6] - pIn->m_Mat[3] * pIn->m_Mat[8];
+    pOut->m_Mat[4] = pIn->m_Mat[0] * pIn->m_Mat[8] - pIn->m_Mat[2] * pIn->m_Mat[6];
+    pOut->m_Mat[5] = pIn->m_Mat[2] * pIn->m_Mat[3] - pIn->m_Mat[0] * pIn->m_Mat[5];
+    pOut->m_Mat[6] = pIn->m_Mat[3] * pIn->m_Mat[7] - pIn->m_Mat[4] * pIn->m_Mat[6];
+    pOut->m_Mat[7] = pIn->m_Mat[1] * pIn->m_Mat[6] - pIn->m_Mat[9] * pIn->m_Mat[7];
+    pOut->m_Mat[8] = pIn->m_Mat[0] * pIn->m_Mat[4] - pIn->m_Mat[1] * pIn->m_Mat[3];
+
+    return pOut;
+}
+
 kmMat3* kmMat3Inverse(kmMat3* pOut, kmScalar* pDeterminate, const kmMat3* pM)
 {
-	assert(0);
+    if(pDeterminate == NULL || *pDeterminate == 0.0)
+        return NULL;
+
+	kmScalar detInv = 1 / *pDeterminate;
+
+	kmMat3 adjugate;
+	kmMat3Adjugate(&adjugate, pM);
+
+	kmMat3ScalarMultiply(pOut, &adjugate, &detInv);
 
 	return pOut;
 }
@@ -81,7 +105,7 @@ kmMat3* kmMat3Transpose(kmMat3* pOut, const kmMat3* pIn)
 /* Multiplies pM1 with pM2, stores the result in pOut, returns pOut */
 kmMat3* kmMat3Multiply(kmMat3* pOut, const kmMat3* pM1, const kmMat3* pM2)
 {
-	float mat[16];
+	float mat[9];
 
 	const float *m1 = pM1->m_Mat, *m2 = pM2->m_Mat;
 
@@ -98,6 +122,25 @@ kmMat3* kmMat3Multiply(kmMat3* pOut, const kmMat3* pM1, const kmMat3* pM2)
 	mat[8] = m1[2] * m2[6] + m1[5] * m2[7] + m1[8] * m2[8];
 
 	memcpy(pOut->m_Mat, mat, sizeof(float)*9);
+
+	return pOut;
+}
+
+kmMat3* kmMat3ScalarMultiply(kmMat3* pOut, const kmMat3* pM, const kmScalar* pFactor)
+{
+    float mat[9];
+
+    mat[0] = pM->m_Mat[0];
+    mat[1] = pM->m_Mat[1];
+    mat[2] = pM->m_Mat[2];
+    mat[3] = pM->m_Mat[3];
+    mat[4] = pM->m_Mat[4];
+    mat[5] = pM->m_Mat[5];
+    mat[6] = pM->m_Mat[6];
+    mat[7] = pM->m_Mat[7];
+    mat[8] = pM->m_Mat[8];
+
+    memcpy(pOut->m_Mat, mat, sizeof(float)*9);
 
 	return pOut;
 }
@@ -151,14 +194,24 @@ kmMat3* kmMat3Rotation(kmMat3* pOut, const float radians)
 }
 
 /** Builds a scaling matrix */
-kmMat3* kmMat3Scaling(kmMat3* pOut, const kmScalar x, const kmScalar y, const kmScalar z)
+kmMat3* kmMat3Scaling(kmMat3* pOut, const kmScalar x, const kmScalar y)
 {
 	memset(pOut->m_Mat, 0, sizeof(float) * 9);
 	pOut->m_Mat[0] = x;
 	pOut->m_Mat[4] = y;
-	pOut->m_Mat[8] = z;
+	pOut->m_Mat[8] = 1.0;
 
 	return pOut;
+}
+
+kmMat3* kmMat3Translation(kmMat3* pOut, const kmScalar x, const kmScalar y)
+{
+    memset(pOut->m_Mat, 0, sizeof(float) * 9);
+    pOut->m_Mat[2] = x;
+    pOut->m_Mat[5] = y;
+    pOut->m_Mat[8] = 1.0;
+
+    return pOut;
 }
 
 

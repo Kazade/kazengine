@@ -30,9 +30,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define kmScalar float
 #endif
 
-#define kmPI 3.14159
-#define kmPIOver180 3.14159 / 180.0
-#define kmPIUnder180 180.0 / 3.14159
+#define kmPI 3.141592
+#define kmPIOver180 0.017453 //  PI / 180
+#define kmPIUnder180 57.295779 // 180 / PI
 #define kmEpsilon 1.0 / 64.0
 
 #ifdef __cplusplus
