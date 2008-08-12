@@ -27,6 +27,7 @@ extern "C" {
 
 
 #include "utility.h"
+#include "mat4.h"
 
 struct kmVec3;
 struct kmMat4;

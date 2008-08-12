@@ -36,6 +36,51 @@ kmMat4* kmMat4Identity(kmMat4* pOut)
 kmMat4* kmMat4Inverse(kmMat4* pOut, kmScalar* pDeterminate, const kmMat4* pM)
 {
 	assert(0);
+	/*
+	/// Returns the inverse of a matrix
+inline matrix4 inverse(const matrix4& v)
+{
+	matrix4 a(v),	 // As a evolves from original mat into identity
+	b(identity3D()); // b evolves from identity into inverse(a)
+
+	// Loop over cols of a from left to right, eliminating above and below diag
+	for(int j=0; j<4; ++j) { // Find largest pivot in column j among rows j..3
+		int i1 = j;		 // Row with largest pivot candidate
+
+		for(int i=j+1; i<4; ++i)
+		{
+			if (fabs(a.v[i].n[j]) > fabs(a.v[i1].n[j]))
+				i1 = i;
+		}
+
+		// Swap rows i1 and j in a and b to put pivot on diagonal
+		std::swap(a.v[i1], a.v[j]);
+		std::swap(b.v[i1], b.v[j]);
+
+		// Scale row j to have a unit diagonal
+		if(!a.v[j].n[j])
+		{
+			// Singular matrix - can't invert
+			log() << error << "Can't invert singular matrix!" << std::endl;
+			return b;
+		}
+
+		b.v[j] /= a.v[j].n[j];
+		a.v[j] /= a.v[j].n[j];
+
+		// Eliminate off-diagonal elems in col j of a, doing identical ops to b
+		for(int i=0; i<4; ++i)
+		{
+			if(i!=j)
+			{
+				b.v[i] -= a.v[i].n[j]*b.v[j];
+				a.v[i] -= a.v[i].n[j]*a.v[j];
+			}
+		}
+	}
+	return b;
+}
+	*/
 
 	return pOut;
 }
