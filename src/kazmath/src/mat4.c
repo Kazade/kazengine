@@ -33,54 +33,79 @@ kmMat4* kmMat4Identity(kmMat4* pOut)
 	return pOut;
 }
 
-kmMat4* kmMat4Inverse(kmMat4* pOut, kmScalar* pDeterminate, const kmMat4* pM)
+kmMat4* kmMat4Inverse(kmMat4* pOut, const kmMat4* pM)
 {
-	assert(0);
-	/*
-	/// Returns the inverse of a matrix
-inline matrix4 inverse(const matrix4& v)
-{
-	matrix4 a(v),	 // As a evolves from original mat into identity
-	b(identity3D()); // b evolves from identity into inverse(a)
+	float mat[16];
 
-	// Loop over cols of a from left to right, eliminating above and below diag
-	for(int j=0; j<4; ++j) { // Find largest pivot in column j among rows j..3
+	for (int i = 0; i < 16; i++)
+	{
+		mat[i] = pM->m_Mat[i];
+	}
+
+	kmMat4Identity(pOut);
+
+
+	for (int j = 0; j < 4; ++j) // Find largest pivot in column j among rows j..3
+	{
 		int i1 = j;		 // Row with largest pivot candidate
 
-		for(int i=j+1; i<4; ++i)
+		for (int i = j + 1; i < 4; ++i)
 		{
-			if (fabs(a.v[i].n[j]) > fabs(a.v[i1].n[j]))
+			if (fabs(mat[i*4 + j]) > fabs(mat[i1*4 + j]))
 				i1 = i;
 		}
 
 		// Swap rows i1 and j in a and b to put pivot on diagonal
-		std::swap(a.v[i1], a.v[j]);
-		std::swap(b.v[i1], b.v[j]);
-
-		// Scale row j to have a unit diagonal
-		if(!a.v[j].n[j])
+		float temp[4];
+		for(int k = 0; k < 4; k++)
 		{
-			// Singular matrix - can't invert
-			log() << error << "Can't invert singular matrix!" << std::endl;
-			return b;
+		    temp[k] = mat[i1 * 4 + k];
 		}
 
-		b.v[j] /= a.v[j].n[j];
-		a.v[j] /= a.v[j].n[j];
+		for(int k = 0; k < 4; k++)
+		{
+		    mat[i1 * 4 + k] = mat[j * 4 + k];
+		    mat[j * 4 + k] = temp[k];
+		}
+
+        for(int k = 0; k < 4; k++)
+		{
+		    temp[k] = pOut->m_Mat[i1 * 4 + k];
+		}
+
+		for(int k = 0; k < 4; k++)
+		{
+		    pOut->m_Mat[i1 * 4 + k] = pOut->m_Mat[j * 4 + k];
+		    pOut->m_Mat[j * 4 + k] = temp[k];
+		}
+
+		// Scale row j to have a unit diagonal
+		if (!mat[j*4 + j])
+		{
+			// Singular matrix - can't invert
+
+			return pOut;
+		}
+
+        for(int k = 0; k < 4; k++)
+		{
+            pOut->m_Mat[j * 4 + k] /= mat[j * 4 + j];
+            mat[j * 4 + k] /= mat[j * 4 + j];
+		}
 
 		// Eliminate off-diagonal elems in col j of a, doing identical ops to b
-		for(int i=0; i<4; ++i)
+		for (int i = 0; i < 4; ++i)
 		{
-			if(i!=j)
+			if (i != j)
 			{
-				b.v[i] -= a.v[i].n[j]*b.v[j];
-				a.v[i] -= a.v[i].n[j]*a.v[j];
+				for(int k = 0; k < 4; k++)
+				{
+                    pOut->m_Mat[i*4 + k] -= mat[i*4 + j] * pOut->m_Mat[j*4 + k];
+                    mat[i*4 + k] -= mat[i*4 + j] * mat[j*4 + k];
+				}
 			}
 		}
 	}
-	return b;
-}
-	*/
 
 	return pOut;
 }
@@ -89,9 +114,10 @@ inline matrix4 inverse(const matrix4& v)
 bool  kmMat4IsIdentity(const kmMat4* pIn)
 {
 	static const float identity [] = { 	1.0f, 0.0f, 0.0f, 0.0f,
-										0.0f, 1.0f, 0.0f, 0.0f,
-										0.0f, 0.0f, 1.0f, 0.0f,
-										0.0f, 0.0f, 0.0f, 1.0f };
+	                                    0.0f, 1.0f, 0.0f, 0.0f,
+	                                    0.0f, 0.0f, 1.0f, 0.0f,
+	                                    0.0f, 0.0f, 0.0f, 1.0f
+	                                 };
 
 	return (memcmp(identity, pIn->m_Mat, sizeof(float) * 16) == 0);
 }
@@ -163,7 +189,7 @@ bool kmMat4AreEqual(const kmMat4* pMat1, const kmMat4* pMat2)
 	for (int i = 0; i < 16; ++i)
 	{
 		if (!(pMat1->m_Mat[i] + kmEpsilon > pMat2->m_Mat[i] &&
-			  pMat1->m_Mat[i] - kmEpsilon < pMat2->m_Mat[i]))
+		        pMat1->m_Mat[i] - kmEpsilon < pMat2->m_Mat[i]))
 			return false;
 	}
 
@@ -181,13 +207,13 @@ kmMat4* kmMat4RotationAxis(kmMat4* pOut, const kmVec3* axis, kmScalar radians)
 	pOut->m_Mat[2] = -axis->y * rsin + axis->z * axis->x * (1 - rcos);
 	pOut->m_Mat[3] = 0.0f;
 
-	pOut->m_Mat[4] = -axis->z * rsin + axis->x * axis->y *(1-rcos);
+	pOut->m_Mat[4] = -axis->z * rsin + axis->x * axis->y * (1 - rcos);
 	pOut->m_Mat[5] = rcos + axis->y * axis->y * (1 - rcos);
 	pOut->m_Mat[6] = axis->x * rsin + axis->z * axis->y * (1 - rcos);
 	pOut->m_Mat[7] = 0.0f;
 
-	pOut->m_Mat[8] = axis->y * rsin + axis->x * axis->z *(1-rcos);
-	pOut->m_Mat[9] = -axis->x * rsin + axis->y * axis->z *(1-rcos);
+	pOut->m_Mat[8] = axis->y * rsin + axis->x * axis->z * (1 - rcos);
+	pOut->m_Mat[9] = -axis->x * rsin + axis->y * axis->z * (1 - rcos);
 	pOut->m_Mat[10] = rcos + axis->z * axis->z * (1 - rcos);
 	pOut->m_Mat[11] = 0.0f;
 
@@ -204,9 +230,9 @@ kmMat4* kmMat4RotationX(kmMat4* pOut, const float radians)
 {
 	/*
 		 |  1  0       0       0 |
-     M = |  0  cos(A) -sin(A)  0 |
-         |  0  sin(A)  cos(A)  0 |
-         |  0  0       0       1 |
+	 M = |  0  cos(A) -sin(A)  0 |
+	     |  0  sin(A)  cos(A)  0 |
+	     |  0  0       0       1 |
 
 	*/
 
@@ -236,10 +262,10 @@ kmMat4* kmMat4RotationX(kmMat4* pOut, const float radians)
 kmMat4* kmMat4RotationY(kmMat4* pOut, const float radians)
 {
 	/*
-         |  cos(A)  0   sin(A)  0 |
-     M = |  0       1   0       0 |
-         | -sin(A)  0   cos(A)  0 |
-         |  0       0   0       1 |
+	     |  cos(A)  0   sin(A)  0 |
+	 M = |  0       1   0       0 |
+	     | -sin(A)  0   cos(A)  0 |
+	     |  0       0   0       1 |
 	*/
 
 	pOut->m_Mat[0] = cosf(radians);
@@ -268,10 +294,10 @@ kmMat4* kmMat4RotationY(kmMat4* pOut, const float radians)
 kmMat4* kmMat4RotationZ(kmMat4* pOut, const float radians)
 {
 	/*
-         |  cos(A)  -sin(A)   0   0 |
-     M = |  sin(A)   cos(A)   0   0 |
-         |  0        0        1   0 |
-         |  0        0        0   1 |
+	     |  cos(A)  -sin(A)   0   0 |
+	 M = |  sin(A)   cos(A)   0   0 |
+	     |  0        0        1   0 |
+	     |  0        0        0   1 |
 	*/
 
 	pOut->m_Mat[0] = cosf(radians);
@@ -308,7 +334,7 @@ kmMat4* kmMat4RotationPitchYawRoll(kmMat4* pOut, const kmScalar pitch, const kmS
 
 	pOut->m_Mat[0] = (kmScalar) cp * cy;
 	pOut->m_Mat[4] = (kmScalar) cp * sy;
-	pOut->m_Mat[8] = (kmScalar) -sp;
+	pOut->m_Mat[8] = (kmScalar) - sp;
 
 	double srsp = sr * sp;
 	double crsp = cr * sp;

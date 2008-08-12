@@ -35,7 +35,7 @@ extern "C" {
 #endif
 
 kmMat4* kmMat4Identity(kmMat4* pOut);
-kmMat4* kmMat4Inverse(kmMat4* pOut, kmScalar* pDeterminate, const kmMat4* pM);
+kmMat4* kmMat4Inverse(kmMat4* pOut, const kmMat4* pM);
 bool  kmMat4IsIdentity(const kmMat4* pIn);
 kmMat4* kmMat4Transpose(kmMat4* pOut, const kmMat4* pIn);
 kmMat4* kmMat4Multiply(kmMat4* pOut, const kmMat4* pM1, const kmMat4* pM2);

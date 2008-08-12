@@ -67,17 +67,17 @@ kmMat3* kmMat3Adjugate(kmMat3* pOut, const kmMat3* pIn)
     return pOut;
 }
 
-kmMat3* kmMat3Inverse(kmMat3* pOut, kmScalar* pDeterminate, const kmMat3* pM)
+kmMat3* kmMat3Inverse(kmMat3* pOut, kmScalar pDeterminate, const kmMat3* pM)
 {
-    if(pDeterminate == NULL || *pDeterminate == 0.0)
+    if(pDeterminate == 0.0)
         return NULL;
 
-	kmScalar detInv = 1 / *pDeterminate;
+	kmScalar detInv = 1.0 / pDeterminate;
 
 	kmMat3 adjugate;
 	kmMat3Adjugate(&adjugate, pM);
 
-	kmMat3ScalarMultiply(pOut, &adjugate, &detInv);
+	kmMat3ScalarMultiply(pOut, &adjugate, detInv);
 
 	return pOut;
 }
@@ -126,19 +126,14 @@ kmMat3* kmMat3Multiply(kmMat3* pOut, const kmMat3* pM1, const kmMat3* pM2)
 	return pOut;
 }
 
-kmMat3* kmMat3ScalarMultiply(kmMat3* pOut, const kmMat3* pM, const kmScalar* pFactor)
+kmMat3* kmMat3ScalarMultiply(kmMat3* pOut, const kmMat3* pM, const kmScalar pFactor)
 {
     float mat[9];
 
-    mat[0] = pM->m_Mat[0];
-    mat[1] = pM->m_Mat[1];
-    mat[2] = pM->m_Mat[2];
-    mat[3] = pM->m_Mat[3];
-    mat[4] = pM->m_Mat[4];
-    mat[5] = pM->m_Mat[5];
-    mat[6] = pM->m_Mat[6];
-    mat[7] = pM->m_Mat[7];
-    mat[8] = pM->m_Mat[8];
+    for(int i = 0; i < 9; i++)
+    {
+        mat[0] = pM->m_Mat[9] * pFactor;
+    }
 
     memcpy(pOut->m_Mat, mat, sizeof(float)*9);
 
@@ -170,6 +165,7 @@ bool kmMat3AreEqual(const kmMat3* pMat1, const kmMat3* pMat2)
 	return true;
 }
 
+/* Rotation around the z axis so everything stays planar in XY */
 kmMat3* kmMat3Rotation(kmMat3* pOut, const float radians)
 {
 	/*
