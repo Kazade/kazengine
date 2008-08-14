@@ -33,11 +33,10 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-Weffc++" />
+			<Add option="-pedantic" />
 			<Add option="-Wall" />
 			<Add directory="../src" />
-			<Add directory="../src/kazmath/src" />
-			<Add directory="../src/kazmathxx/src" />
+			<Add directory="../src/kazmathxx/include" />
 		</Compiler>
 		<Linker>
 			<Add library="/usr/lib/libSDL.so" />
@@ -47,8 +46,8 @@
 			<Add library="/usr/lib/libboost_thread.so" />
 			<Add library="/usr/lib/libIL.so" />
 			<Add library="/usr/lib/libILU.so" />
-			<Add library="../src/kazmath/build-linux/bin/Debug/libkazmath.so" />
 			<Add library="../src/kazmathxx/libkazmathxx-debug.so" />
+			<Add library="/usr/local/lib/libKazmath.so" />
 		</Linker>
 		<Unit filename="../src/core/engineinterface.cpp" />
 		<Unit filename="../src/core/engineinterface.h" />

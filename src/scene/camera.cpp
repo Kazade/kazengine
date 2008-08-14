@@ -3,8 +3,11 @@
 #include <kazmathxx/vec3.h>
 #include <GL/gl.h>
 #include <iostream>
-
+#include <tr1/memory>
+#include "core/igraphicsdriver.h"
 #include "scene/camera.h"
+
+using std::tr1::shared_ptr;
 
 Camera::Camera(const string& name):
         yawFixed(false),
@@ -189,28 +192,19 @@ void Camera::setDirection(const Vec3& vec) {
     m_FrustumNeedsUpdating = true;
 }
 
-void Camera::use() {
+void Camera::use(shared_ptr<graphics_driver_interface> graphics_driver) {
     kmMat4 transform;
 
     kmMat4RotationQuaternion(&transform, &m_Orientation);
 
-    glMultMatrixf(transform.m_Mat);
-
-    transform.m_Mat[12] = m_Position.x;
-    transform.m_Mat[13] = m_Position.y;
-    transform.m_Mat[14] = m_Position.z;
-
-    glTranslatef(m_Position.x, m_Position.y, m_Position.z);
-
-    //std::cout << m_Position.z << std::endl;
+		graphics_driver->mult_matrix(transform);
+		graphics_driver->translate(m_Position.x, m_Position.y, m_Position.z);
 
     if (m_FrustumNeedsUpdating) {
-        float model[16] = {0};     // Array to store the modelview matrix.
-        float proj[16] = {0};      // Array to store the projection matrix.
+				Mat4 proj = graphics_driver->get_projection_matrix();
+				Mat4 model = graphics_driver->get_modelview_matrix();
 
-        glGetFloatv(GL_PROJECTION_MATRIX, proj);
-        glGetFloatv(GL_MODELVIEW_MATRIX, model);
-        m_Frustum.update_frustum(model, proj);
+		    m_Frustum.update_frustum(model.m_Mat, proj.m_Mat);
         m_FrustumNeedsUpdating = false;
     }
 }

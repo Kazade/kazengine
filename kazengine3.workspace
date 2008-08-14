@@ -2,7 +2,6 @@
 <CodeBlocks_workspace_file>
 	<Workspace title="Workspace">
 		<Project filename="src/kazmathxx/build-linux/kazmathxx.cbp" />
-		<Project filename="src/kazmath/build-linux/kazmath.cbp" />
 		<Project filename="build/KazEngine3.cbp" active="1" />
 	</Workspace>
 </CodeBlocks_workspace_file>

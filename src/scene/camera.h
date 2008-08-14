@@ -48,7 +48,7 @@ class Camera {
 		void setOrientation(const kmQuaternion& q);
 		void setDirection(const Vec3& vec);
 		void setFixedYawAxis(bool fixYaw, const Vec3& axis);
-		void use();
+		void use(shared_ptr<graphics_driver_interface> graphics_driver);
 
 		const frustum& getFrustum() { return m_Frustum; }
 		void moveRelative(const Vec3& vec);

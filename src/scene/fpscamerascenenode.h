@@ -71,8 +71,8 @@ public:
         return false; //Should always return false for all other events
     }
 
-    void use() {
-        m_camera.use();
+    void use(shared_ptr<graphics_driver_interface> graphics_driver) {
+        m_camera.use(graphics_driver);
     }
 
     void on_animate(float dt) {

@@ -21,13 +21,9 @@ void opengl_2_driver::end_scene() {
 bool opengl_2_driver::do_initialize() {
 	load_supported_extensions();
 
-	//Set some sane defaults
-	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LEQUAL);
-	glEnable(GL_TEXTURE_2D);
-	glEnable(GL_CULL_FACE);
-
 	m_timer->initialize();
+
+	m_current_matrix_mode = MODELVIEW;
 
 	return true;
 }

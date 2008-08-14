@@ -1,7 +1,0 @@
-PROJECT(Kazmath)
-
-SET(CMAKE_C_FLAGS "-std=c99")
-SET(CMAKE_INSTALL_PREFIX, "/usr")
-
-ADD_SUBDIRECTORY(src bin)
-

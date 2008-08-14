@@ -139,7 +139,7 @@ void scene_manager::render_all() {
 		(*i)->on_pre_render();
 	}
 
-    get_active_camera()->use();
+  get_active_camera()->use(m_video_device);
 
 	for (i = m_nodes_for_rendering.begin(); i != m_nodes_for_rendering.end(); ++i) {
 		(*i)->render();
