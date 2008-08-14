@@ -1,0 +1,1 @@
+/usr/bin/gcc  -fPIC -std=c99  -shared -Wl,-soname,libKazmath.so -o libKazmath.so CMakeFiles/Kazmath.dir/mat4.o CMakeFiles/Kazmath.dir/plane.o CMakeFiles/Kazmath.dir/vec4.o CMakeFiles/Kazmath.dir/quaternion.o CMakeFiles/Kazmath.dir/vec2.o CMakeFiles/Kazmath.dir/vec3.o CMakeFiles/Kazmath.dir/utility.o 

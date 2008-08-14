@@ -1,0 +1,8 @@
+/usr/local/lib/libKazmath.so
+/usr/local/include/kazmath/vec2.h
+/usr/local/include/kazmath/vec3.h
+/usr/local/include/kazmath/vec4.h
+/usr/local/include/kazmath/mat4.h
+/usr/local/include/kazmath/plane.h
+/usr/local/include/kazmath/utility.h
+/usr/local/include/kazmath/quaternion.h
